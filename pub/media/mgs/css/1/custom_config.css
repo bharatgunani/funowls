@@ -1,0 +1,160 @@
+@import url('//fonts.googleapis.com/css?family=Montserrat:300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,900,900italic');@import url('//fonts.googleapis.com/css?family=Libre+Baskerville:300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,900,900italic');@font-face {
+						font-family: "Nunito";
+						src: url("https://funowls.com/pub/media/fonts/");
+						src: url("https://funowls.com/pub/media/fonts/?#iefix") format("embedded-opentype"),
+							 url("https://funowls.com/pub/media/fonts/") format("woff"),
+							 url("https://funowls.com/pub/media/fonts/") format("truetype"),
+							 url("https://funowls.com/pub/media/fonts/#Nunito") format("svg");
+						font-weight: normal;
+						font-style: normal;
+				}body{background-color:#f5f5f5;font-family: "Montserrat", arial, tahoma;font-weight: normal;}#mainMenu{font-family: "Montserrat";}
+				h1{font-family: "Montserrat";}
+				h2{font-family: "Montserrat";}
+				h3{font-family: "Montserrat";font-size: 20px;}
+				h4{font-family: "Montserrat";}
+				h5{font-family: "Montserrat";}
+				h6{font-family: "Montserrat";}
+				.price, .price-box .price{font-family: "Montserrat";}
+				.btn{font-family: "Montserrat";font-size: 14px;}
+				blockquote,.sub-title, .content-heading .block-note{font-family: "Libre Baskerville";}
+				a:hover,a:focus{color: #6faf11 !important;}.product-tab .menu-product-tabs li:hover a, .product-tab .menu-product-tabs li a:focus{border-color: #6faf11 !important;}.btn-default:hover,.btn-default:focus,.btn-default:active{background-color: #6faf11 !important;border-color: #6faf11 !important;}.btn-default2:hover,.btn-default2:focus,.btn-default2:active{background-color: #6faf11 !important;border-color: #6faf11 !important;}.btn-primary:hover,.btn-primary:focus,.btn-primary:active,.tocart.btn-cart:hover,.tocart.btn-cart:focus,.tocart.btn-cart:active{background-color: #00a54e !important;border-color: #00a54e !important;}.btn-secondary:hover,.btn-secondary:focus,.btn-secondary:active{background-color: #6faf11 !important;border-color: #6faf11 !important;}.big-item .products-grid .product-item-info.metro_template .product-top a.photo { padding-top: calc(133.3333% - 10px) !important; }
+.products-grid .big-item .product-item-info.metro_template .product-top a.photo { padding-bottom: calc(133.3333% - 10px) !important; }@media (min-width: 1200px){.cms-index-index .header.header8 .vertical-menu-widget .vertical-menu{padding-bottom: 60px;}}.header.header9 .vertical-menu-widget .vertical-menu {padding-bottom: 31px;}
+body:not(.panel-popup):not(.fullwidth).mgs-quickview-catalog-product-view.boxed .page-wrapper {
+		width: 100% !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+.mgs-quickview-catalog-product-view .product-detail-infomation.col-xs-12 {
+    height: auto !important;
+}
+.slide-text .big-text,.slide-text h2 {
+    font-size: 50px;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-Black.woff2') format('woff2'),
+        url('Nunito-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-BlackItalic.woff2') format('woff2'),
+        url('Nunito-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-Bold.woff2') format('woff2'),
+        url('Nunito-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-BoldItalic.woff2') format('woff2'),
+        url('Nunito-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-ExtraBold.woff2') format('woff2'),
+        url('Nunito-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-ExtraBoldItalic.woff2') format('woff2'),
+        url('Nunito-ExtraBoldItalic.woff') format('woff');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-ExtraLight.woff2') format('woff2'),
+        url('Nunito-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-ExtraLightItalic.woff2') format('woff2'),
+        url('Nunito-ExtraLightItalic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-Italic.woff2') format('woff2'),
+        url('Nunito-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-Light.woff2') format('woff2'),
+        url('Nunito-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-LightItalic.woff2') format('woff2'),
+        url('Nunito-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-Regular.woff2') format('woff2'),
+        url('Nunito-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-SemiBold.woff2') format('woff2'),
+        url('Nunito-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-SemiBoldItalic.woff2') format('woff2'),
+        url('Nunito-SemiBoldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+

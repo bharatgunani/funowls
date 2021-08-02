@@ -1,0 +1,148 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+?>
+<?php
+$themeHelper = $this->helper('MGS\Mpanel\Helper\Data');
+$canUsePanel = $themeHelper->acceptToUsePanel();
+?>
+<div class="contact-form-content">
+    <div class="row">
+        <div class="col-xs-12 top-banner">
+            <!-- Static block contact_page_custom_block -->
+            <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('contact_page_top_block')->setCanUsePanel($canUsePanel)->toHtml(); ?>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-7 about-column">
+            <div class="div-contact-wrap">
+                <h2>EMAIL US</h2>
+                <form class="form contact" action="<?php /* @escapeNotVerified */ echo $block->getFormAction(); ?>" id="contact-form" method="post" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+                    <div class="customer-group">
+                        <label class="required"><?php echo __('I am a:'); ?><em>*</em></label>
+                        <span class="error-msg newcustomer">This field is required</span>
+                        <div class="control">
+                            <input type="radio" id="newcustomer" name="newcustomer" value="New Customer" class="radio required-entry" data-validate="{'validate-one-required-by-name':true}" /> New Customer 
+                            <input type="radio" id="oldcustomer" name="newcustomer" value="Old Customer" class="radio required-entry" data-validate="{'validate-one-required-by-name':true}" /> Existing Customer
+                        </div>
+                    </div>
+
+                    <div class="customer-needs">
+                        <label class="required"><?php echo __('I need'); ?><em>*</em></label>
+                        <span class="error-msg eyewear">This field is required</span>
+                        <div class="input-box">
+                            <input type="radio" id="eyewear" name="eyewear" class="validate-one-required" checked="checked"  value="Eyewear" >
+                            <label for="eyewear">
+                                <span class="m-selected-radio-button" title="eyewear"><?php echo __("Eyewear"); ?></span>
+                            </label>
+                            <input type="radio" id="contacts" name="eyewear" value="Contacts" >
+                            <label for="contacts">
+                                <span class="m-selected-radio-button" title="contacts"><?php echo __("Contacts"); ?></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group name required">
+                        <label for="name"><?php echo __('Name'); ?></label>
+                        <span class="error-msg name">This field is required</span>
+                        <input name="name" id="name" placeholder="Enter your name" title="<?php /* @escapeNotVerified */ echo __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text form-control" type="text" data-validate="{required:true}"/>
+                    </div>
+                    <div class="form-group email required">
+                        <label for="email"><?php echo __('Email'); ?></label>
+                        <span class="error-msg email">Please enter valid email</span>
+                        <input name="email" id="email" placeholder="Enter your email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text form-control" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                    </div>
+                    <div class="form-group field enquiry">
+                        <label class="label" for="enquiry"><span><?php echo __('Enquiry type?') ?><em>*</em></span></label>
+                        <span class="error-msg enquiry">This field is required</span>
+                        <div class="control">
+                            <!--<input name="enquiry" id="enquiry" title="<?php echo __('enquiry') ?>" value="Product Enquiry" class="input-text hide" type="text" data-validate="{required:true}" />-->
+                            <select name="enquiry">
+                                <option value="">---</option>
+                                <option value="General"  selected="selected">General</option>
+                                <option value="Order">Order</option>
+                                <option value="Return">Return</option>
+                                <option value="Refund">Refund</option>
+                                <option value="Shipping">Shipping</option>
+                                <option value="Sale">Sale</option>
+                                <option value="Coupons">Coupons</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <label for="ordernumber"><?php echo __('What is your order number'); ?></label>
+                        <input name="ordernumber" id="ordernumber" title="<?php /* @escapeNotVerified */ echo __('What is your order number?') ?>" placeholder="Order Number" class="input-text form-control" class="input-text form-control" data-validate="{required:true}" />
+
+                    </div>  
+                    <div class="form-group comment required">
+                        <label for="comment"><?php echo __('Inquiry Details'); ?><em>*</em></label>
+                        <span class="error-msg comment">This field is required</span>
+                        <textarea name="comment" id="comment" title="<?php /* @escapeNotVerified */ echo __('Inquiry Details') ?>" class="input-text form-control" cols="5" rows="7" data-validate="{required:true}"></textarea>
+                    </div>
+                    <?= $block->getChildHtml('form.additional.info') ?>
+                    <div class="actions-toolbar">
+                        <input type="hidden" name="hideit" id="hideit" value="" />
+                        <button type="submit" title="<?php /* @escapeNotVerified */ echo __('Send Messages') ?>" class="action submit btn btn-primary">
+                            <span><?php /* @escapeNotVerified */ echo __('Send Messages') ?></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-5 about-column">
+            <!-- Static block contact_page_custom_block -->
+            <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('contact_page_custom_block')->setCanUsePanel($canUsePanel)->toHtml(); ?>
+            <!-- Static block contact_page_custom_block -->
+            <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('contact_page_custom_block_1')->setCanUsePanel($canUsePanel)->toHtml(); ?>
+        </div>
+    </div>	
+</div>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'mage/mage'
+    ], function ($) {
+        $(".error-msg").hide();
+        /* var dataForm = $('#contact-form');
+         dataForm.mage('validation', {}); */
+
+        $("label[for='captcha_contact_us']").after('<span style="display:none" class="error-msg captcha_contact_us">This field is required</span>');
+        $('#contact-form').on('submit', function () {
+            $(".error-msg").hide();
+            var flag = true;
+            if (!$("input[name='newcustomer']:checked").length) {
+                $(".error-msg.newcustomer").show();
+                flag = false;
+            }
+            if (!$("input[name='eyewear']:checked").length) {
+                $(".error-msg.eyewear").show();
+                flag = false;
+            }
+            if (!$("input[name='name']").val()) {
+                $(".error-msg.name").show();
+                flag = false;
+            }
+            if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test($("input[name='email']").val())) {
+                $(".error-msg.email").show();
+                flag = false;
+            }
+            if (!$("select[name='enquiry'] option:selected").val()) {
+                $(".error-msg.enquiry").show();
+                flag = false;
+            }
+            if (!$("textarea[name='comment']").val()) {
+                $(".error-msg.comment").show();
+                flag = false;
+            }
+            if (!$("input[id='captcha_contact_us']").val()) {
+                $(".error-msg.captcha_contact_us").show();
+                flag = false;
+            }
+            if (!flag) {
+                $("html, body").animate({scrollTop: jQuery("#contact-form").offset().top}, "slow");
+                return false;
+            }
+        });
+    });
+</script>

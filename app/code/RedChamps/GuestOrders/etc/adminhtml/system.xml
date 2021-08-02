@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="redchamps" translate="label" sortOrder="999998">
+            <label>RedChamps</label>
+        </tab>
+        <section id="guest_orders" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Guest Orders</label>
+            <tab>redchamps</tab>
+            <resource>RedChamps_GuestOrders::config</resource>
+            <group id="branding" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>RedChamps_GuestOrders</label>
+                <frontend_model>RedChamps\Core\Block\Adminhtml\System\Config\Form\Heading</frontend_model>
+            </group>
+            <group id="general" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0" translate="label">
+                <label>General Configuration</label>
+                <field id="processing_method" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Processing Method</label>
+                    <source_model>RedChamps\GuestOrders\Model\System\Config\Source\ProcessingMethod</source_model>
+                    <backend_model>RedChamps\GuestOrders\Model\System\Config\Backend\ProcessingMethod</backend_model>
+                    <comment>
+                        Choose at what time the guest orders to be processed. By default, they are processed on checkout i.e as soon as customer placed the order.
+                        But if you are facing any performance issues on checkout, then you can choose this setting to 'Cron Job'.
+                        In that case, orders will be processed via cron job running every 15 minutes.
+                    </comment>
+                </field>
+            </group>
+            <group id="auto_customer_accounts" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0" translate="label">
+                <label>Automatic Customer Accounts</label>
+                <field id="enabled" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <comment>If enabled the customer accounts for guest order will be automatically created (if doesn't exist)</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="email_notification" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Send Welcome Email</label>
+                    <comment>If enabled the customer will receive welcome email with a link to set account password</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="success_enabled" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Show Message on Checkout Success Page</label>
+                    <comment>If enabled a account creation success message will be visible on checkout success page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="email_notification">1</field>
+                    </depends>
+                </field>
+                <field id="success_text" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Message Text</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="email_notification">1</field>
+                        <field id="success_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="success_styles" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Message CSS Styles</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="email_notification">1</field>
+                        <field id="success_enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="email" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" translate="label">
+                <label>Follow Up Email Configuration</label>
+                <depends>
+                    <field id="guest_orders/auto_customer_accounts/enabled">0</field>
+                </depends>
+                <field id="enabled" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <comment>If enabled the follow up email will be sent using Magento's cron job 1 hour after the order is placed.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="identity" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="template" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="copy_to" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Send Email Copy To</label>
+                    <comment>Comma-separated value in case of multiple email addresses.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="copy_method" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Send Email Copy Method</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Method</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

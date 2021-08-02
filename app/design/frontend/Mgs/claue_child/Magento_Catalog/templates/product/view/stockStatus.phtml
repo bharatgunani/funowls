@@ -1,0 +1,35 @@
+<?php /* @var $block \Magento\Catalog\Block\Product\View\AbstractView */?>
+<?php $_product = $block->getProduct() ?>
+<div class="product-info-stock-availability testtt">
+<?php if ($block->displayProductStockStatus()): ?>
+	<?php 
+        $stockItem = $_product->getExtensionAttributes()->getStockItem();
+        $stockData = $_product->getQty();
+        $backorder=$_product->getExtensionAttributes()->getStockItem()->getBackorders();
+	?>
+    <?php if ($_product->isSaleable() && $stockData > 0): ?>
+        <div class="stock available pro_status">
+            <span class="glyphicon glyphicon-ok"></span><span><?php /* @escapeNotVerified */ echo __('In stock - Ready to ship') ?>
+            <div class="tooltip-custom">ⓘ
+                <span class="tooltiptext">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+            </div>
+        </span>
+        </div>
+    <?php else: ?>
+        <?php if($backorder===0){?>
+        <div class="stock unavailable pro_status">
+            <span class="glyphicon glyphicon-remove"></span><span><?php /* @escapeNotVerified */ echo __('Out of Stock') ?><div class="tooltip-custom">ⓘ
+  <span class="tooltiptext">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+</div></span>
+        </div>
+        <?php }else{?>
+         <div class="stock unavailable pro_status">
+            <span class="glyphicon glyphicon-ok"></span><span><?php /* @escapeNotVerified */ echo __('Ships within 3-10 days') ?><div class="tooltip-custom">ⓘ
+  <span class="tooltiptext">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+</div></span>
+        </div>
+        <?php }?>
+    <?php endif; ?>
+<?php endif; ?>
+</div>
+ 

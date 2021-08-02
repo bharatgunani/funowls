@@ -1,0 +1,10 @@
+<?php if($block->canShow() && $text = $block->getText()):?>
+    <div class="account-success-notification message success">
+    <span class="message-success">
+        <?= $text?>
+    </span>
+    </div>
+    <style>
+        <?= $block->getStyles()?>
+    </style>
+<?php endif;?>

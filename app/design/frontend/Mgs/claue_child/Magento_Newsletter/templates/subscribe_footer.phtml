@@ -1,0 +1,35 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<div class="block newsletter">
+    <h2><?php echo __('Join The Premium Members Club.'); ?></h2>
+    <p><?php echo __('Get latest exclusive premium offers for our members only.'); ?></p>
+    <div class="content">
+        <form class="form subscribe"
+            novalidate
+            action="<?php /* @escapeNotVerified */ echo $block->getFormActionUrl() ?>"
+            method="post"
+            data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+            id="newsletter-validate-detail-footer">
+            <div class="field form-group newsletter">
+                <div class="control">
+                    <span class="fa fa-envelope-open"></span>
+                    <input name="email" type="email" id="newsletter-footer"
+                                placeholder="<?php /* @escapeNotVerified */ echo __('Your email address') ?>"
+                                data-validate="{required:true, 'validate-email':true}"/>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="action subscribe btn btn-primary btn-sm" title="<?php /* @escapeNotVerified */ echo __('Subscribe') ?>" type="submit">
+                    <span class="fa fa-angle-double-right"></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

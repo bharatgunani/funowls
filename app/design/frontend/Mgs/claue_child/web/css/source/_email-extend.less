@@ -1,0 +1,107 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Email extend styles
+//  _____________________________________________
+
+//  This file should be used for theme-specific styles for emails that extend or modify the styles in _email.less
+//  This will allow you to edit email styles without copying and editing the _email.less file
+
+//  Custom fonts are declared here, rather than in _email-base.less, as it allows for custom fonts to be changed/removed
+//  in custom themes.
+
+//  Importing fonts from an external CSS file, rather than embedding @font-face declarations inside the <style> tag,
+//  as the latter will cause font rendering issues if the web fonts are inaccessible.
+
+@import url("@{baseUrl}css/email-fonts.css");
+
+//  custom email styles
+//  -------------------
+.email-template{
+  margin-top: 30px;
+  .main{
+    border: 1px solid @color-gray89;
+  }
+  .main-content{
+    table{
+      width: 100%;
+    }
+  }
+  .email-separate-heading{
+    background-color: #019ae3;
+    color:@color-white;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 3px;
+    font-size:14px;
+    font-weight: bold;
+  }
+  .header{
+    text-align: center;
+  }
+  .footer{
+    text-align:center;
+    background-color: @color-gray89;
+    font-size: smaller;
+    padding: 20px;
+  }
+  ul{
+    list-style: none;
+  }
+
+  .label-bold{
+    font-weight: bold;
+  }
+  .td-right{
+    text-align: right;
+    font-weight: normal;
+  }
+  .email-products-table{
+    width: 100%;
+    .email-products-table-img{
+      vertical-align: middle;
+      text-align: center;
+      img{
+        text-align: center;
+      }
+    }
+    .email-products-table-value{
+      td{
+        //font-weight: bold;
+        font-size: 12px;
+      }
+    }
+    .email-products-table-loop{
+      tr{
+        td{
+          padding-bottom: 20px;
+          padding-top: 20px;
+          table{
+            td{
+              padding-bottom: 0;
+              padding-top: 0;
+            }
+          }
+        }
+      }
+    }
+
+  }
+  .blue-link{
+    color: #019ae3;
+  }
+  .green-link{
+    color: #00a54e;
+  }
+  .p-margin-0{
+    p{
+      margin-bottom: 0;
+    }
+  }
+  .align-center{
+    text-align: center;
+  }
+}

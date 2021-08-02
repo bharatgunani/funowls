@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+<default>
+    <universaltag>
+        <general>
+            <enterprise_id></enterprise_id>
+            <action_id></action_id>
+            <tag_id></tag_id>
+            <customer_status>1</customer_status>
+        </general>
+    </universaltag>
+</default>
+</config>

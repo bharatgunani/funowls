@@ -1,0 +1,69 @@
+<?php
+    $blockObj= $block->getLayout()->createBlock('Funowls\Pdp\Block\Pdpdetails');
+    $baseUrl = $blockObj->getBaseUrl();
+?>
+<div class="frame_shape">
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="owl-carousel frameshape_slider">
+            <div class="item">
+              <a href="<?= $baseUrl; ?>frame-shapes/aviator.html"><img class="shape_img" src="<?= $baseUrl; ?>pub/media/wysiwyg/shape/aviator-shape-940x423.jpg" alt="aviator-shape"><span class="shape_label">Shop Aviator</span></a>
+            </div>
+            <div class="item">
+              <a href="<?= $baseUrl; ?>frame-shapes/cat-eye.html"><img class="shape_img" src="<?= $baseUrl; ?>pub/media/wysiwyg/shape/cateye-shape-940x423.jpg" alt="cateye-shape"><span class="shape_label">Shop Cat-Eye</span></a>
+            </div>
+            <div class="item">
+              <a href="<?= $baseUrl; ?>frame-shapes/oval.html"><img class="shape_img" src="<?= $baseUrl; ?>pub/media/wysiwyg/shape/oval-shape-940x423.jpg" alt="oval-shape"><span class="shape_label">Shop Oval</span></a>
+            </div>
+            <div class="item">
+              <a href="<?= $baseUrl; ?>frame-shapes/rectangle.html"><img class="shape_img" src="<?= $baseUrl; ?>pub/media/wysiwyg/shape/rectangle-shape-940x423.jpg" alt="rectangle-shape"><span class="shape_label">Shop Rectangle</span></a>
+            </div>
+            <div class="item">
+              <a href="<?= $baseUrl; ?>frame-shapes/round.html"><img class="shape_img" src="<?= $baseUrl; ?>pub/media/wysiwyg/shape/round-shape-940x423.jpg" alt="round-shape"><span class="shape_label">Shop Round</span></a>
+            </div>
+            <div class="item">
+              <a href="<?= $baseUrl; ?>frame-shapes/square.html"><img class="shape_img" src="<?= $baseUrl; ?>pub/media/wysiwyg/shape/square-shape-940x423.jpg" alt="square-shape"><span class="shape_label">Shop Square</span></a>
+            </div>
+          </div>
+      </div>
+        </div>
+</div>
+    <script type="text/javascript">
+    require([
+      'jquery',
+      'mgs/owlcarousel'
+    ], function(jQuery){
+      (function($) {
+      var $owl = $('.frameshape_slider');
+
+    function callSlider(){
+      $owl.owlCarousel({
+      margin: 10,
+      nav: true,
+      loop: false,
+      responsive: {
+        0: {
+        items: 1,
+        dots: true
+        },
+        600: {
+        items: 2,
+        dots: true
+        },
+        768:{
+        stagePadding: 30
+        },
+        1000: {
+        items: 3,
+        dots: true,
+        stagePadding: 30
+        }
+      }
+      })
+    }
+    if ($owl.length) {
+    callSlider();
+  } 
+  })(jQuery);
+    });
+  </script>

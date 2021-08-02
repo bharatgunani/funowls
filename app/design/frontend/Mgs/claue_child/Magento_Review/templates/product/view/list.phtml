@@ -1,0 +1,111 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * @description:
+ *
+ */
+?>
+<?php
+    $_items = $block->getReviewsCollection()->getItems();
+    $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
+?>
+<?php if (count($_items)):?>
+<div class="block review-list" id="customer-reviews">
+    <div class="block-content">
+        <div class="review-main">
+        <?php foreach ($_items as $_review):?>
+            <div class="review-inner" style="display: none;">
+                <div class="cus-name">
+                    <h6><?php echo $block->escapeHtml($_review->getNickname()) ?> </h6>
+                    <div class="review-upper">
+                        <?php if (count($_review->getRatingVotes())): ?>
+                            <div class="review-ratings">
+                            <?php foreach ($_review->getRatingVotes() as $_vote): ?>
+                            <div class="rating-summary item" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                                <span class="rating-label"><span><?php echo $block->escapeHtml($_vote->getRatingCode()) ?></span></span>
+                                <div class="rating-result" title="<?php /* @escapeNotVerified */ echo $_vote->getPercent() ?>%">
+                                    <meta itemprop="worstRating" content = "1"/>
+                                    <meta itemprop="bestRating" content = "100"/>
+                                    <span style="width:<?php /* @escapeNotVerified */ echo $_vote->getPercent() ?>%">
+                                        <span itemprop="ratingValue"><?php /* @escapeNotVerified */ echo $_vote->getPercent() ?>%</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+                        <p class="date-review"><?php $date=date_create($_review->getCreatedAt()); echo date_format($date,"M d, Y");?></p>
+                    </div>
+                    <p class="rating-p-name"><?php echo $block->escapeHtml($_review->getTitle()) ?></p>
+                </div>
+                <div class="cus-description">
+                    <p><?php echo nl2br($block->escapeHtml($_review->getDetail())) ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        </div>
+        <?php if (count($_items) > 3):?>
+            <div id="loadMore" class="loadMore">Load more</div>
+        <?php endif; ?>
+        <div id="showLess" class="showLess" style="display: none;">Show less</div>
+        <div class="bottom-pagination">
+            <div class="toolbar review-toolbar">
+                <?php echo $block->getChildHtml('toolbar') ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {                
+        // setTimeout(function(){
+        size_li = $(".review-main").children().length;
+        x=3;
+        $('.review-main .review-inner:lt('+x+')').show();
+        $('#loadMore').click(function () {
+            x= (x+3 <= size_li) ? x+3 : size_li;
+            $('.review-main .review-inner:lt('+x+')').show();
+             $('#showLess').show();
+            if(x == size_li){
+                $('#loadMore').hide();
+            }
+        });
+        $('#showLess').click(function () {
+            x=(x-3<0) ? 3 : x-3;
+            if(x < 3)
+            {
+                x=3;
+                $('#showLess').hide();
+                $('.review-main .review-inner').hide();
+                $('.review-main .review-inner:lt('+x+')').show();
+            }
+            else
+            {
+                if(x == 3)
+                {
+                    $('.review-main .review-inner').not(':lt('+x+')').hide();
+                    $('#loadMore').show();
+                    $('#showLess').hide();
+                }
+                else
+                {
+                    $('.review-main .review-inner').not(':lt('+x+')').hide();
+                    $('#loadMore').show();
+                    $('#showLess').show();
+                }
+            }
+        });
+        // }, 3000);
+
+    });
+</script>
+<?php endif;?>

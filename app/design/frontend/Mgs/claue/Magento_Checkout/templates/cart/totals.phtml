@@ -1,0 +1,37 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Shopping cart totals template
+ * @var $block \Magento\Checkout\Block\Cart\Totals
+ */
+?>
+
+<div id="cart-totals" class="cart-totals" data-bind="scope:'block-totals'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+            {
+                "#cart-totals": {
+                    "Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>
+                }
+            }
+    </script>
+</div>
+
+<?php 
+$totals = $block->getTotals() ;
+foreach($totals as $key => $total)
+{
+    if(!empty($total->getValue()) && $total->getTitle()->getText() == 'Grand Total')
+    {
+        $grandTotal = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency(number_format($total->getValue()/4,2),true,false);
+        ?>
+            <div class="sezzle-emi-info-button sezzle-cart-page"><div class="sezzle-emi-button-wrapper sezzle-modal-link" style="cursor: pointer;"><div class="sezzle-button-text">or 4 interest-free payments of <span class="sezzle-payment-amount sezzle-button-text">CAD<?= $grandTotal; ?>&nbsp;</span> with <img class="sezzle-logo szl-light-image" src="https://media.sezzle.com/branding/2.0/Sezzle_Logo_FullColor.svg" style="transform-origin: right top; transform: scale(1);"> <code class="sezzle-info-icon">ⓘ</code></div></div></div>
+        <?php
+    }
+}
+?>

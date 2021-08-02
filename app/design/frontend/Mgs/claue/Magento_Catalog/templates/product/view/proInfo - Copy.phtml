@@ -1,0 +1,85 @@
+<?php /** @var $block \Magento\Catalog\Block\Product\AbstractProduct */ ?>
+<?php 
+$blockObj= $block->getLayout()->createBlock('Funowls\Pdp\Block\Pdpdetails');
+$baseUrl = $blockObj->getBaseUrl();
+?>
+<hr>
+<div class="product_information">
+    <div class="container">
+	  <ul class="nav nav-pills">
+	    <li class="active"><a data-toggle="pill" href="#details">Details</a></li>
+	    <li><a data-toggle="pill" href="#moreinfo">More Information</a></li>
+	  </ul>
+	  
+	  <div class="tab-content">
+	    <div id="details" class="tab-pane fade in active proinfotab">
+	      <div class="speci-right">
+				<div class="speci-image">
+					<p class="bridge_size_img"><?= $blockObj->getOptionLabel('bridge_size', $block->getProduct()->getId()); ?></p>
+					<p class="lens_size_val_img"><?= $blockObj->getOptionLabel('lens_width', $block->getProduct()->getId()); ?></p>
+					<p class="temple_length_img"><?= $blockObj->getOptionLabel('temple_length', $block->getProduct()->getId()); ?></p>
+					<img src="<?= $baseUrl; ?>pub/media/wysiwyg/pdp_lens_measurement.jpg" alt="lens_measurement">
+				</div>
+			</div>
+	    </div>
+	    <div id="moreinfo" class="tab-pane fade moreinfo">
+	    	<div class="pdp_moreInfo">
+	    		<div class="pdetails">Product Details</div>
+	    		<div class="pdetails_text">Combining the best of design and technology, Its unique shape has become the unmistakable brand icon over time.</div>
+	    	</div>
+	    	<div class="moreinfo_main">
+	    	<table class="proinfo_table" style="width:100%">
+	  <?php if(!empty($blockObj->getOptionLabel('mgs_brand', $block->getProduct()->getId()))){?>
+		      	<tr class="proinfo_col"><td>Brand</td><td><?= $blockObj->getOptionLabel('mgs_brand', $block->getProduct()->getId()); ?></td></tr>
+		      	<?php }?>
+		      	<?php if($block->getProduct()->getModelNumber()){?>
+				<tr class="proinfo_col"> <td>Model Number</td><td><?= $block->getProduct()->getModelNumber(); ?></td></tr>
+				<?php }?>
+				<?php if($block->getProduct()->getUpc()){?>
+				<tr class="proinfo_col"> <td>UPC</td><td><?= $block->getProduct()->getUpc(); ?></td></tr>
+				<?php }?>
+				<?php if($block->getProduct()->getFrameColor()){?>
+				<tr class="proinfo_col"> <td>Frame Color</td><td><?= $block->getProduct()->getFrameColor(); ?></td></tr>
+                 <?php }?>
+				<?php if($block->getProduct()->getLensColor()){?>
+				<tr class="proinfo_col"> <td>Lens Color</td><td><?= $block->getProduct()->getLensColor(); ?></td></tr>
+				<?php }?>
+				<?php if($blockObj->getOptionLabel('gender', $block->getProduct()->getId())){?>
+				<tr class="proinfo_col"> <td>Gender</td><td><?= $blockObj->getOptionLabel('gender', $block->getProduct()->getId()); ?></td></tr>
+				<?php }?>
+				<?php if($blockObj->getOptionLabel('lens_width', $block->getProduct()->getId())){?>
+				<tr class="proinfo_col"> <td>Lens Size</td><td><?= $blockObj->getOptionLabel('lens_width', $block->getProduct()->getId()); ?></td></tr>
+				<?php }?>
+				<?php if($blockObj->getOptionLabel('bridge_size', $block->getProduct()->getId())){?>
+				<tr class="proinfo_col"> <td>Bridge Size</td><td><?= $blockObj->getOptionLabel('bridge_size', $block->getProduct()->getId()); ?></td></tr>
+				<?php }?>
+				<?php if($blockObj->getOptionLabel('temple_length', $block->getProduct()->getId())){?>
+				<tr class="proinfo_col"> <td>Temple Length</td><td><?= $blockObj->getOptionLabel('temple_length', $block->getProduct()->getId()); ?></td></tr>
+				<?php }?>
+				<?php if($blockObj->getOptionLabel('lens_material', $block->getProduct()->getId())){?>
+				<tr class="proinfo_col"><td>Lens Material</td><td><?= $blockObj->getOptionLabel('lens_material', $block->getProduct()->getId()); ?></td></tr>
+				<?php }?>
+				<?php if($blockObj->getOptionLabel('front_material', $block->getProduct()->getId())){?>
+				<tr class="proinfo_col"><td>Frame Front Material</td><td><?= $blockObj->getOptionLabel('front_material', $block->getProduct()->getId()); ?></td></tr>
+				<?php }?>
+				<?php if($blockObj->getOptionLabel('temple_material', $block->getProduct()->getId())){?>
+				<tr class="proinfo_col"> <td>Temple Material</td><td><?= $blockObj->getOptionLabel('temple_material', $block->getProduct()->getId()); ?></td></tr>
+				<?php }?>
+				<?php if(!empty($block->getProduct()->getLensType())){?>
+				<tr class="proinfo_col"> <td>Lens Type</td><td><?= $block->getProduct()->getLensType(); ?></td></tr>
+				<?php }?>
+				<?php if($blockObj->getOptionLabel('hinges', $block->getProduct()->getId())){?>
+				<tr class="proinfo_col"> <td>Hinges</td><td><?= $blockObj->getOptionLabel('hinges', $block->getProduct()->getId()); ?></td></tr>
+				<?php }?>
+				<?php if($blockObj->getOptionLabel('rim_type', $block->getProduct()->getId())){?>
+				<tr class="proinfo_col">  <td>Rim</td><td><?= $blockObj->getOptionLabel('rim_type', $block->getProduct()->getId()); ?></td></tr>
+				<?php }?>
+			</table>
+			<div class="product_description">
+				<div class="pro_desc"><?= $blockObj->getProDesc('desc', $block->getProduct()->getId()); ?></div>
+			</div>
+		   </div>
+	    </div>
+	  </div>
+	</div>
+</div>

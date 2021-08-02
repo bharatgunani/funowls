@@ -1,0 +1,423 @@
+<?php
+   /**
+    * Copyright © 2015 Magento. All rights reserved.
+    * See COPYING.txt for license details.
+    */
+   
+   // @codingStandardsIgnoreFile
+   
+   ?>
+<?php /** @var $block \Magento\Catalog\Block\Product\View */ ?>
+<?php $_product = $block->getProduct(); ?>
+<?php $themeHelper = $this->helper('MGS\Mpanel\Helper\Data'); ?>
+<?php if($_product->getMgsDetailTemplate() == ""): ?>
+<?php $templateLayout = $themeHelper->getStoreConfig('mpanel/product_details/product_ct_template'); ?>
+<?php else: ?>
+<?php $templateLayout = $_product->getMgsDetailTemplate(); ?>
+<?php endif ?>
+<?php $galleryPopup = $themeHelper->getStoreConfig('mpanel/product_details/popup_gallery'); ?>
+<?php $stickyMenu = $themeHelper->getStoreConfig('mgstheme/general/sticky_menu'); ?>
+<?php $cr_header = $themeHelper->getStoreConfig('mgstheme/general/header'); ?>
+<?php $class = "product-detail-media"; ?>
+<?php if(!$templateLayout): ?><?php $templateLayout = 0; ?><?php endif ?>
+<input id="mgs_template_layout" type="hidden" name="mgs_template_layout" value="<?php echo $templateLayout; ?>">
+<input id="galleryPopup" type="hidden" name="galleryPopup" value="<?php echo $galleryPopup; ?>">
+<?php echo $block->getChildHtml('product.info.popup.gallery') ?>
+<?php if ($priceAmount = $_product->getFinalPrice()):?>
+<div class="no-display price product-price"><?php echo $priceAmount; ?></div>
+<?php endif;?>
+<?php if($templateLayout != 5): ?>
+<?php if($templateLayout == 3): ?>
+<?php //Product with sticky info 2  ?>
+<div class="row sticky-info-multiple-col">
+   <div class="col-lg-3 hidden-md hidden-sm hidden-xs product-detail-infomation  product-detail-infomation-sticky">
+      <div class="product-detail-infomation-content <?php if($stickyMenu && $cr_header): ?> has-sticky-menu<?php endif ?>">
+         <?php echo $block->getChildHtml('alert_urls') ?>
+         <div class="product-info-main">
+            <?php echo $block->getChildHtml('product.info.name') ?>
+            <?php echo $block->getChildHtml('product.info.review') ?>
+            <?php echo $block->getChildHtml('product.info.price') ?>
+            <?php echo $block->getChildHtml('product.price.tier') ?>
+            <?php echo $block->getChildHtml('product.info.overview') ?>
+            <?php echo $block->getChildHtml('product.info.main') ?>
+            <div class="product-extra-image">
+               <?php echo $this->getLayout()->createBlock("Funowls\Plp\Block\ProductDetail")->setTemplate("Magento_Theme::html/custom_image.phtml")->toHtml(); ?>
+            </div>
+            <div class="product-sub-infomation">
+               <div class="product-info-stock-sku">
+                  <?php echo $block->getChildHtml('product.info.type') ?>
+               </div>
+               <?php echo $block->getChildHtml('product.info.sku') ?>
+               <?php echo $block->getChildHtml('product.brand.name') ?>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-6 col-sm-6 col-xs-12<?php if($galleryPopup): ?> product-gallery-popup<?php endif ?>">
+      <div class="<?php echo $class; ?>">
+         <?php echo $block->getChildHtml('product.info.media.image') ?>
+      </div>
+   </div>
+   <div class="col-lg-3 col-sm-6 col-xs-12 product-detail-infomation  product-detail-infomation-sticky">
+      <div class="product-info-main <?php if($stickyMenu && $cr_header != 'header_5'): ?> has-sticky-menu<?php endif ?>">
+         <div class="hidden-lg">
+            <?php echo $block->getChildHtml('alert_urls') ?>
+            <?php echo $block->getChildHtml('product.info.name') ?>
+            <?php echo $block->getChildHtml('product.info.review') ?>
+            <?php echo $block->getChildHtml('product.info.price') ?>
+            <?php echo $block->getChildHtml('product.price.tier') ?>
+            <?php echo $block->getChildHtml('product.info.overview') ?>
+         </div>
+         <?php echo $block->getChildHtml('product.info.main') ?>
+         <?php echo $block->getChildHtml('bundle.options.container') ?>
+         <?php echo $block->getChildHtml('product.info') ?>
+         <?php echo $block->getChildHtml('custom.product.detail.top.static.block') ?>
+         <div class="product-sub-infomation hidden-lg">
+            <div class="product-info-stock-sku">
+               <?php echo $block->getChildHtml('product.info.type') ?>
+            </div>
+            <?php echo $block->getChildHtml('product.info.sku') ?>
+            <?php echo $block->getChildHtml('product.brand.name') ?>
+            <div class="product-extra-image">
+               <?php echo $this->getLayout()->createBlock("Funowls\Plp\Block\ProductDetail")->setTemplate("Magento_Theme::html/custom_image.phtml")->toHtml(); ?>
+            </div>
+         </div>
+         <?php if($themeHelper->getStoreConfig('mpanel/share_config/share_product_detail')): ?>
+         <div class="text-center margin-top20">
+            <?php echo $block->getChildHtml('product.detail.sharethis') ?>
+         </div>
+         <?php endif ?>
+      </div>
+   </div>
+</div>
+<script type="text/javascript">
+   require([
+      'jquery',
+      'sticky-content'
+      ], function($){
+         $(window).scroll(function(){
+            $(".product-detail-infomation-sticky").stick_in_parent({
+               parent: $('.sticky-info-multiple-col')
+            });
+         });
+      });
+</script>
+<?php else: ?>
+<div class="row product-detail-infomation-sticky-parent">
+   <div class="col-sm-6 col-xs-12<?php if($galleryPopup): ?> product-gallery-popup<?php endif ?>">
+      <div class="<?php echo $class; ?>">
+         <?php echo $block->getChildHtml('product.info.media.image') ?>
+      </div>
+   </div>
+   <div class="col-sm-6 col-xs-12 product-detail-infomation product-detail-infomation-sticky">
+      <div class="yhaaatest product-detail-infomation-content<?php if($themeHelper->getStoreConfig('mgstheme/general/sticky_menu') && $themeHelper->getStoreConfig('mgstheme/general/header') != 'header_5'): ?> has-sticky-menu<?php endif ?>">
+         <?php echo $block->getChildHtml('alert_urls') ?>
+         <div class="product-info-main">
+            <?php echo $block->getChildHtml('product.info.name') ?>
+            <?php echo $block->getChildHtml('product.info.review') ?>
+            <?php echo $block->getChildHtml('product.info.price') ?>
+            <?php echo $block->getChildHtml('product.price.tier') ?>
+            <?php echo $block->getChildHtml('product.info.overview') ?>
+            <?php echo $block->getChildHtml('product.info.main') ?>
+            <?php echo $block->getChildHtml('bundle.options.container') ?>
+            <?php echo $block->getChildHtml('product.info') ?>
+            <?php echo $block->getChildHtml('custom.product.detail.top.static.block') ?>
+            <div class="product-extra-image">
+               <?php echo $this->getLayout()->createBlock("Funowls\Plp\Block\ProductDetail")->setTemplate("Magento_Theme::html/custom_image.phtml")->toHtml(); ?>
+            </div>
+            <div class="product-sub-infomation">
+               <div class="product-info-stock-sku">
+                  <?php echo $block->getChildHtml('product.info.type') ?>
+               </div>
+               <?php echo $block->getChildHtml('product.info.sku') ?>
+               <?php echo $block->getChildHtml('product.brand.name') ?>
+               <?php if($themeHelper->getStoreConfig('mpanel/share_config/share_product_detail')): ?>
+               <?php echo $block->getChildHtml('product.detail.sharethis') ?>
+               <?php endif ?>
+            </div>
+            <?php if($themeHelper->getStoreConfig('protabs/general/position')): ?>
+            <?php echo $block->getChildHtml('product.info.details') ?>
+            <?php endif ?>
+         </div>
+      </div>
+   </div>
+</div>
+<?php endif ?>
+<?php if(!$themeHelper->getStoreConfig('protabs/general/position') || $templateLayout== 3): ?>
+<?php echo $block->getChildHtml('product.info.details') ?>
+<?php endif ?>
+<?php if($templateLayout == 2): ?>
+<script type="text/javascript">
+   require([
+      'jquery',
+      'sticky-content'
+      ], function(jQuery){
+         (function($) {
+            $(window).scroll(function(){
+               $(".product-detail-infomation-sticky").stick_in_parent({
+                  parent: $('.product-detail-infomation-sticky-parent')
+               });
+            });
+         })(jQuery);
+      });
+</script>
+<?php endif ?>
+<?php else:?>
+<?php $blockObj= $block->getLayout()->createBlock('Funowls\Pdp\Block\Pdpdetails'); ?>
+<div class="topPro_section">
+   <div class="pdp_topPro_data">
+      <div class="product_short_description">
+         <div class="pro_shortdesc"><?= $blockObj->getProDesc('short_desc', $_product->getId()); ?></div>
+      </div>
+      <div class="pro_modelName" itemprop="name"><?= $_product->getResource()->getAttribute('mgs_brand')->getFrontend()->getValue($_product); ?>  <?= $_product->getModelName() ?></div>
+<meta content="<?= $_product->getSku(); ?>" itemprop="sku" />
+      <div class = "polarizedsection">
+         <div class="polarized_tag">
+         <?php
+            $optionlabel = $blockObj->getOptionLabel('polarization', $_product->getId());
+            if($optionlabel == 'Polarized')
+            {
+               // echo "Polarized";
+            ?>
+                <img class="polrized_imageTag" src="<?= $blockObj->getBaseUrl(); ?>pub/media/wysiwyg/polarized.svg" alt="polarized tag">
+         <?php
+            }
+            ?>
+      </div>
+   </div>
+      <div class="pro_color_varient"><?= $blockObj->getOptionLabel('color_variant', $_product->getId()); ?></div>
+   </div>
+   <?php //echo $block->getChildHtml('product.info.review') ?>
+      <div class="discountsection">
+         <div class="discount_amount_tag">
+            <?php
+               if($_product->getSpecialPrice())
+               {
+                $orgprice = $_product->getPrice();
+                $specialprice = $_product->getSpecialPrice();
+                $saleAmt = round($orgprice - $specialprice);
+                $discountAmt =  round($saleAmt * 100 / $orgprice);
+                   ?>
+            <div class="discount-amt"><span class="discount-per"><?= $discountAmt; ?>%</span> off</div>
+            <?php
+               }
+               ?>
+         </div>
+      </div>
+</div>
+<div class="row product-detail-infomation-slide-gallery">
+<div id="slide-gallery" class="<?php echo $class; ?>">
+   <?php echo $block->getChildHtml('product.info.media.image') ?>
+    <div class="mobile_productName hidden-lg hidden-md"><?= $_product->getResource()->getAttribute('mgs_brand')->getFrontend()->getValue($_product); ?>  <?= $_product->getModelName() ?></div>
+
+    <div class = "mobile_colorVariant  hidden-lg hidden-md">
+      <div class="pro_color_varient"><?= $blockObj->getOptionLabel('color_variant', $_product->getId()); ?></div>
+
+   </div>
+</div>
+
+ 
+  
+
+<div class="custom__productinfocontent product-detail-infomation-content<?php if($themeHelper->getStoreConfig('mgstheme/general/sticky_menu') && $themeHelper->getStoreConfig('mgstheme/general/header') != 'header_5'): ?> has-sticky-menu<?php endif ?>">
+   <?php echo $block->getChildHtml('alert_urls') ?>
+   <div class="product-info-main">
+      <?php //echo $block->getChildHtml('product.info.name') ?>
+      <?php //echo $block->getChildHtml('product.info.proData') ?>
+      <?php echo $block->getChildHtml('product.info.sezzleEmi') ?>
+      <?php echo $block->getChildHtml('product.info.main') ?>
+      <?php echo $block->getChildHtml('bundle.options.container') ?>
+      <?php echo $block->getChildHtml('product.info') ?>
+      <?php echo $block->getChildHtml('product.info.price') ?>
+      <?php echo $block->getChildHtml('product.price.tier') ?>
+      <?php //echo $block->getChildHtml('product.info.stockavailable') ?>
+      <?php echo $block->getChildHtml('product.info.proInfo') ?>
+      <?php echo $block->getChildHtml('product.info.polarized') ?>
+      <div class="product-extra-image">
+         <?php echo $this->getLayout()->createBlock("Funowls\Plp\Block\ProductDetail")->setTemplate("Magento_Theme::html/custom_image.phtml")->toHtml(); ?>
+      </div>
+      <?php echo $block->getChildHtml('related.pro') ?>
+      <?php if($themeHelper->getStoreConfig('mpanel/share_config/share_product_detail')): ?>
+      <?php echo $block->getChildHtml('product.detail.sharethis') ?>
+      <?php endif ?>
+      <?php //echo $block->getChildHtml('custom.product.detail.top.static.block') ?>
+      <div class="product-sub-infomation">
+         <div class="product-info-stock-sku">
+            <?php //echo $block->getChildHtml('product.info.type') ?>
+         </div>
+         <?php //echo $block->getChildHtml('product.info.sku') ?>
+         <?php //echo $block->getChildHtml('product.brand.name') ?>
+      </div>
+      <?php //echo $block->getChildHtml('product.info.overview') ?>
+      <?php if($themeHelper->getStoreConfig('protabs/general/position')): ?>
+      <?php echo $block->getChildHtml('product.info.details') ?>
+      <?php endif ?>
+   </div>
+</div>
+<?php echo $block->getChildHtml('product.info.details') ?>
+
+
+
+<div class = "hidden-lg hidden-md bestseller-block" style="margin-bottom: 10px">
+         <!-- <h4>Certified Reseller Badge</h4> -->
+</div>
+<div class = "hidden-lg hidden-md bestseller-block" >
+   <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('productdetails_block_one')->toHtml();?>                      
+</div>
+
+<div id="accordion"  class = "producttabs_custom__container hidden-lg hidden-md" data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": 2, "multipleCollapsible": false, "animate":{"duration":"400"}}}'>
+   <div data-role="collapsible" class = "producttabs_custom__container_div">
+      <div data-role="trigger">
+         <h4>Product Details<i class="fa fa-chevron-down" aria-hidden="true"></i></h4>
+      </div>
+   </div>
+   <div data-role="content"> <?php echo $block->getChildHtml('product.info.proInfo') ?></div>
+   <div data-role="collapsible" class = "producttabs_custom__container_div">
+      <div data-role="trigger">
+         <h4>Size  <i class="fa fa-chevron-down" aria-hidden="true"></i></h4>
+      </div>
+   </div>
+   <div data-role="content"> 
+<?php
+   $blockObj= $block->getLayout()->createBlock('Funowls\Pdp\Block\Pdpdetails');
+   $baseUrl = $blockObj->getBaseUrl();
+   ?>
+   <div class="speci-image">
+               <p class="bridge_size_img"><?= $blockObj->getOptionLabel('bridge_size', $_product->getId()); ?></p>
+               <p class="lens_size_val_img"><?= $blockObj->getOptionLabel('lens_width', $_product->getId()); ?></p>
+               <p class="temple_length_img"><?= $blockObj->getOptionLabel('temple_length', $_product->getId()); ?></p>
+               <img src="<?= $baseUrl; ?>pub/media/wysiwyg/lens_measurement.png" alt="lens_measurement">
+               <span class="bridge-title">bridge</span>
+               <span class="lens-width-title">lens width</span>
+               <span class="temple-width">temple</span>
+            </div> 
+</div>
+
+   <div data-role="collapsible" class = "producttabs_custom__container_div mobilereviewsection">
+      <div data-role="trigger">
+         <div><h4>Reviews<div style="float: right; margin-left: 1px; box-sizing: 15px;">
+            <div class="fa fa-star"></div><div class="fa fa-star"></div><div class="fa fa-star"></div><div class="fa fa-star"></div><div class="fa fa-star"></div>
+         </div>
+      </h4>
+         
+      </div>
+  </div>
+</div>
+   <div data-role="content">
+       <?php echo $block->getChildHtml('product.info.details') ?>
+</div>
+
+   <div class ="producttabs_custom__container_div">
+      <?php echo $this->getLayout() ->createBlock('Magento\Cms\Block\Block')->setBlockId('productdetails_block_two')->toHtml();?>
+   </div>
+</div>
+<script type="text/javascript">
+   require([
+   'jquery'
+   ], function(jQuery){
+      (function($) {
+         $(document).ready(function(){
+            $('#slide-gallery').insertAfter('.breadcrumbs');
+            $('.topPro_section').insertAfter('.breadcrumbs');
+         });
+      })(jQuery);
+   });
+</script>
+<?php endif ?>
+<script type="text/javascript">
+   require([
+   'jquery'
+   ], function(jQuery){
+      (function($) {
+         $(document).ready(function(){
+            $('.product-info-main .product-reviews-summary a').click(function(event){
+               event.returnValue = false;
+               event.preventDefault();
+               $('html, body').animate({
+                  scrollTop: $(".product.info.detailed").offset().top - 150
+               }, 300);
+               <?php if(!$themeHelper->getStoreConfig('protabs/general/type')): ?>
+               if($(window).width() > 767){
+                  $('#tab-label-reviews-title').click();
+               }else {
+                  $('.title-accordion.accordion-reviews').click();
+               }
+               <?php else: ?>
+               if(!$('.title-accordion.accordion-reviews').hasClass('active')){
+                  $('.title-accordion.accordion-reviews').click();
+               }
+               <?php endif ?>
+            });
+         });
+   
+      })(jQuery);
+   });
+</script>
+<style type="text/css">
+   .producttabs_custom__container .pdetails {
+   display: none;
+   }
+   /*@media only screen and (max-width: 992px) {
+   #moreinfo{display: none;}
+   .producttabs_custom__container_div.allow.active{
+   content: "\f077";
+   }
+   }*/
+   .producttabs_custom__container_div .fa{
+   float: right;
+   }
+
+
+   .producttabs_custom__container_div.active .fa-chevron-down:before{
+         content: "\f077";
+   }
+</style>
+<script type="text/javascript">
+   require([
+      'jquery'
+   ], function ($) {
+      $('.mobilereviewsection').on('click', function() {
+            if($("[data-role=content]").find('#product-review-container').is(':empty')){
+              $("[data-role=content]").find('#product-review-container').append($("#product-review-container").clone());
+            }
+           size_li = $("[data-role=content]").find(".review-main").children().length / 3;
+           x=3;
+           $("[data-role=content]").find('.review-main .review-inner:lt('+x+')').show();
+           $("[data-role=content]").find('#product-review-container').on('click', '#loadMore', function() {
+           // $('#loadMore').click(function () {
+               x= (x+3 <= size_li) ? x+3 : size_li;
+               $("[data-role=content]").find('.review-main .review-inner:lt('+x+')').show();
+                $("[data-role=content]").find('#showLess').show();
+               if(x == size_li){
+                   $("[data-role=content]").find('#loadMore').hide();
+               }
+           });
+           $("[data-role=content]").find('#product-review-container').on('click', '#showLess', function() {
+           // $('#showLess').click(function () {
+               x=(x-3<0) ? 3 : x-3;
+               if(x < 3)
+               {
+                   x=3;
+                   $("[data-role=content]").find('#showLess').hide();
+                   $("[data-role=content]").find('.review-main .review-inner').hide();
+                   $("[data-role=content]").find('.review-main .review-inner:lt('+x+')').show();
+               }
+               else
+               {
+                   if(x == 3)
+                   {
+                       $("[data-role=content]").find('.review-main .review-inner').not(':lt('+x+')').hide();
+                       $("[data-role=content]").find('#loadMore').show();
+                       $("[data-role=content]").find('#showLess').hide();
+                   }
+                   else
+                   {
+                       $("[data-role=content]").find('.review-main .review-inner').not(':lt('+x+')').hide();
+                       $("[data-role=content]").find('#loadMore').show();
+                       $("[data-role=content]").find('#showLess').show();
+                   }
+               }
+           });
+      });
+   });
+</script>

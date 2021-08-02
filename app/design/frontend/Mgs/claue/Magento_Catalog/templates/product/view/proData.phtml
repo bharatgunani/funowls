@@ -1,0 +1,24 @@
+<?php /** @var $block \Magento\Catalog\Block\Product\AbstractProduct */ ?>
+<?php 
+$blockObj= $block->getLayout()->createBlock('Funowls\Pdp\Block\Pdpdetails');
+$productInfo = $blockObj->getLoadProduct($block->getProduct()->getId());
+if($productInfo) 
+{
+?>
+<div class="product_attr">
+	<?php if($productInfo->getFrameColor()) { ?>
+	    <div class="frame_color">Frame Color :  <div class="frame_color_val"><?= $productInfo->getFrameColor() ?></div> </div>
+	<?php } else { ?>
+		<div class="frame_color">Frame Color :  <div class="frame_color_val">No Color</div> </div>
+	<?php } ?>
+
+	<?php if($productInfo->getLensColor()) { ?>
+	    <div class="lens_color">Lens Color :  <div class="lens_color_val"><?= $productInfo->getLensColor() ?></div> </div>
+	<?php } else { ?>
+		<div class="lens_color">Lens Color :  <div class="lens_color_val">No Color</div> </div>
+	<?php } ?>
+
+</div>
+<?php 
+} 
+?>

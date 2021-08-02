@@ -1,0 +1,343 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add To Cart'); ?>
+<?php if ($_product->isSaleable() && $_product->isAvailable()): ?>
+
+	<?php $themeHelper = $this->helper('MGS\Mpanel\Helper\Data'); ?>
+	
+	<?php // If is deals product. Show countdown time ?>
+	<?php if($_product->getSpecialPrice() && $_product->getSpecialToDate() && $_product->getSpecialFromDate()): ?>
+		
+		<?php $dateTimeFormat = \Magento\Framework\Stdlib\DateTime::DATETIME_PHP_FORMAT; ?>
+		<?php $now = $themeHelper->getCurrentDateTime(); ?>
+		<?php $specialFromDate = date($dateTimeFormat, strtotime($_product->getSpecialFromDate())); ?>
+		<?php $specialToDate = date($dateTimeFormat, strtotime($_product->getSpecialToDate())); ?>
+		
+		<?php if($specialFromDate <= $now && $specialToDate > $now): ?>
+			<div class="product-detail-deals margin-top25">
+				<?php 
+					$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+					$StockState = $objectManager->get('\Magento\CatalogInventory\Api\StockStateInterface');
+					$stockItem = $StockState->getStockQty($_product->getId(), $_product->getStore()->getWebsiteId());
+				?>
+				<div class="hurry-text text-uppercase"><?php echo __('Hurry! Only %1 left in stock', $stockItem); ?></div>
+				<?php echo $this->getLayout()->createBlock('MGS\Mpanel\Block\Products\Deals')->setProduct($_product)->setTemplate('MGS_Mpanel::products/deals/item.phtml')->toHtml() ?>
+			</div>
+		<?php endif ?>
+		
+	<?php endif ?>
+	<?php // End Deals ?>
+	
+
+	<div class="box-tocart type__<?php echo $_product->getTypeId() ?>">
+
+		<?php echo $block->getChildHtml('', true) ?>
+		
+		<div class="fieldset">
+			<?php if ($block->shouldRenderQuantity()): ?>
+			<div class="field qty">
+				<label class="label" for="qty"><span><?php /* @escapeNotVerified */ echo __('Qty') ?></span></label>
+				<div class="control">
+					<span class="edit-qty minus" onclick="minusQty('qty')">-</span>
+					<input type="number"
+						   name="qty"
+						   id="qty"
+						   maxlength="12"
+						   value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
+						   title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="input-text qty"
+						   data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+						   />
+					<span class="edit-qty plus" onclick="plusQty('qty')">+</span>
+				</div>
+			</div>
+			<?php endif; ?>
+			<div class="actions">
+				<button type="submit"
+						title="<?php /* @escapeNotVerified */ echo $buttonTitle ?>"
+						class="action primary tocart"
+						id="product-addtocart-button">
+					<span><?php /* @escapeNotVerified */ echo $buttonTitle ?></span>
+				</button>
+				<?php
+					$_wishlistSubmitParams = $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product);
+					$compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');
+				?>
+			</div>
+		</div>
+		<div class="actions action-add-to">
+			<?php if ($themeHelper->getStoreConfig('mpanel/product_details/wishlist') && $this->helper('Magento\Wishlist\Helper\Data')->isAllow()) : ?>
+				<button type="button" class="action towishlist"
+					data-post='<?php /* @escapeNotVerified */ echo $_wishlistSubmitParams; ?>'
+					data-action="add-to-wishlist"
+					title="<?php /* @escapeNotVerified */ echo __('Add to Wish List') ?>">
+						<span class="pe-7s-like"></span>
+				</button>
+				<script type="text/x-magento-init">
+					{
+						"body": {
+							"addToWishlist": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($block->getWishlistOptions())?>
+						}
+					}
+				</script>
+			<?php endif; ?>
+			
+			<?php if($themeHelper->getStoreConfig('mpanel/product_details/compare')): ?>
+				<button type="button" class="action tocompare" 
+					data-post='<?php /* @escapeNotVerified */ echo $compareHelper->getPostDataParams($_product);?>'
+					data-role="add-to-links"
+					title="<?php /* @escapeNotVerified */ echo __('Add to Compare') ?>">
+						<span class="pe-7s-graph3"></span>
+				</button>
+			<?php endif ?>
+			
+			<?php if ($block->canEmailToFriend()): ?>
+				<button type="button" onclick="setLocation('<?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Product')->getEmailToFriendUrl($_product) ?>')" 
+			   class="action mailto friend" title="<?php /* @escapeNotVerified */ echo __('Send Email to Friend') ?>"><span class="pe-7s-mail"></span></button>
+			<?php endif; ?>
+			<div class="clearfix"></div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/product/view/validation": {
+                "radioCheckboxClosest": ".nested"
+            }
+        }
+    }
+</script>
+<?php if (!$block->isRedirectToCartEnabled()) : ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "catalogAddToCart": {
+                "bindSubmit": false
+            }
+        }
+    }
+</script>
+<?php endif; ?>
+
+<?php if ($block->shouldRenderQuantity()): ?>
+	<script type="text/javascript">
+		function plusQty(qtyInput){
+			require([
+			'jquery'
+			], function(jQuery){
+				(function($) {
+					if($('#'+qtyInput).attr('disabled')!='disabled'){
+						qty = $('#'+qtyInput).attr('value');
+						qty = parseInt(qty);
+						qty++;
+						$('#'+qtyInput).val(qty);
+					}
+				})(jQuery);
+			});
+			
+		}
+		function minusQty(qtyInput){
+			require([
+			'jquery'
+			], function(jQuery){
+				(function($) {
+					if($('#'+qtyInput).attr('disabled')!='disabled'){
+						qty = $('#'+qtyInput).attr('value');
+						qty = parseInt(qty);
+						
+						if(qty>1){
+							qty--;
+							$('#'+qtyInput).val(qty);
+						}
+					}
+				})(jQuery);
+			});
+		}
+	</script>
+<?php endif; ?>
+
+<script type="text/javascript">
+	requirejs(['jquery','underscore'], function(jQuery,_){
+
+		
+	    jQuery(window).load(function(){
+		
+			polarizedSlider();
+	        jQuery( ".product-options-wrapper div" ).click(function() {
+	        	console.log('product-options-wrapper div');
+	            selpro();
+			});
+
+		});
+		function polarizedSlider(){
+			function maxVal(val, itsmax) {
+					if (val <= itsmax && val >= 0)
+						return val;
+					else if (val < 0)
+						return 0;
+					else
+						return itsmax;
+				}
+				
+				
+				jQuery(".img-comp-overlay").each(function () {
+					// console.log(jQuery(this));
+					var slider = jQuery(this).parents(".img-comp-container").find(".img-comp-slider");
+					var img = jQuery(this).find("img");
+
+					var slidef = function () {
+						var e = window.event;
+						var x = img.offset().left;
+						img.parent().width(maxVal(e.pageX - x, jQuery(".img-comp-img").width()));
+						slider.css("left", (maxVal(e.pageX - x, jQuery(".img-comp-img").width())) + "px")
+					}
+
+					//Mouse was pressed
+					slider.mousedown(function (e) {
+					//	console.log("1111111111111111111111111");
+						e.preventDefault();
+						jQuery(window).on("mousemove.slideev", this, slidef);
+					});
+
+					jQuery(window).mouseup(function (e) {
+				//		console.log("2222222222222222222222222222222222222");
+						e.preventDefault();
+						jQuery(window).off("mousemove.slideev");
+					});
+
+					//Finger is swiping
+					slider.on("touchmove", function (e) {
+				//		console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+						// console.log(e)
+						e.preventDefault();
+						var t = e.originalEvent.touches[0];
+						// console.log("1111111111")
+						// console.log(e.originalEvent.touches[0])
+						var x = img.offset().left;
+						img.parent().width(maxVal(t.pageX - x, jQuery(".img-comp-img").width()));
+						slider.css("left", (maxVal(t.pageX - x, jQuery(".img-comp-img").width())) + "px")
+					});
+					
+				});
+			}
+		
+	    function selpro () {
+	    	console.log('selpro');
+	        var selected_options = {};
+	        jQuery('div.swatch-attribute').each(function(k,v){
+	            var attribute_id    = jQuery(v).attr('attribute-id');
+	            var option_selected = jQuery(v).attr('option-selected');
+	            //console.log(attribute_id, option_selected);
+	            if(!attribute_id || !option_selected){ return;}
+	            selected_options[attribute_id] = option_selected;
+	        });
+			
+	        var product_id_index = jQuery('[data-role=swatch-options]').data('mageSwatchRenderer').options.jsonConfig.index;
+	        var found_ids = [];
+	        jQuery.each(product_id_index, function(product_id,attributes){
+	            var productIsSelected = function(attributes, selected_options){
+	                return _.isEqual(attributes, selected_options);
+	            }
+	            if(productIsSelected(attributes, selected_options)){
+	                found_ids.push(product_id);
+	            } 
+	        });
+	        
+	        if (found_ids.length) {
+		         var selected_product_id = found_ids[0];
+		         var parent_id = "<?php echo $_product->getId(); ?>";
+		         var dataVal = "id="+ selected_product_id+"&pId="+parent_id;
+		         jQuery.ajax({
+		           url: "<?php echo $this->getUrl('ajaxupdate/pdpupdate/index/') ?>",
+		           type: "post",
+		           data: dataVal,
+		           showLoader: true,
+		           dataType: 'json',
+		           success: function (response) {
+		   //   //       console.log(response);
+		   //          jQuery('div.media').replaceWith(response.gallery);
+		   //          jQuery('.discountsection').html(response.proDiscountPrice);
+		   //          jQuery('.polarizedsection').html(response.polarized);
+		   //          jQuery('.product-name').replaceWith(response.proName);
+		   //         jQuery('.polarized_tag').replaceWith(response.polarized);
+		   //          // jQuery('.frame_color').replaceWith(response.frameColor);
+		   //          // jQuery('.lens_color').replaceWith(response.lensColor);
+		   //          jQuery('.pro_desc').replaceWith(response.proDesc);
+		   //          jQuery('.pro_shortdesc').replaceWith(response.proShortDesc);
+		   //          jQuery('.pro_modelName').replaceWith(response.proModelName);
+		   //          jQuery('.pro_color_varient').replaceWith(response.colorVarient);
+		   //          jQuery('.mobile_colorVariant').html(response.colorVarient);
+		   //       //   jQuery('.discount_amount_tag').replaceWith(response.proDiscountPrice);
+		   //          jQuery('.price_guarantee').replaceWith(response.proPriceGuarantee);
+		   //          jQuery('.proinfo_table').replaceWith(response.proInfoTab);
+		   //          jQuery('.polrized_section').replaceWith(response.polarizedImage);
+		   //          jQuery('.lens_size_val').replaceWith(response.lensSizeVal);
+		   //          jQuery('.bridge_size_val').replaceWith(response.bridgeSize);
+		   //          jQuery('.temple_length_val').replaceWith(response.templeLen);
+		   //          jQuery('.pro_status').replaceWith(response.stockStatus);
+		   //          jQuery('.sezzle-payment-amount').replaceWith(response.sezzleEmi);
+		   //          jQuery('.temple_length_img').replaceWith(response.templeLenDim);
+		   //          jQuery('.bridge_size_img').replaceWith(response.bridgeSizeDim);
+					// jQuery('.lens_size_val_img').replaceWith(response.lensSizeDim);
+					polarizedSlider();
+
+					return true;
+		           },
+		           error: function (jqXHR, exception) {
+		              var msg = '';
+		              if (jqXHR.status === 0) {
+		                  msg = 'Not connect.\n Verify Network.';
+		              } else if (jqXHR.status == 404) {
+		                  msg = 'Requested page not found. [404]';
+		              } else if (jqXHR.status == 500) {
+		                  msg = 'Internal Server Error [500].';
+		              } else if (exception === 'parsererror') {
+		                  msg = 'Requested JSON parse failed.';
+		              } else if (exception === 'timeout') {
+		                  msg = 'Time out error.';
+		              } else if (exception === 'abort') {
+		                  msg = 'Ajax request aborted.';
+		              } else {
+		                  msg = 'Uncaught Error.\n' + jqXHR.responseText;
+		              }
+		              console.log(msg);
+		          },
+		         });
+            }
+	        
+	    }
+	});
+</script>
+
+<script>// <![CDATA[
+        require([
+            'jquery',
+            'domReady!'
+        ], function ($) {
+          //  console.log('domloaded fully11');
+
+          //  var numItems = $('.review-add').length;
+          //  console.log(numItems,'numItems11');
+
+            $('.review-add').each(function(i) {
+			    $(this).addClass('review-add-'+(i+1));
+
+			});
+
+            if ($(window).width() < 767) {
+  					$('.review-add-1').remove();
+			}
+
+        });
+        // ]]>
+</script>

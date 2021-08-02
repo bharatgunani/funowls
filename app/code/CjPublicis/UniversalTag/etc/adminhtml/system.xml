@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="cjpublicis_tabid" translate="label" sortOrder="10">
+            <label>Cj Universal Tag</label>
+        </tab>
+        <section id="universaltag" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Settings</label>
+            <tab>cjpublicis_tabid</tab>
+            <resource>CjPublicis_UniversalTag::universaltag_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enterprise_id" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enterprise ID</label>
+                    <comment>A static number provided to you by CJ Affiliate</comment>
+                    <validate>required-entry validate-digits validate-length validate-number maximum-length-20</validate>
+                </field>
+                <field id="action_id" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Action ID</label>
+                    <comment>A static number provided to you by CJ Affiliate</comment>
+                    <validate>required-entry validate-digits validate-length validate-number maximum-length-20</validate>
+                </field>
+                <field id="tag_id" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tag ID</label>
+                    <comment>A static number provided to you by CJ Affiliate</comment>
+                    <validate>required-entry validate-digits validate-length validate-number maximum-length-20</validate>
+                </field>
+                <field id="customer_status" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable CJ to track New/Existing Customers</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>An optional field that lets CJ distinguish New customers from customers returning to your site. Enabled by default</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

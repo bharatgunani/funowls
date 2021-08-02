@@ -1,0 +1,23 @@
+{
+    "name": "redchamps/module-guest-orders",
+    "description": "This will assign guest orders to customer during signup and checkout.",
+    "type": "magento2-module",
+    "version": "2.0.3",
+    "require": {
+        "redchamps/module-core": "*",
+        "redchamps/module-customer-account-generator": "*",
+        "magento/module-customer": "*",
+        "magento/module-sales": "*"
+    },
+    "license": [
+        "RedChamps EULA"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "RedChamps\\GuestOrders\\": ""
+        }
+    }
+}

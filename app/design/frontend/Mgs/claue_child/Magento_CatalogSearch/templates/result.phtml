@@ -1,0 +1,55 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** This changes need to valid applying filters and configuration before search process is started. */
+namespace MGS\InstantSearch\Block;
+
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\View\Element\Template\Context;
+use Magento\Search\Model\QueryFactory;
+use Magento\Catalog\Model\Layer\Resolver;
+use MGS\InstantSearch\Helper\Data;
+$productList = $block->getProductListHtml();
+?>
+<?php if ($block->getResultCount()) : ?>
+    <?= /* @noEscape */ $block->getChildHtml('tagged_product_list_rss_link') ?>
+<div class="search results">
+    <?php if ($messages = $block->getNoteMessages()) : ?>
+    <div class="message notice">
+        <div>
+            <?php foreach ($messages as $message) : ?>
+                <?= /* @noEscape */ $message ?><br />
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?= /* @noEscape */ $productList ?>
+</div>
+<?php else : ?>
+
+<div class="search-message">
+    <div>
+        <h4>
+        <?= $block->escapeHtml($block->getNoResultText() ? $block->getNoResultText() : __('Your search for '.$this->helper('Magento\CatalogSearch\Helper\Data')->getEscapedQueryText().' did not match any of the products we carry.')) ?>
+        </h4>
+        <?= /* @noEscape */ $block->getAdditionalHtml() ?>
+        <?php if ($messages = $block->getNoteMessages()) : ?>
+            <?php foreach ($messages as $message) : ?>
+                <br /><?= /* @noEscape */ $message ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+    <div class="search-message-button">
+        <a class="btn" href="<?php echo $this->getUrl('shop.html') ?>">Our Sunglasses</a>
+    </div>
+    <?php
+    echo $this->getLayout()
+    ->createBlock('Magento\Cms\Block\Block')
+    ->setBlockId('search-bottom-block')
+    ->toHtml();
+    ?>
+</div>
+<?php endif; ?>

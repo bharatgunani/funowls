@@ -1,0 +1,6 @@
+<config>
+    <type name="Magento\Customer\Model\EmailNotificationInterface">
+        <plugin name="customer-account-generator-disable-customer-welcome-email"
+                type="RedChamps\CustomerAccountGenerator\Plugin\EmailNotification"/>
+    </type>
+</config>

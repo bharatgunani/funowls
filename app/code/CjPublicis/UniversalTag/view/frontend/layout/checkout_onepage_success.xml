@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<body>
+    <referenceContainer name="order.success.additional.info">
+        <block class="Magento\Checkout\Block\Onepage\Success"
+               name="cj.order.success"
+               template="CjPublicis_UniversalTag::order/success.phtml"
+               after="-">
+        </block>
+    </referenceContainer>
+</body>

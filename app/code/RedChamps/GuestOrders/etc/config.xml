@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <guest_orders>
+            <general>
+                <processing_method>checkout</processing_method>
+            </general>
+            <email>
+                <enabled>1</enabled>
+                <template>guest_orders_email_template</template>
+                <identity>sales</identity>
+            </email>
+            <auto_customer_accounts>
+                <email_notification>1</email_notification>
+                <success_enabled>1</success_enabled>
+                <success_text>Your customer account has been created automatically. You'll receive an email shortly to configure your password.</success_text>
+                <success_styles>.account-success-notification{padding: 10px;background: #e5efe5;margin-top: 10px;}</success_styles>
+            </auto_customer_accounts>
+        </guest_orders>
+    </default>
+</config>

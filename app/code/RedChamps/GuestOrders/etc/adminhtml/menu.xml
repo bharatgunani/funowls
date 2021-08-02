@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="RedChamps_GuestOrders::menu" title="Guest Orders To Customer" module="RedChamps_GuestOrders" sortOrder="50" dependsOnModule="RedChamps_GuestOrders" parent="Magento_Sales::sales" resource="RedChamps_GuestOrders::menu"/>
+        <add id="RedChamps_GuestOrders::processed" title="Processed Orders" module="RedChamps_GuestOrders" sortOrder="10" parent="RedChamps_GuestOrders::menu" action="auto_guest_orders/action/processed" resource="RedChamps_GuestOrders::processed"/>
+        <add id="RedChamps_GuestOrders::followed" title="Followed up Orders" module="RedChamps_GuestOrders" sortOrder="20" parent="RedChamps_GuestOrders::menu" action="auto_guest_orders/action/followed" resource="RedChamps_GuestOrders::followed"/>
+        <add id="RedChamps_GuestOrders::pending" title="Pending Guest Orders" module="RedChamps_GuestOrders" sortOrder="30" parent="RedChamps_GuestOrders::menu" action="auto_guest_orders/action/pending" resource="RedChamps_GuestOrders::pending"/>
+        <add id="RedChamps_GuestOrders::settings" title="Settings" module="RedChamps_GuestOrders" sortOrder="40" parent="RedChamps_GuestOrders::menu" action="adminhtml/system_config/edit/section/guest_orders/" resource="RedChamps_GuestOrders::settings"/>
+    </menu>
+</config>

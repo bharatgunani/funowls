@@ -1,0 +1,136 @@
+// --*- mode: groovy -*--
+
+import java.lang.Thread
+import com.cloudbees.groovy.cps.NonCPS
+import java.net.URL
+import groovy.json.JsonOutput
+import java.io.InputStreamReader
+import org.jenkinsci.plugins.workflow.steps.FlowInterruptedException
+
+ansiColor('xterm') {
+    node() {
+        CI=true
+        env.JQ = tool name: 'jq', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
+        env.MAVEN_HOME = tool name: 'maven-3.6.3', type: 'maven'
+        env.PATH="${env.PATH}:${env.MAVEN_HOME}/bin:${env.JQ}"
+        env.MAGENTO = "magento"
+        env.TARGET_DIR = "target"
+
+        stage('Checkout') {
+            def scmVars = checkout scm
+            env.GIT_BRANCH = scmVars.GIT_BRANCH
+            env.GIT_COMMIT = scmVars.GIT_COMMIT
+            env.GIT_PREVIOUS_COMMIT = scmVars.GIT_PREVIOUS_COMMIT
+            env.GIT_URL = scmVars.GIT_URL
+        }
+
+        stage('Configure') {
+            env.version=sh(
+                script: "jq \".version\" < composer.json  | sed 's/\"//g'",
+                returnStdout: true
+            ).trim()
+            env.proName="cjpublicis_universaltag"
+            env.packageName=env.proName+"-"+env.version+".zip"
+            env.url="https://nexus.cj.dev/repository/maven-releases/"+env.MAGENTO+"/"+env.proName+"/"+env.version+"/"+env.packageName
+        }
+
+        stage('Check code audit') {
+            DEPLOYABLE=sh(
+                    script: "scripts/check-deployable.sh ${GIT_COMMIT}",
+                    returnStdout: true
+            ).trim()
+
+            echo "Deployable : " + DEPLOYABLE
+
+            if (DEPLOYABLE == "false")
+            {
+                try {
+                    message = "To create package. Please perform code audit!"
+                    echo message
+//                    currentBuild.result = 'ABORTED'
+//                    error(message)
+                } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException fie) {
+                    throw fie as Throwable
+                } catch (hudson.AbortException ae) {
+                    throw ae as Throwable
+                }
+            }
+        }
+
+        stage('Packaging') {
+            echo 'Packaging started.'
+
+            echo env.GIT_BRANCH
+            echo env.GIT_COMMIT
+            echo env.GIT_PREVIOUS_COMMIT
+            echo env.GIT_URL
+
+            sh '''
+                rm -rf ../target
+                cp -r . ../target
+                cp -r ./../target target
+                rm -rf ./target/scripts
+                rm -rf ./../target
+                cd target
+                zip -r ../${packageName} .
+                cd ..
+                rm -rf ./target
+            '''
+        }
+
+        stage('Publish artifacts to Nexus') {
+            sh '''
+                 mvn deploy:deploy-file \
+                  -DgroupId=${MAGENTO} \
+                  -DartifactId=${proName} \
+                  -Dversion=${version}\
+                  -Dpackaging=zip \
+                  -Dfile=${packageName} \
+                  -DgeneratePom=false \
+                  -DupdateReleaseInfo=false \
+                  -Durl="https://deployment:deployment123@nexus.cj.dev/repository/maven-releases/"
+    
+                  rm -rf ${packageName}
+            '''
+
+            echo 'Artifacts has been pushed to Nexus successfully.'
+            echo "Download artifacts from url : " + env.url
+        }
+
+        stage('Record') {
+            wrap([$class: 'BuildUser']) {
+                sh '''
+              now=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+              dataObject='{
+                  "deployedAt": "'"$now"'",
+                  "artifact": "'"${BUILD_NUMBER}"'",
+                  "sourceRepository": "ecommerce-plugins/magento",
+                  "verifications": [
+                      {
+                      "verificationType": "REVIEW"
+                      }
+                  ],
+                  "sourceHead": {
+                      "hash": "'"${GIT_COMMIT}"'",
+                      "repoType": "GIT"
+                  },
+                  "trigger": {
+                      "operator": "'"${BUILD_USER_EMAIL}"'",
+                      "triggerType": "MANUAL"
+                  }
+              }'
+              CURL_OUTPUT=$(curl \
+              -v --fail --silent --show-error \
+              -d "$dataObject" \
+              -H "Authorization: Bearer 2b8vrpxem9k1r7wn1e5bqz8f3m" \
+              -H 'Content-type: application/json' \
+              'https://operations.api.cj.com/v1/pipelines/RF788471565D39A108C25B7C5A22E2068E2D22D/deployments' \
+               2>/dev/null)
+            '''
+            }
+        }
+
+    }
+}
+

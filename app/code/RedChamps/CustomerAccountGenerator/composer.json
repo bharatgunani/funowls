@@ -1,0 +1,12 @@
+{
+    "name": "redchamps/module-customer-account-generator",
+    "description": "This extension will generate customer account programmatically.",
+    "require": {
+    },
+    "autoload": {
+        "psr-4": { "RedChamps\\CustomerAccountGenerator\\": "" },
+        "files": [ "registration.php" ]
+    },
+    "type": "magento2-module",
+    "version": "1.0.1"
+}

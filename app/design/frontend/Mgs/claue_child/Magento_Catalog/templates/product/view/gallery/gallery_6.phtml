@@ -1,0 +1,123 @@
+<?php $galleryImages = $this->getGalleryImages(); ?>
+<?php $zoom_image = $this->getEnableZoom(); ?>
+<?php $lbox_image = $this->getLbox(); ?>
+<meta content="<?= $galleryImages->getFirstItem()->getLargeImageUrl(); ?>" itemprop="image" />
+<div id="owl-carousel-gallery" class="owl-carousel gallery-horizontal">
+    <?php foreach($galleryImages as $image): ?>
+         
+         <?php 
+            $dataArrayImg =  $image->toArray();
+            $productName = $this->getProduct()->getName();
+
+            $lbImage = (isset($dataArrayImg['label']) &&  $dataArrayImg['label'] != null) ? $dataArrayImg['label'] : $productName;
+        ?>
+        <div class="product item-image imgzoom" data-zoom="<?php echo $image->getImageZoom(); ?>">
+            <?php if($lbox_image): ?>
+                <?php if($image->getMediaType() != 'external-video'): ?>
+                    <a class="lb" href="<?php echo $image->getsImageZoom(); ?>"><img class="img-responsive" src="<?php echo $image->getLargeImageUrl(); ?>" alt="<?php echo $lbImage ?>"/></a>
+                <?php else: ?>
+                    <a class="lb video-link" href="<?php echo $image->getVideoUrl(); ?>"><img class="img-responsive" src="<?php echo $image->getLargeImageUrl(); ?>" alt="<?php echo $lbImage ?>"/></a>
+                <?php endif ?>
+            <?php else: ?>
+                <img class="img-responsive" src="<?php echo $image->getLargeImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
+                <?php if($image->getMediaType() == 'external-video'): ?>
+                    <a target="_blank" class="popup-youtube btn btn-primary" href="<?php echo $image->getVideoUrl(); ?>"><?php echo __('Watch Video'); ?></a>
+                <?php endif ?>
+            <?php endif ?>
+        </div>
+    <?php endforeach ?>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'mgs/owlcarousel',
+        'photoswipe',
+        'photoswipeui'
+    ], function ($, owl, Photoswipe, PhotoswipeUi) {
+        $('#owl-carousel-gallery').owlCarousel({
+            items: 1,
+            autoplay: false,
+            lazyLoad: false,
+            nav: true,
+            loop: false,
+            navText: ["<i class='pe-7s-angle-left'></i>","<i class='pe-7s-angle-right'></i>"],
+            rtl: false,
+            responsive:{
+                0:{
+                    items:1
+                },
+                768:{
+                    items:1
+                },
+                992:{
+                    items:1
+                },
+                1200:{
+                    items:1
+                },
+                1400:{
+                    items:1
+                }
+                ,
+                1600:{
+                    items:1
+                }
+            }
+        });
+
+        var openPhotoSwipe = function() {
+
+            if ($(window).width() > 767) {
+                return false;
+            }
+
+            var pswpElement = document.querySelectorAll(".pswp")[0];
+
+            var items = [];
+            var images = document.querySelectorAll('#owl-carousel-gallery .owl-item');
+            var activeIndex = 0;
+
+            if (images.length) {
+                images.forEach(function (e, i) {
+
+                    if ($(e).hasClass('active')) {
+                        activeIndex = i;
+                    }
+
+                    var img = e.firstChild.children[0];
+
+                    items.push({
+                        src: img.src,
+                        w: img.width,
+                        h: img.height
+                    });
+                });
+            } else {
+
+                var image = document.querySelectorAll('.img-gallery .img__pdp');
+                if (image.length) {
+                    items.push({
+                        src: image[0].src,
+                        w: image[0].width,
+                        h: image[0].height
+                    });
+                }
+            }
+
+            var options = {
+                history: false,
+                focus: false,
+                showAnimationDuration: 0,
+                hideAnimationDuration: 0,
+                tapToClose: false,
+                maxSpreadZoom: 5
+            };
+
+            var gallery = new Photoswipe( pswpElement, PhotoswipeUi, items, options);
+            gallery.init();
+            gallery.goTo(activeIndex);
+        };
+
+        $(".product.media").click(openPhotoSwipe);
+    });
+</script>

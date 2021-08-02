@@ -1,0 +1,84 @@
+<?php /** @var $block \Magento\Catalog\Block\Product\AbstractProduct */ ?>
+<?php 
+$blockObj= $block->getLayout()->createBlock('Funowls\Pdp\Block\Pdpdetails');
+$productInfo = $blockObj->getCurrentProduct();
+if($productInfo) 
+{
+	$relatedProducts = $productInfo->getRelatedProducts();
+	if (!empty($relatedProducts))
+	{
+?>
+<hr>
+<div class="related_pro">
+	<div class="related_pro_title">You may also like</div>
+	<div class="related_pro_list">
+		<div class="owl-carousel">
+		<?php foreach ($relatedProducts as $relatedProduct) {
+			$productItem = $blockObj->loadProBySku($relatedProduct->getSku());
+			$proImage = $blockObj->getProImage($productItem->getImage());
+			$proUrl = $this->getBaseUrl().$productItem['url_key'].'.html';
+			$abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct');
+
+		?>
+            <div class="item">
+            	<a href="<?= $proUrl; ?>">
+            	   <img class="related-image" src="<?= $proImage; ?>" width="278px" height="155px" >
+                   <div class="related-proname">
+					   <?= $productItem->getName(); ?>
+				       <div class="related-price"><?= $abstractProductBlock->getProductPrice($productItem); ?></div>
+				   </div>
+            	</a>
+            </div>
+		<?php } ?>
+       </div>
+	</div>
+</div>
+ <script type="text/javascript">
+    require([
+      'jquery',
+      'mgs/owlcarousel'
+    ], function(jQuery){
+      (function($) {
+      var $owl = $('.owl-carousel');
+
+    function callSlider(){
+      $owl.owlCarousel({
+      margin: 10,
+      nav: true,
+      loop: false,
+      responsive: {
+        0: {
+        items: 1
+        },
+        600: {
+        items: 2
+        },
+        1000: {
+        items: 3
+        }
+      }
+      })
+    }
+    if ($owl.length) {
+    // $('.owl-carousel').on('changed.owl.carousel', function(event) {  
+    // var currentItem = event.property.value - Math.ceil( event.item.count / 2 );
+    
+    // if(isNaN(currentItem) || currentItem == 0){
+    //   currentItem = 1;
+    // }else{ 
+    //   currentItem = currentItem + 1;
+    // }
+    // var count = event.item.count;
+    // var calc = ( (currentItem) / (count -1) ) * 100;
+      
+    // });
+    callSlider();
+  } 
+  })(jQuery);
+    });
+    </script>
+
+<?php 
+    }
+} 
+?>

@@ -1,0 +1,66 @@
+<?php
+    $blockObj= $block->getLayout()->createBlock('Funowls\Pdp\Block\Pdpdetails');
+    $baseUrl = $blockObj->getBaseUrl();
+?>
+<div class="frame_shape">
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="owl-carousel">
+            <div class="item">
+              <a href="<?= $baseUrl; ?>catalogsearch/advanced/result/?eye_shape=5574"><img class="shape_img" src="<?= $baseUrl; ?>pub/media/wysiwyg/shape/aviator-shape-940x423.jpg" alt="aviator-shape"><span class="shape_label">Shop Aviator</span></a>
+            </div>
+            <div class="item">
+              <a href="<?= $baseUrl; ?>catalogsearch/advanced/result/?eye_shape=5595"><img class="shape_img" src="<?= $baseUrl; ?>pub/media/wysiwyg/shape/cateye-shape-940x423.jpg" alt="cateye-shape"><span class="shape_label">Shop Cat-Eye</span></a>
+            </div>
+            <div class="item">
+              <a href="<?= $baseUrl; ?>catalogsearch/advanced/result/?eye_shape=5598"><img class="shape_img" src="<?= $baseUrl; ?>pub/media/wysiwyg/shape/oval-shape-940x423.jpg" alt="oval-shape"><span class="shape_label">Shop Oval</span></a>
+            </div>
+            <div class="item">
+              <a href="<?= $baseUrl; ?>catalogsearch/advanced/result/?eye_shape=5606"><img class="shape_img" src="<?= $baseUrl; ?>pub/media/wysiwyg/shape/rectangle-shape-940x423.jpg" alt="rectangle-shape"><span class="shape_label">Shop Rectangle</span></a>
+            </div>
+            <div class="item">
+              <a href="<?= $baseUrl; ?>catalogsearch/advanced/result/?eye_shape=5601"><img class="shape_img" src="<?= $baseUrl; ?>pub/media/wysiwyg/shape/round-shape-940x423.jpg" alt="round-shape"><span class="shape_label">Shop Round</span></a>
+            </div>
+            <div class="item">
+              <a href="<?= $baseUrl; ?>catalogsearch/advanced/result/?eye_shape=5600"><img class="shape_img" src="<?= $baseUrl; ?>pub/media/wysiwyg/shape/square-shape-940x423.jpg" alt="square-shape"><span class="shape_label">Shop Square</span></a>
+            </div>
+          </div>
+      </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+    require([
+      'jquery',
+      'mgs/owlcarousel'
+    ], function(jQuery){
+      (function($) {
+      var $owl = $('.owl-carousel');
+
+    function callSlider(){
+      $owl.owlCarousel({
+      margin: 10,
+      nav: true,
+      loop: false,
+      responsive: {
+        0: {
+        items: 1,
+        dots: true
+        },
+        600: {
+        items: 2,
+        dots: true
+        },
+        1000: {
+        items: 3,
+        dots: true
+        }
+      }
+      })
+    }
+    if ($owl.length) {
+    callSlider();
+  } 
+  })(jQuery);
+    });
+  </script>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * {{COPYRIGHT_NOTICE}}
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/App/etc/routes.xsd">
+    <router id="standard">
+        <route id="onestepcheckout_iosc" frontName="onestepcheckout_iosc">
+            <module name="Onestepcheckout_Iosc"/>
+        </route>
+        <route id="checkout">
+            <module name="Onestepcheckout_Iosc" after="Magento_Checkout"/>
+        </route>
+    </router>
+</config>

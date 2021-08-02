@@ -1,0 +1,13 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+<!--
+/**
+ * {{COPYRIGHT_NOTICE}}
+ */
+-->
+    <table name="quote" resource="checkout" comment="Sales Flat Quote">
+        <column xsi:type="smallint" default="0" name="iosc_subscribe" padding="5" unsigned="true" nullable="true"
+                identity="false" comment="OSC newsletter subscription status"/>
+        <column xsi:type="smallint" default="0" name="iosc_registered" padding="5" unsigned="true" nullable="true"
+                identity="false" comment="OSC customer registration status"/>
+    </table>
+</schema>

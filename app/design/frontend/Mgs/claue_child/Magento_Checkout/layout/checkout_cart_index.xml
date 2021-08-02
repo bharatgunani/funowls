@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+	
+	<referenceBlock name="minicart" remove="true" />
+	<referenceBlock name="top.search" remove="true" />
+	<referenceBlock name="catalog.compare.link" remove="true" />
+	<referenceBlock name="wishlist_sidebar" remove="true" />
+	<referenceBlock name="view.addto.wishlist" remove="true" />
+	<referenceBlock name="category.product.addto.wishlist" remove="true" />
+
+        
+	<referenceContainer name="content">
+			<referenceBlock name="checkout.cart">
+				<referenceContainer name="checkout.cart.items">
+					<referenceContainer name="checkout.cart.container" htmlTag="div" htmlClass="cart-container">
+						<container name="cart.bottom" after="checkout.cart.form" htmlTag="div" htmlClass="row shopping-cart-bottom">
+							<container name="cart.bottom.col1" htmlTag="div" htmlClass="col-lg-8 col-md-7 col-xs-12">
+								<container name="cart.bottom.border" htmlTag="div" htmlClass="checkout-extra"/>
+							</container>
+							<container name="cart.bottom.col2" htmlTag="div" htmlClass="col-lg-4 col-md-5 col-xs-12"/>
+						</container>
+					</referenceContainer>
+				</referenceContainer>
+			</referenceBlock>
+        </referenceContainer>
+		<move element="checkout.cart.coupon" destination="checkout.cart.totals.container" after="totals.container"/>
+		<referenceBlock name="checkout.cart.shipping">
+		    <arguments>
+		        <argument name="jsLayout" xsi:type="array">
+		            <item name="components" xsi:type="array">
+		                <item name="block-summary" xsi:type="array">
+
+		                    <!-- My custom part: -->
+		                    <item name="config" xsi:type="array">
+		                        <item name="componentDisabled" xsi:type="boolean">true</item>
+		                    </item>
+
+		                </item>
+		            </item>
+		        </argument>
+		    </arguments>
+		</referenceBlock>
+
+
+				<referenceBlock name="checkout.cart.totals">
+                                       <arguments>
+                                        <argument name="jsLayout" xsi:type="array">
+                                            <item name="components" xsi:type="array">
+                                                <item name="block-totals" xsi:type="array">
+                                                    
+                                                    <item name="children" xsi:type="array">
+                                                        <!-- sort order for this totals is configured on admin panel-->
+                                                        <!-- Stores->Configuration->SALES->Sales->General->Checkout Totals Sort Order -->
+                                                        <item name="subtotal" xsi:type="array">
+					                                    <item name="config" xsi:type="array">
+                                        	                      <item name="title" xsi:type="string" translate="true">Subtotal:</item>
+                                                        </item>
+                                                        </item>
+                                                        
+                                                        <item name="grand-total" xsi:type="array">
+                                                                <item name="config" xsi:type="array">
+                                                                <item name="title" xsi:type="string" translate="true">Order Total:</item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </argument>
+                                    </arguments>
+                                
+                            </referenceBlock>
+
+
+    </body>
+</page>

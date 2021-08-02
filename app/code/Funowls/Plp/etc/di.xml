@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\ConfigurableProduct\Ui\DataProvider\Product\Form\Modifier\ConfigurablePrice">
+        <plugin name="enable_price_configurable_product" type="Funowls\Plp\Plugin\DataProvider\Product\Form\Modifier\ConfigurablePrice" sortOrder="20" disabled="false"/>
+    </type>
+</config>

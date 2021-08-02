@@ -1,0 +1,27 @@
+<?php
+
+
+$blockObj= $block->getLayout()->createBlock('Funowls\Plp\Block\ProductDetail');
+$block= $block->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Description');
+$text = $blockObj->getCurrentProduct()->getResource()->getAttribute('extra_image_title')->getFrontend()->getValue($block->getProduct());
+$image = $blockObj->processContent($blockObj->getCurrentProduct()->getResource()->getAttribute('extra_image_editior')->getFrontend()->getValue($block->getProduct()));
+
+echo "<div class='extra-content'>";
+if($text){ 
+echo "<div class='image-title'>";
+//echo $blockObj->getCurrentProduct()->getResource()->getAttribute('extra_image_title')->getFrontendLabel();
+echo "<b>".$text."</b>";
+echo "</div>";
+}
+
+if($image){ 
+echo "<div class='image-image'>";
+//echo $blockObj->getCurrentProduct()->getResource()->getAttribute('extra_image_editior')->getFrontendLabel();
+echo $image;
+
+echo "</div>";
+}
+
+echo "</div>";
+
+

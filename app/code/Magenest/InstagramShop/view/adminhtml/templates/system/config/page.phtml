@@ -1,0 +1,51 @@
+<?php
+/** @var \Magenest\InstagramShop\Block\Adminhtml\System\Config\PageAccessToken $block */
+$pageData = $block->getPageData();
+if(!empty($pageData) && count($pageData) > 0):
+    ?>
+    <div id="magenest-page-token">
+        <div  class="page-token-modal">
+            <div id="message-error" class="message-error message" style="display: none"></div>
+            <?php
+            foreach ($pageData as $page):
+                try{
+                    if(isset($page['instagram_business_account'])):
+                        $pageId = $page['id'];
+                        $businessId = $page['instagram_business_account']['id'];
+                        $account = $block->getInstagramInfo($businessId);
+                        if(empty($account)) continue;
+                        $userName = isset($account['username']) ? $account['username'] : '';
+                        $name = isset($account['name']) ? $account['name'] : '';
+                        $avt = isset($account['profile_picture_url']) ? $account['profile_picture_url'] : '';
+                        ?>
+                        <div class="account-preview">
+                            <div class="account-wrapper">
+                                <div class="account-title"></div>
+                                <div class="account-content">
+                                    <img src="<?= $avt ?>" alt="<?= $block->escapeHtml($name) ?>"/>
+                                    <div class="account-name">
+                                        <a href="<?= $block->selectAccountUrl($businessId,$pageId) ?>">
+                                            <?= $block->escapeHtml($userName); ?>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div>
+
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    endif;
+                }catch (\Exception $exception){
+                    continue;
+                }
+            endforeach;
+            ?>
+        </div>
+    </div>
+<?php
+else:
+    ?>
+    <div><?= __("Couldn't find your Instagram account. Please try again!") ?></div>
+<?php
+endif;

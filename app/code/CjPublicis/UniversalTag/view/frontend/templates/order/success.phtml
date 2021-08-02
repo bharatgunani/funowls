@@ -1,0 +1,66 @@
+<?php
+$helper = $this->helper('CjPublicis\UniversalTag\Helper\Data');
+$cjOrder = $helper->convertOrderToCjOrder($this->getOrderId());
+$customerStatus = $cjOrder->getCustomerStatus();
+?>
+<script type="text/javascript">
+    var lineItems = <?php echo json_encode($cjOrder->getProductLineSkus()); ?>;
+    var quantities = <?php echo json_encode($cjOrder->getProductLineQuantities()); ?>;
+    var prices = <?php echo json_encode($cjOrder->getProductLinePrices()); ?>;
+    var discounts = <?php echo json_encode($cjOrder->getProductLineDiscounts()); ?>;
+    if (!window.cj) window.cj = {};
+    cj.order = {};
+    cj.sitePage = {};
+
+    cj.order.enterpriseId = "<?php echo $cjOrder->getEnterpriseId(); ?>";
+    cj.order.orderId = "<?php echo $this->getOrderId(); ?>";
+    cj.order.actionTrackerId = "<?php echo $cjOrder->getActionTrackerId(); ?>";
+    cj.order.currency = "<?php echo $cjOrder->getCurrencyCode(); ?>";
+    cj.order.amount = "<?php echo $cjOrder->getSubTotal(); ?>";
+    cj.order.taxAmount = "<?php echo $cjOrder->getTaxAmount(); ?>";
+    cj.order.discount = "<?php echo $cjOrder->getDiscountAmt(); ?>";
+    cj.order.coupon = "<?php echo $cjOrder->getCouponCode(); ?>";
+    cj.order.customerCountry = "<?php echo $cjOrder->getCountryCode(); ?>";
+
+    cj.order.items = [];
+    cj.order.customerstatus = "<?php echo (isset($customerStatus)) ? $customerStatus : ''; ?>";
+    cj.order.pageType = 'conversionConfirmation';
+    cj.order.userId = "<?php echo $cjOrder->getCustomerId(); ?>";
+    cj.order.emailHash = "<?php echo $cjOrder->getEmailHash(); ?>";
+    for (var i = 0; i < lineItems.length; i++) {
+        var anItemObj = {};
+        anItemObj['unitPrice'] = prices[i];
+        anItemObj['itemId'] = lineItems[i];
+        anItemObj['quantity'] = quantities[i];
+        if (discounts[i] != null && discounts[i] != 0) {
+            anItemObj['discount'] = discounts[i];
+        }
+        cj.order.items.push(anItemObj);
+    }
+
+    cj.order.cjPlugin = "<?php echo "Magento_" . $helper->getExtensionVersion(); ?>";
+
+    cj.sitePage.enterpriseId = "<?php echo $cjOrder->getEnterpriseId(); ?>";
+    cj.sitePage.pageType = 'conversionConfirmation';
+    cj.sitePage.userId = "<?php echo $cjOrder->getCustomerId(); ?>";
+    cj.sitePage.emailHash = "<?php echo $cjOrder->getEmailHash(); ?>";
+    cj.sitePage.cartSubtotal = "<?php echo $cjOrder->getSubTotal(); ?>";
+    cj.sitePage.items = [];
+    for (var i = 0; i < lineItems.length; i++) {
+        var anItemObj = {};
+        anItemObj['unitPrice'] = prices[i];
+        anItemObj['itemId'] = lineItems[i];
+        anItemObj['quantity'] = quantities[i];
+        if (discounts[i] != null && discounts[i] != 0) {
+            anItemObj['discount'] = discounts[i];
+        }
+        cj.sitePage.items.push(anItemObj);
+    }
+
+    if (cj.order.customerstatus == '') delete cj.order.customerstatus;
+    if (cj.order.coupon == '') delete cj.order.coupon;
+    if (cj.order.userId == '') delete cj.order.userId;
+    if (cj.sitePage.userId == '') delete cj.sitePage.userId;
+    if (cj.order.customerCountry == '') delete cj.order.customerCountry;
+
+</script>

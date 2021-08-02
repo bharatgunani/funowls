@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp/etc/csp_whitelist.xsd">
+    <policies>
+
+        <policy id="font-src">
+            <values>
+                <value id="font_data" type="host">data:</value>
+                <value id="google_font" type="host">https://fonts.gstatic.com</value>
+                <value id="funowls_font" type="host">https://funowls.co</value>
+            </values>
+        </policy>
+
+        <policy id="style-src">
+            <values>
+                <value id="style_fonts_gstatic" type="host">https://fonts.googleapis.com</value>
+            </values>
+        </policy>
+
+        <policy id="frame-ancestors">
+            <values>
+                <value id="inline" type="host">unsafe-inline</value>
+            </values>
+        </policy>
+
+        <policy id="frame-src">
+            <values>
+                <value id="sezzle_frame" type="host">https://*.sezzle.com</value>
+                <value id="google_frame" type="host">https://*.google.com</value>
+            </values>
+        </policy>
+
+        <policy id="script-src">
+            <values>
+                <value id="facebook_script" type="host">https://*.facebook.net</value>
+                <value id="mczbf_script" type="host">https://*.mczbf.com</value>
+                <value id="sezzle_script" type="host">https://*.sezzle.com</value>
+                <value id="google_maps_script" type="host">https://maps.googleapis.com</value>
+                <value id="google_script" type="host">https://*.google.com</value>
+                <value id="gstatic_script" type="host">https://*.gstatic.com</value>
+            </values>
+        </policy>
+
+        <policy id="connect-src">
+            <values>
+                <value id="doubleclick_connect" type="host">https://stats.g.doubleclick.net</value>
+                <value id="facebook_connect" type="host">https://*.facebook.com</value>
+                <value id="mczbf_connect" type="host">https://*.mczbf.com</value>
+            </values>
+        </policy>
+
+        <policy id="img-src">
+            <values>
+                <value id="facebook_img" type="host">https://*.facebook.com</value>
+                <value id="facebook_net_img" type="host">https://*.facebook.net</value>
+                <value id="google_img" type="host">https://*.google.com</value>
+                <value id="google_ua_img" type="host">https://*.google.com.ua</value>
+                <value id="sezzle_img" type="host">https://*.sezzle.com</value>
+            </values>
+        </policy>
+
+    </policies>
+</csp_whitelist>
+

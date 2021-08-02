@@ -1,0 +1,22 @@
+[24-Dec-2020 05:34:30 UTC] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /home/funowlsco/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php:128
+Stack trace:
+#0 /home/funowlsco/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php(128): PDO->__construct('mysql:host=vm1....', 'SIS892', 'ErvubpA8zpyy4hg...', Array)
+#1 /home/funowlsco/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Mysql.php(111): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#2 /home/funowlsco/public_html/vendor/magento/framework/DB/Adapter/Pdo/Mysql.php(410): Zend_Db_Adapter_Pdo_Mysql->_connect()
+#3 /home/funowlsco/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Abstract.php(460): Magento\Framework\DB\Adapter\Pdo\Mysql->_connect()
+#4 /home/funowlsco/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT `main_ta...', Array)
+#5 /home/ in /home/funowlsco/public_html/vendor/magento/zendframework1/library/Zend/Db/Adapter/Pdo/Abstract.php on line 144
+[12-Feb-2021 13:42:29 UTC] PHP Fatal error:  Uncaught ReflectionException: Class MGS\Brand\Model\Rewrite\ResourceModel\Store does not exist in /home/funowlsco/public_html/vendor/magento/framework/Code/Reader/ClassReader.php:26
+Stack trace:
+#0 /home/funowlsco/public_html/vendor/magento/framework/Code/Reader/ClassReader.php(26): ReflectionClass->__construct('MGS\\Brand\\Model...')
+#1 /home/funowlsco/public_html/vendor/magento/framework/ObjectManager/Definition/Runtime.php(54): Magento\Framework\Code\Reader\ClassReader->getConstructor('MGS\\Brand\\Model...')
+#2 /home/funowlsco/public_html/vendor/magento/framework/ObjectManager/Factory/Dynamic/Developer.php(48): Magento\Framework\ObjectManager\Definition\Runtime->getParameters('MGS\\Brand\\Model...')
+#3 /home/funowlsco/public_html/vendor/magento/framework/ObjectManager/ObjectManager.php(70): Magento\Framework\ObjectManager\Factory\Dynamic\Developer->create('MGS\\Brand\\Model...')
+#4 /home/funowlsco/public_html/vendor/magento/framework/ObjectManager/Factory/AbstractFactory.php(167): Magento\Framework\ObjectM in /home/funowlsco/public_html/vendor/magento/framework/Code/Reader/ClassReader.php on line 26
+[25-Mar-2021 08:49:29 UTC] PHP Fatal error:  Uncaught ReflectionException: Class MGS\Brand\Model\Rewrite\ResourceModel\Store does not exist in /home/funowlsco/public_html/vendor/magento/framework/Code/Reader/ClassReader.php:26
+Stack trace:
+#0 /home/funowlsco/public_html/vendor/magento/framework/Code/Reader/ClassReader.php(26): ReflectionClass->__construct('MGS\\Brand\\Model...')
+#1 /home/funowlsco/public_html/vendor/magento/framework/ObjectManager/Definition/Runtime.php(54): Magento\Framework\Code\Reader\ClassReader->getConstructor('MGS\\Brand\\Model...')
+#2 /home/funowlsco/public_html/vendor/magento/framework/ObjectManager/Factory/Dynamic/Developer.php(48): Magento\Framework\ObjectManager\Definition\Runtime->getParameters('MGS\\Brand\\Model...')
+#3 /home/funowlsco/public_html/vendor/magento/framework/ObjectManager/ObjectManager.php(70): Magento\Framework\ObjectManager\Factory\Dynamic\Developer->create('MGS\\Brand\\Model...')
+#4 /home/funowlsco/public_html/vendor/magento/framework/ObjectManager/Factory/AbstractFactory.php(167): Magento\Framework\ObjectM in /home/funowlsco/public_html/vendor/magento/framework/Code/Reader/ClassReader.php on line 26

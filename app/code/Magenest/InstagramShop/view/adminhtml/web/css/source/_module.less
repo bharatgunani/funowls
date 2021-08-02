@@ -1,0 +1,54 @@
+@instagramshop-icons-admin__font-name-path: 'Magenest_InstagramShop::fonts/icon';
+@instagramshop-icons-admin__font-name : 'InstagramShop';
+
+.lib-font-face(
+  @family-name: @instagramshop-icons-admin__font-name,
+  @font-path: @instagramshop-icons-admin__font-name-path,
+  @font-weight: normal,
+  @font-style: normal
+);
+
+.admin__menu .item-instagramshop.parent.level-0 > a:before,
+.admin__menu .item-instagramshop.level-0 > a:before {
+  font-family: @instagramshop-icons-admin__font-name;
+  font-size: 3rem;
+  line-height: 2px;
+  content: "\0041";
+  padding-top: 5px;
+}
+
+#magenest-page-token {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: inherit;
+  .account-preview {
+    background-color: antiquewhite;
+    text-align: center;
+    width: 20%;
+    margin: 10px;
+    float: left;
+    border: 8px solid #c3bbb100;
+    box-shadow: 1px 6px 6px #ccc;
+    .account-content {
+      a {
+        color: #333;
+      }
+      img {
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+      }
+      .account-name {
+        display: inline-block;
+        vertical-align: middle;
+        background-color: burlywood;
+        padding: 10px;
+        width: 100%;
+        font-weight: 600;
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * {{COPYRIGHT_NOTICE}}
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_submit_before">
+        <observer name="onestepcheckout_iosc_checkout_submit_before" instance="Onestepcheckout\Iosc\Observer\Frontend\Registration\CheckoutSubmitBefore" />
+    </event>
+    <event name="checkout_submit_all_after">
+        <observer name="onestepcheckout_iosc_checkout_submit_all_after_register" instance="Onestepcheckout\Iosc\Observer\Frontend\Registration\CheckoutSubmitAfter" />
+        <observer name="onestepcheckout_iosc_checkout_submit_all_after_subscribe" instance="Onestepcheckout\Iosc\Observer\Frontend\Subscribe\CheckoutSubmitAfter" />
+    </event>
+    <event name="paypal_express_place_order_success">
+        <observer name="onestepcheckout_iosc_paypal_express_place_order_success_register" instance="Onestepcheckout\Iosc\Observer\Frontend\Registration\CheckoutSubmitAfter" />
+        <observer name="onestepcheckout_iosc_paypal_express_place_order_success_subscribe" instance="Onestepcheckout\Iosc\Observer\Frontend\Subscribe\CheckoutSubmitAfter" />
+    </event>
+</config>

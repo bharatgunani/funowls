@@ -1,0 +1,119 @@
+<?php /** @var $block \Magento\Catalog\Block\Product\AbstractProduct */ ?>
+<?php $blockObj= $block->getLayout()->createBlock('Funowls\Pdp\Block\Pdpdetails'); ?>
+<?php $mgsbrand = $block->getProduct()->getMgsBrand(); ?>
+<div class="polrized_section">
+    <?php
+        $optionlabel = $blockObj->getOptionLabel('polarization', $block->getProduct()->getId());
+        if($optionlabel == 'Polarized')
+        {
+            ?>
+            <hr><div class="polar_name"><span>Polarized Glass</span></div>
+            <?php
+            echo $this->getLayout()
+            ->createBlock('Magento\Cms\Block\Block')
+            ->setBlockId('polarized-image-slider')
+            ->toHtml();
+            ?>
+            <?php
+        }
+    ?>
+</div>
+<div class="product_description">
+                <div class="pro_desc">
+                <?php if(!empty($block->getProductDescription())){?>
+                <?= $blockObj->getProDesc('desc', $block->getProduct()->getId()); ?>
+                    <?php }else{?>
+                        <?php
+
+                    $guaranteeBadgeId = 'productdetails_block_one';
+                    
+                    switch ($mgsbrand) {
+                        case "5540":
+                        $guaranteeBadgeId = 'carrera_certified_reseller_badge';
+                        break;
+                        case "5541":
+                        $guaranteeBadgeId = 'fossils_certified_reseller_badge';
+                        break;
+                        case "5543":
+                        $guaranteeBadgeId = 'jimmy_choo_certified_reseller_badge';
+                        break;
+                        case "5945":
+                        $guaranteeBadgeId = 'hugo_certified_reseller_badge';
+                        break;
+                        case "5542":
+                        $guaranteeBadgeId = 'kate_spade_certified_reseller_badge';
+                        break;
+                        case "5538":
+                        $guaranteeBadgeId = 'marc_jacobs_certified_reseller_badge';
+                        break;
+                        case "5537":
+                        $guaranteeBadgeId = 'oakley_certified_reseller_badge';
+                        break;
+                        case "5535":
+                        $guaranteeBadgeId = 'polaroid_certified_reseller_badge';
+                        break;
+                        case "5539":
+                        $guaranteeBadgeId = 'ray_ban_certified_reseller_badge';
+                        break;
+                        case "5536":
+                        $guaranteeBadgeId = 'smith_certified_reseller_badge';
+                        break;
+                        default:
+                        $guaranteeBadgeId = 'productdetails_block_one';
+                    }
+            echo $this->getLayout()
+            ->createBlock('Magento\Cms\Block\Block')
+            ->setBlockId($guaranteeBadgeId)
+            ->toHtml();
+            ?>
+                        <?php }?>
+                </div>
+
+</div>
+<?php 
+
+$frameId = 'productdetails_block_two';
+
+switch ($mgsbrand) {
+    case "5540":
+    $frameId = 'carrera_case';
+    break;
+    case "5541":
+    $frameId = 'fossils_case';
+    break;
+    case "5543":
+    $frameId = 'jimmy_choo_case';
+    break;
+    case "5945":
+    $frameId = 'hugo_case';
+    break;
+    case "5542":
+    $frameId = 'kate_spade_case';
+    break;
+    case "5538":
+    $frameId = 'marc_jacobs_case';
+    break;
+    case "5537":
+    $frameId = 'oakley_case';
+    break;
+    case "5535":
+    $frameId = 'polaroid_case';
+    break;
+    case "5539":
+    $frameId = 'ray_ban_case';
+    break;
+    case "5536":
+    $frameId = 'smith_case';
+    break;
+    default:
+    $frameId = 'productdetails_block_two';
+}
+?>
+<div class="case-block">
+    <?php
+    echo $this->getLayout()
+    ->createBlock('Magento\Cms\Block\Block')
+    ->setBlockId($frameId)
+    ->toHtml();
+    ?>
+</div>

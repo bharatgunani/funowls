@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<body>
+    <referenceContainer name="header-wrapper">
+        <block class="Magento\Framework\View\Element\Template"
+               name="cj.set.cookie"
+               template="CjPublicis_UniversalTag::cookie/setcookie.phtml"
+               after="logo">
+        </block>
+    </referenceContainer>
+</body>

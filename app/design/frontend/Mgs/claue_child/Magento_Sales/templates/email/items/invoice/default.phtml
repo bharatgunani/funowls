@@ -1,0 +1,33 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php $_item = $block->getItem() ?>
+<?php $_order = $block->getItem()->getOrder(); ?>
+<tr>
+    <td class="item-info<?= ($block->getItemOptions() ? ' has-extra' : '') ?>">
+        <p class="product-name" style="color: #000;"><?= $block->escapeHtml($_item->getName()) ?></p>
+        <p class="sku"><?= $block->escapeHtml(__('SKU')) ?>: <?= $block->escapeHtml($block->getSku($_item)) ?></p>
+        <?php if ($block->getItemOptions()) : ?>
+            <dl class="item-options" style="padding:0;">
+                <?php foreach ($block->getItemOptions() as $option) : ?>
+                    <dt style="float: left;padding: 5px;color:#000;font-size: 12px;"><strong><em style="font-style: normal;"><?= $block->escapeHtml($option['label']) ?>:</em></strong></dt>
+                    <dd style="padding: 5px;color:#999;font-size: 12px;">
+                        <?= /* @noEscape */  nl2br($block->escapeHtml($option['value'])) ?>
+                    </dd>
+                <?php endforeach; ?>
+            </dl>
+        <?php endif; ?>
+        <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+        <?php if ($addInfoBlock) : ?>
+            <?= $addInfoBlock->setItem($_item->getOrderItem())->toHtml() ?>
+        <?php endif; ?>
+        <?= $block->escapeHtml($_item->getDescription()) ?>
+    </td>
+    <td class="item-qty" style="padding:10px;text-align: center;"><?= (float) $_item->getQty() ?></td>
+    <td class="item-price" style="padding:10px;text-align: center;">
+        <?= /* @noEscape */ $block->getItemPrice($_item->getOrderItem()) ?>
+    </td>
+</tr>

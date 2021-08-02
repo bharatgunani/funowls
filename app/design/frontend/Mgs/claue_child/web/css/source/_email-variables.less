@@ -1,0 +1,41 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Email variable overrides
+//  _____________________________________________
+
+//  This file should be used to set theme-specific variables for emails.
+//  By default, emails will inherit variables from the Magento UI Library and the _theme.less and _variables.less files
+//  in a custom theme. Use this file if you want to set specific variables for emails.
+//  For example, you can make the email font, typography, colors, etc unique from the frontend theme.
+
+//  Example usage:
+//  @link__color: @color-dark-green1;
+//  @link__text-decoration: underline;
+//
+//  @email__background-color: @color-heathered-grey; // Change background to darker grey color
+
+
+//  Structure
+@email-body__width: 600px;
+@email-body__padding: @indent__s;
+
+//  Content
+@email-content__padding__base: @indent__s;
+@email-content__padding__s: @indent__xs;
+@email-content__padding__m: @indent__base;
+@email-content__padding__l: @indent__l;
+@email-content__padding__xl: @indent__xl;
+
+//  Colors
+@email__background-color: @color-white;
+@email-content__background-color: @color-white;
+
+//  Messages
+@message-email__color: @text__color;
+@message-email__background: @message-info__background;
+@message-email__border-color: @message-info__border-color;
+@message-email-link__color: @message-info-link__color;

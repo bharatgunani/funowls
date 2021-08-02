@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="RedChamps\GuestOrders\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">guestOrdersLogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">RedChamps\GuestOrders\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="guestOrdersExistingOrders" xsi:type="object">RedChamps\GuestOrders\Console\Command\ProcessExistingOrders</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="processed_guest_orders_listing_data_source" xsi:type="string">RedChamps\GuestOrders\Model\Grid\ProcessedOrders\Collection</item>
+                <item name="followed_guest_orders_listing_data_source" xsi:type="string">RedChamps\GuestOrders\Model\Grid\FollowedOrders\Collection</item>
+                <item name="pending_guest_orders_listing_data_source" xsi:type="string">RedChamps\GuestOrders\Model\Grid\PendingOrders\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Customer\Api\AccountManagementInterface">
+        <plugin sortOrder="1" name="redChampsGuestOrdersAccountManagementInterface"
+                type="RedChamps\GuestOrders\Plugin\AccountManagementPlugin"/>
+    </type>
+</config>

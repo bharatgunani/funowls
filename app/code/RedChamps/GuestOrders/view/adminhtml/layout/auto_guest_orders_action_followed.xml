@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="description" template="RedChamps_GuestOrders::grid/followed_up_orders/description.phtml"/>
+            <uiComponent name="followed_up_guest_orders_grid_old"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,39 @@
+<?php /** @var $block \Magento\Catalog\Block\Product\AbstractProduct */ ?>
+<?php $blockObj= $block->getLayout()->createBlock('Funowls\Pdp\Block\Pdpdetails'); ?>
+<div class="polrized_section">
+	<?php
+        $optionlabel = $blockObj->getOptionLabel('polarization', $block->getProduct()->getId());
+        if($optionlabel == 'Polarized')
+        {
+        	?>
+            <hr><div class="polar_name"><span>Polarized Glass</span></div>
+            <?php
+            echo $this->getLayout()
+            ->createBlock('Magento\Cms\Block\Block')
+            ->setBlockId('polarized-image-slider')
+            ->toHtml();
+            ?>
+            <?php
+        }
+	?>
+</div>
+<div class="product_description">
+                <div class="pro_desc">
+                <?php if(!empty($block->getProductDescription())){?>
+                <?= $blockObj->getProDesc('desc', $block->getProduct()->getId()); ?>
+                    <?php }else{?>
+                        <?php
+            echo $this->getLayout()
+            ->createBlock('Magento\Cms\Block\Block')
+            ->setBlockId('productdetails_block_one')
+            ->toHtml();
+            ?>
+                        <?php }?>
+                </div>
+
+</div>
+<?php echo $this->getLayout()
+            ->createBlock('Magento\Cms\Block\Block')
+            ->setBlockId('productdetails_block_two')
+            ->toHtml();
+?>
