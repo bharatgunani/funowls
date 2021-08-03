@@ -57,6 +57,7 @@ if (trim($block->getPageHeading())) {
 <?php
  $helper = $this->helper('MGS\Mpanel\Helper\Data');
     if($helper->isHomepage()):
-        echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('home_page_slider')->toHtml();
+        // echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('home_page_slider')->toHtml();
+    	echo $block->getLayout()->createBlock('Mageplaza\BannerSlider\Block\Widget')->setSliderId(1)->toHtml(); 
     endif;
     ?>

@@ -7843,6 +7843,18 @@ body.cms-home .container.space-t1.divider-section.trading-products{ padding-left
 .shipping-section .panel-block-row p
 {   font-size: 12px;    
 }
+.mc-modal
+{   z-index: 999999 !important;
+}
+.mc-modal-bg
+{   z-index: 99999 !important;
+}
+.mc-modal .content__monkeyRewards
+{   display: none !important;
+}
+#banner-slider-carousel .item .mobile
+{   display: none;
+}
 @media (max-width: 767px)
 {
     .search-message h4 
@@ -7860,4 +7872,9 @@ body.cms-home .container.space-t1.divider-section.trading-products{ padding-left
     .contact-banner img.desktop{ display: none; }
     .contact-banner img.mobile{ display: block; }
     .contact-banner .cc_main.hide-desktop{ display: block; }
+    .mc-banner{ z-index: 99999 !important;}
+    #banner-slider-carousel .item .desktop{ display: none; }
+    #banner-slider-carousel .item .mobile
+    {   display: block; 
+    }
 }
