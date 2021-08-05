@@ -7834,6 +7834,9 @@ body.cms-home .container.space-t1.divider-section.trading-products{ padding-left
 {   background: #0d8af0;  border-color: #0d8af0;          
 }
 .contact-form-content .message p{ margin-bottom: 20px; }
+.shipping-section .panel-block-row a.icon-service
+{   content: ""; display: block; width: 100%; position: absolute; height: 100%;    
+}
 .shipping-section .panel-block-row .text
 {   padding-left: 45px;    
 }
@@ -7854,6 +7857,9 @@ body.cms-home .container.space-t1.divider-section.trading-products{ padding-left
 }
 #banner-slider-carousel .item .mobile
 {   display: none;
+}
+.category-brands .block.filter
+{   display: none;    
 }
 @media (max-width: 767px)
 {
