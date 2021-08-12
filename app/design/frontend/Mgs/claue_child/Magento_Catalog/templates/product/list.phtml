@@ -587,7 +587,7 @@ $dataCol = '';
 </script>
 <?php if(!$settings['catalog']['ajaxscroll']): ?>
 <script>
-require(["jquery"], function($) {
+/*require(["jquery"], function($) {
     var url = $('.next').attr('href');
     if (typeof url != "undefined") {
         $('.load-more-product').on('click', function() {
@@ -613,7 +613,7 @@ require(["jquery"], function($) {
     }else{
         $('.load-more-product').hide();
     }
-});
+});*/
 </script>
-<div class="load-more-item"><button class="buttonload load-more-product"><i class="fa fa-spinner fa-spin load-more-product-spin" style="display: none"></i>  Load More Items</button></div>
+<!-- <div class="load-more-item"><button class="buttonload load-more-product"><i class="fa fa-spinner fa-spin load-more-product-spin" style="display: none"></i>  Load More Items</button></div> -->
 <?php endif; ?>

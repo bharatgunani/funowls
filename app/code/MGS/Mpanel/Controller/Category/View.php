@@ -212,7 +212,7 @@ class View extends \Magento\Catalog\Controller\Category\View
 				$page = $this->resultPageFactory->create();
 				// apply custom layout (page) template once the blocks are generated
 				
-				if ($settings->getPageLayout()) {
+				/*if ($settings->getPageLayout()) {
 					$page->getConfig()->setPageLayout($settings->getPageLayout());
 				}else{
 					$panelLayout = $this->_scopeConfig->getValue('mpanel/catalog/layout', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $this->_storeManager->getStore()->getId());
@@ -246,13 +246,13 @@ class View extends \Magento\Catalog\Controller\Category\View
 
 				$page->getConfig()->addBodyClass('page-products')
 					->addBodyClass('categorypath-' . $this->categoryUrlPathGenerator->getUrlPath($category))
-					->addBodyClass('category-' . $category->getUrlKey());
+					->addBodyClass('category-' . $category->getUrlKey());*/
 
 				if($category->getCategoryFullWidth()){
-					$page->getConfig()->addBodyClass('page-products-full-width');
+					//$page->getConfig()->addBodyClass('page-products-full-width');
 				}
 				if($category->getIsLanding() && $category->getCateLandingType() == 3){
-					$page->getConfig()->addBodyClass('landing-products-parralax');
+					//$page->getConfig()->addBodyClass('landing-products-parralax');
 				}
 				return $page;
 			} elseif (!$this->getResponse()->isRedirect()) {
