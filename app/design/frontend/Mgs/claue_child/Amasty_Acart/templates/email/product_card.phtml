@@ -1,0 +1,76 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2021 Amasty (https://www.amasty.com)
+ * @package Amasty_Acart
+ */
+?>
+<?php
+/**
+ * @var \Magento\Backend\Block\Template $block
+ * @var \Magento\Catalog\Helper\Output $helper
+ * @var \Magento\Quote\Model\Quote $quote
+ * @var \Magento\Catalog\Helper\Image $imageHelper
+ * @var \Amasty\Acart\ViewModel\Email\ProductViewModel $viewModel
+ * @var \Magento\Framework\Escaper $escaper
+ */
+// @codingStandardsIgnoreLine
+$helper = $this->helper(\Magento\Catalog\Helper\Output::class);
+$item = $block->getData('item');
+$quote = $block->getData('quote');
+$viewModel = $block->getData('viewModel');
+$product = $viewModel->getProduct($item, $block->getData('showConfigurableImage'));
+?>
+<table cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td style="border-bottom: 1px solid #ccc; padding: 10px; vertical-align: middle; width: 30%;">
+            <?php if ($block->getData('showImage')): ?>
+            <?php $viewModel->initProductImageHelper($quote, $product, 'amasty_acart_items_list'); ?>
+            <?php $imageHelper = $viewModel->getProductImageHelper(); ?>
+            <?php if ($imageHelper->getUrl() !== $imageHelper->getDefaultPlaceholderUrl()): ?>
+            <img src="<?= $escaper->escapeHtmlAttr($viewModel->prepareProductImageUrl($imageHelper->getUrl())) ?>"
+                 alt="<?= $escaper->escapeHtmlAttr($imageHelper->getLabel()) ?>"
+                 width="<?= $escaper->escapeHtmlAttr($imageHelper->getWidth()) ?>"
+                 height="<?= $escaper->escapeHtmlAttr($imageHelper->getHeight()) ?>" style="width: auto; height: auto; max-width: 145px;"/>
+            <?php endif; ?>
+        <?php endif; ?>            
+        </td>
+        <td style="border-bottom: 1px solid #ccc; padding: 10px; vertical-align: top; width: 70%;">
+            <div class="acart-title-block">
+                <h2 style="font-size: 18px; color: #000; text-transform: capitalize; font-weight: bold; margin: 0px; padding-bottom: 5px;">
+                    <?= /* @noEscape */ $helper->productAttribute($product, $product->getName(), 'name') ?>
+                </h2>
+                <?php if ($block->getData('showDescription')): ?>
+                    <div class="acart-description" style="font-size: 14px; color: #000;">
+                        <?= /* @noEscape */ $helper->productAttribute($product, $product->getDescription(), 'description') ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($block->getData('showOptionList') && $options = $viewModel->getProductOptions($item, $product)): ?>
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                    <?php foreach ($options as $option): ?>
+                        <?php $formatedOptionValue = $viewModel->getFormatedOptionValue($option) ?>
+                        <tr>
+                            <td style="font-size: 14px; color: #000;" width="150"><?= $escaper->escapeHtml($option['label']) ?>:</td>
+                            <td style="font-size: 14px; color: #000; font-weight: bold;">
+                                <?php if (isset($formatedOptionValue['full_view'])): ?>
+                                    <?= /* @noEscape */ $formatedOptionValue['full_view'] ?>
+                                <?php else: ?>
+                                    <?= /* @noEscape */ $formatedOptionValue['value'] ?>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                <?php endif; ?>
+                <?php if ($block->getData('showPrice')): ?>
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="font-size:14px; padding:5px 0px;" width="150"><span class="acart-label"><?= $escaper->escapeHtml(__('Price')) ?>: </span></td>
+                            <td style="font-size:14px; padding:5px 0px;"><b><?= /* @noEscape */ $viewModel->getPrice($quote, $product, $block->getData('showPriceIncTax')); ?></b></td>
+                        </tr>
+                    </table>
+                <?php endif; ?>
+            </div>
+        </td>
+    </tr>
+</table>
