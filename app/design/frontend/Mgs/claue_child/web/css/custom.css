@@ -7753,6 +7753,10 @@ h2.sezzle-header-3 {
 .ajax-loading .loading-mask
 {   display: block !important;
 }
+.checkout_index_index > .loading-mask
+{   background-image:url(../images/owl.gif) !important; background-size: 100px !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+}
 .search-message {
     text-align: center;
 }
