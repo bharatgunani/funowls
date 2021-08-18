@@ -13,22 +13,29 @@ $_order = $block->getOrder() ?>
     <?php $trackCollection = $_order->getTracksCollection($_shipment->getId()) ?>
     <?php if ($trackCollection) : ?>
         <br />
-        <table class="shipment-track">
+        <table class="shipment-track" cellspacing="0" cellpadding="0" width="100%" style="border: 1px solid #ccc;">
             <thead>
             <tr>
-                <th style="text-align: left;"><?= $block->escapeHtml(__('Shipped By')) ?></th>
-                <th style="text-align: right;"><?= $block->escapeHtml(__('Tracking Number')) ?></th>
+                <td style="text-align: center;width:100%;padding: 15px;font-size: 20px;border-bottom: 1px solid #ccc;"><?= $block->escapeHtml(__('TRACKING INFORMATION')) ?></td>
             </tr>
             </thead>
             <tbody>
             <?php foreach ($trackCollection as $_item) : ?>
                 <tr>
-                    <td style="text-align: left;"><?= $block->escapeHtml($_item->getTitle()) ?>:</td>
-                    <td style="text-align: right;">
+                    <td style="text-align: center;padding: 10px; width: 50%; border-bottom: 1px solid #ccc; border-right: 1px solid #ccc;"><strong><?= $block->escapeHtml(__('Tracking Number')) ?></strong></td>
+                    <td style="text-align: center;padding: 10px; width: 50%; border-bottom: 1px solid #ccc;border-top: 1px solid #ccc;">
                         <a href="<?= $block->escapeUrl($block->getTrackingUrl()->getUrl($_item)) ?>" target="_blank">
                             <?= $block->escapeHtml($_item->getNumber()) ?>
                         </a>
                     </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;padding: 10px; width: 50%; border-bottom: 1px solid #ccc; border-right: 1px solid #ccc;"><strong><?= $block->escapeHtml(__('Courier')) ?></strong></td>
+                    <td style="text-align: center;padding: 10px; width: 50%; border-bottom: 1px solid #ccc;"><?php echo $_item->getTitle(); ?></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;padding: 10px; width: 50%; border-bottom: 1px solid #ccc; border-right: 1px solid #ccc;"><strong><?= $block->escapeHtml(__('Delivery Method')) ?></strong></td>
+                    <td style="text-align: center;padding: 10px; width: 50%;"><?php echo $_order->getShippingDescription(); ?></td>
                 </tr>
             <?php endforeach ?>
             </tbody>
