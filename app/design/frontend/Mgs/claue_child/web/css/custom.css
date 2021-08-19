@@ -3687,8 +3687,8 @@ span.tooltiptext:before {
     display: inline-block;
     text-transform: uppercase;
 }
-button.tocart, .wishlist-index-index .product-item-actions button.action.btn.btn-primary.primary,
- .checkout-cart-index .action.checkout,body .osc-place-order-wrapper .place-order-primary button.primary.checkout{
+.wishlist-index-index .product-item-actions button.action.btn.btn-primary.primary,
+.checkout-cart-index .action.checkout,body .osc-place-order-wrapper .place-order-primary button.primary.checkout{
     overflow: hidden;
     position: relative;
     border-radius: 0;
@@ -3699,8 +3699,8 @@ button.tocart span, body .osc-place-order-wrapper .place-order-primary button.pr
  .osc-place-order-wrapper button.action.primary.checkout span, .checkout-cart-index  .action.checkout span{
     position: relative; z-index: 1;
 }
-button.tocart:after,.wishlist-index-index .product-item-actions button.action.btn.btn-primary.primary:after,
- .checkout-cart-index .action.checkout:after, body .osc-place-order-wrapper .place-order-primary button.primary.checkout:after{
+.wishlist-index-index .product-item-actions button.action.btn.btn-primary.primary:after,
+.checkout-cart-index .action.checkout:after, body .osc-place-order-wrapper .place-order-primary button.primary.checkout:after{
     position: absolute;
     content: '';
     display: block;
@@ -3716,9 +3716,6 @@ button.tocart:after,.wishlist-index-index .product-item-actions button.action.bt
     animation: mymove 1.5s infinite;
     transition: transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
-/* .checkout-cart-index .action.checkout:after, body .osc-place-order-wrapper .place-order-primary button.primary.checkout:after{
-    background: #00a54e;
- }*/
 @keyframes mymove{
   from {transform: scale(1,1);transform-origin: left center;}
   to{transform: scale(0,1); left: 100%;}
@@ -8017,6 +8014,12 @@ body.cms-home .container.space-t1.divider-section.trading-products{ padding-left
 {   background: #56cfe1 !important; color: #000 !important; 
 }
 /* instagram section home page */
+button.tocart img
+{	display: none;
+}
+button.tocart span
+{	display: inline-block;	
+}
 @media (max-width: 991px)
 {
     .instagram .block-title h2{ font-size: 20px; line-height: normal; }
@@ -8051,7 +8054,9 @@ body.cms-home .container.space-t1.divider-section.trading-products{ padding-left
     #popup-success-content .success-title{ font-size: 20px; }
     .landing-categories--grid > .row{ margin: 0px; }
     .landing-categories .landing-categories-detail h2 a{ color: #00a54e; }
-
+    button.tocart img
+	{	display: inline-block; max-width: 100px; vertical-align: middle; position: absolute; top: -30px;  left: 20px;
+	}
 }
 @media (max-width: 480px)
 {
