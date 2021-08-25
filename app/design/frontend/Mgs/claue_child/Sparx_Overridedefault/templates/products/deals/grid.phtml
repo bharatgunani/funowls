@@ -205,7 +205,7 @@
 						$('#deal-products<?php echo $blockId ?>').owlCarousel({
 							items: <?php echo $perRow; ?>,
 							autoplay: <?php echo $autoPlay ?>,
-							loop: false,
+							loop: true,
 							<?php if($lazyLoad): ?>lazyLoad: true,<?php endif ?>
 							autoplayHoverPause: <?php echo $stopAuto ?>,
 							nav: <?php echo $nav ?>,
