@@ -2371,7 +2371,7 @@ footer.footer {
     line-height: 1;
 }
 .polarized_tag {
-    z-index: 99;
+    z-index: 9;
     margin-left: 0;
     text-align: left;
     position: absolute;
@@ -8035,6 +8035,9 @@ button.tocart span
 }
 .header .dropdown-toplinks .dropdown-menu
 {   min-width: 150px;    
+}
+.search-autocomplete .c-smartsearch__content
+{	max-height: 60vh; overflow-y: auto;
 }
 @media (max-width: 1199px)
 {
