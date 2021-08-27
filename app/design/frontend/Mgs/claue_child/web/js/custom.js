@@ -557,17 +557,18 @@ $(document).on('keyup', '.checkout-payment-method input', function () {
     $(this).parents('.field').addClass('showing-label');
 }); 
 
-$(document).on('keydown', '.checkout-shipping-address  input', function () {       
-   $(this).parents('.field').removeClass('showing-label');
+$(document).on("blur",".checkout-shipping-address  input",function(){
+    $(this).parents('.field').removeClass('showing-label');
+});
+
+$(document).on('blur', '.checkout-billing-address  input', function () {      
+    $(this).parents('.field').addClass('showing-label');
 }); 
 
-$(document).on('keydown', '.checkout-billing-address  input', function () {      
-    $(this).parents('.field').removeClass('showing-label');
+$(document).on('blur', '.checkout-payment-method input', function () {      
+    $(this).parents('.field').addClass('showing-label');
 }); 
 
-$(document).on('keydown', '.checkout-payment-method input', function () {      
-    $(this).parents('.field').removeClass('showing-label');
-}); 
 });
 
 // require(['jquery', 'jquery/ui','owl_carousel'], function($) {
