@@ -73,8 +73,14 @@
 					$compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');
 				?>
 			</div>
+
 		</div>
 		<div class="actions action-add-to">
+			<div class="field lenses" style="display: none;">
+				<div class="control">
+					<a href="prx/?id=<?php echo $_product->getId(); ?>" class="rxlenses btn"><?php echo __('Add Rx Lenses'); ?></a>
+				</div>
+			</div>
 			<?php if ($themeHelper->getStoreConfig('mpanel/product_details/wishlist') && $this->helper('Magento\Wishlist\Helper\Data')->isAllow()) : ?>
 				<button type="button" class="action towishlist"
 					data-post='<?php /* @escapeNotVerified */ echo $_wishlistSubmitParams; ?>'

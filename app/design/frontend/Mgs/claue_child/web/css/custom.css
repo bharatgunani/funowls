@@ -1078,7 +1078,7 @@ ul.checkout.methods.items.checkout-methods-items {
     padding: 0 10px;
 }
 .checkout-cart-index .cart-summary .checkout-methods-items .item .action.checkout {
-    background-color: #ffffff;
+    background-color: #039ae3;
     border: 2px solid #039ae3;
     border-radius: 0;
     overflow: hidden;
@@ -1352,12 +1352,13 @@ footer.footer.footer1 .bottom-footer a {
     color: #080808;
     padding-right: 0px;
 }
-body .btn-default ,.cart .btn-primary,.product-info-main .product-add-form .actions button.tocart{
-    color: #000000;
+body .btn-default,.cart .btn-primary,.product-info-main .product-add-form .actions button.tocart{
+    color: #fff;
     border: 2px solid #039ae3;
-    background-color: #ffffff;
+    background-color: #039ae3;
 }
-body .btn-default ,.btn-primary{
+body .btn-default ,.btn-primary
+{
     color: #fff;
     border: 2px solid #039ae3;
     background-color: #039ae3;
@@ -1512,7 +1513,8 @@ body .osc-place-order-wrapper .place-order-primary button.primary.checkout {
     border-radius: 52px;
     border: 2px solid;
     border-color: #039ae3 !important;
-    background-color: #ffffff !important;
+    background-color: #039ae3 !important;
+    color: #fff !important;
 }
 body .osc-place-order-wrapper .place-order-primary button.primary.checkout:hover {
     color: #fff;
@@ -2276,9 +2278,12 @@ body.cms-home .container.space-t1.divider-section{
     z-index: 1;
 }
 /*Css for Border radius of all button*/
-.homepage-banner-background-container .btn.btn-default ,.product-info-main .product-add-form .actions button.tocart,.review-form-actions button.action.submit.btn.btn-primary{
+.homepage-banner-background-container .btn.btn-default ,.product-info-main .product-add-form .actions button.tocart,.review-form-actions button.action.submit.btn.btn-primary
+{
     border-radius: 0;
     padding: 0 20px;
+    padding-left: 60px;
+    position: relative;
 }
 .fieldset.coupon{
     display: flex;
@@ -3705,37 +3710,12 @@ span.tooltiptext:before {
     overflow: hidden;
     position: relative;
     border-radius: 0;
-    background: #ffffff;
-    animation: mycolor 1.5s infinite;
+    background: #039ae3;
+    
 }
 button.tocart span, body .osc-place-order-wrapper .place-order-primary button.primary.checkout span,
  .osc-place-order-wrapper button.action.primary.checkout span, .checkout-cart-index  .action.checkout span{
     position: relative; z-index: 1;
-}
-.wishlist-index-index .product-item-actions button.action.btn.btn-primary.primary:after,
-.checkout-cart-index .action.checkout:after, body .osc-place-order-wrapper .place-order-primary button.primary.checkout:after{
-    position: absolute;
-    content: '';
-    display: block;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    background: #039ae3;
-    transform: scale(1, 1);
-    animation: mymove 1.5s infinite;
-    transition: transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-}
-@keyframes mymove{
-  from {transform: scale(1,1);transform-origin: left center;}
-  to{transform: scale(0,1); left: 100%;}
-}
-@keyframes mycolor{
-    from{color: #fff;}
-    to{color:#000;}
 }
 .category-product-actions{
     margin-top: 15px;
@@ -8028,7 +8008,7 @@ body.cms-home .container.space-t1.divider-section.trading-products{ padding-left
 }
 /* instagram section home page */
 button.tocart img
-{	display: none;
+{	display: inline-block; max-width: 80px; vertical-align: middle;  position: absolute; top: -24px; left: -10px;
 }
 button.tocart span
 {	display: inline-block;	

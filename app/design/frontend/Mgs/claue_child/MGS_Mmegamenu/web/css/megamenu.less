@@ -176,11 +176,13 @@
 					border: none;
 					.transform(translateY(20px));
 					.transition(all 300ms);
+					display:none !important;
 				}
 				&:hover > ul.dropdown-menu {
 					opacity: 1;
 					visibility: visible;
 					.transform(translateY(0));
+					display:block !important;
 				}
 				li {
 					> a {
