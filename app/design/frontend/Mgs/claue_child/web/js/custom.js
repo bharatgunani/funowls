@@ -498,6 +498,11 @@ require(['jquery'], function ($) {
             document.body.appendChild(el);
             el.select();
             document.execCommand("copy");
+            $('.showCopiedMsg').remove();
+            $("<span class='showCopiedMsg'>Copied!</span>").insertBefore(this);
+            setTimeout(function(){
+                $('.showCopiedMsg').remove();
+            }, 1000);
             document.body.removeChild(el);
         });
     });

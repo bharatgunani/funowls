@@ -2690,6 +2690,19 @@ span.temple-width{
     display: block;
 }
 
+span.showCopiedMsg {
+    color: #00a54e;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+}
+.coupon-item .coupen {
+    width: 100%;
+    text-align: center;
+}
+
+
 @media only screen and (min-width:991px)
 {
     .catalog-product-view .owl-carousel .owl-dots {
