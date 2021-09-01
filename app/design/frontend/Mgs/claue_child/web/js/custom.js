@@ -550,6 +550,7 @@ $(".checkout-cart-index .page-main").css('margin-top',headheight);
 },1000);
 });
 
+/* 
 $(document).on('keyup', '.checkout-shipping-address  input', function () {       
    $(this).parents('.field').addClass('showing-label');
 }); 
@@ -572,7 +573,7 @@ $(document).on('blur', '.checkout-billing-address  input', function () {
 
 $(document).on('blur', '.checkout-payment-method input', function () {      
     $(this).parents('.field').addClass('showing-label');
-}); 
+});  */ 
 
 });
 
