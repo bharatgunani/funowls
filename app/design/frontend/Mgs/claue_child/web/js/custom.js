@@ -499,7 +499,7 @@ require(['jquery'], function ($) {
             el.select();
             document.execCommand("copy");
             $('.showCopiedMsg').remove();
-            $("<span class='showCopiedMsg'>Copied!</span>").insertBefore(this);
+            $("<span class='showCopiedMsg'>Copied! "+ code + "</span>").insertBefore(this);
             setTimeout(function(){
                 $('.showCopiedMsg').remove();
             }, 1000);
