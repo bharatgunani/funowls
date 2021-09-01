@@ -514,24 +514,23 @@ define([
                     '</div>'
                 );
 
-                 $(".carouselenable  .owl-carousel").owlCarousel({
-                                    margin: 5,
-                                    stagePadding: 15,
-                                    nav: true,
-                                    dots: false,
-                                    loop: false,
-                                    mouseDrag : false,
-                                    responsive: {
-                                        0: {items: 3},
-                                        320: {items: 3},
-                                        450: {items: 4},
-                                        600: {items: 7},
-                                        1000: {items: 6}
-                                    }
-                    });
+                $(".carouselenable  .owl-carousel").owlCarousel({
+                    margin: 5,
+                    stagePadding: 15,
+                    nav: true,
+                    dots: false,
+                    loop: false,
+                    mouseDrag : false,
+                    responsive: {
+                        0: {items: 3},
+                        320: {items: 3},
+                        450: {items: 4},
+                        600: {items: 7},
+                        1000: {items: 6}
+                    }
+                });
             }
        
-
             $widget.optionsMap[item.id] = {};
 
             // Aggregate options array to hash (key => value)
@@ -1018,7 +1017,7 @@ define([
                     });
 
                 }
-               console.log(this.options.jsonConfig,'stockStatus1');
+               // console.log(this.options.jsonConfig,'stockStatus1');
                 var discountchange = this.options.jsonConfig.proDiscountPrice[this.getProduct()];
                 var polarized = this.options.jsonConfig.polarized[this.getProduct()];
                 var proinfo_table = this.options.jsonConfig.proinfo_table[this.getProduct()];
@@ -1219,7 +1218,7 @@ define([
             }
 
             //Check weather product list page or view page
-            //if ($('body.catalog-product-view').size() <= 0) {
+            if ($('body.catalog-product-view').size() <= 0) {
 
                 if( controls.size() == selected.size()){
                     var brandName = $widget.options.jsonConfig.brandName[this.getProduct()];
@@ -1233,7 +1232,7 @@ define([
                     $widget.element.parents('.product-item-info').find('a.product-item-photo').attr('href', proUrl);
                     $widget.element.parents('.product-item-info').find('.product-image-photo').attr('src', src);
                 }
-           // } 
+           } 
 
             // Disable not available options
             controls.each(function () {
