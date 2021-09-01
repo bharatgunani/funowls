@@ -8074,6 +8074,8 @@ button.tocart span
     button.tocart img
 	{	display: inline-block; max-width: 100px; vertical-align: middle; position: absolute; top: -30px;  left: 20px;
 	}
+    .instagram .block-photo-slider .slides .owl-nav .owl-prev{ left: -15px; }
+    .instagram .block-photo-slider .slides .owl-nav .owl-next{ right: -15px; }
 }
 @media (max-width: 480px)
 {
