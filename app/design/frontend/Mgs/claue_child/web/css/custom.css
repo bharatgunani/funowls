@@ -7893,6 +7893,9 @@ body.cms-home .container.space-t1.divider-section.trading-products{ padding-left
 .mageplaza-betterpopup-content .tmp4-img-content
 {   float: left; width: 54%;    
 }
+.mageplaza-betterpopup-content .tmp4-img-content img
+{	max-width: 98.2%;	
+}
 .mageplaza-betterpopup-content .tmp4-text-content
 {   float: right; width: 46%; padding-top: 73px; text-align: center; position: relative;  
 }
@@ -8031,6 +8034,24 @@ button.tocart span
 }
 .search-autocomplete .c-smartsearch__content
 {	max-height: 60vh; overflow-y: auto;
+}
+.fieldset.address .field.choice
+{	clear: both; padding: 0px 10px;	
+}
+.fieldset.address .field.choice .label
+{    position: static; display: inline-block; color: #000; opacity: 1; margin-left: 20px !important; margin-bottom: 0px !important; vertical-align: middle;		
+}
+.one-step-checkout-container .fieldset.address .field.choice > input
+{	left: 10px;
+}
+.opc-wrapper .shipping-address-items
+{	display: block; margin: 0px;	
+}
+.opc-wrapper .shipping-address-items .shipping-address-item
+{	margin-bottom: 20px; margin-left: 0px;		
+}
+.opc-wrapper .shipping-address-item button.edit-address-link
+{	min-width: inherit; position: static !important;	
 }
 @media (max-width: 1199px)
 {
