@@ -1218,7 +1218,7 @@ define([
             }
 
             //Check weather product list page or view page
-            if ($('body.catalog-product-view').size() <= 0) {
+            //if ($('body.catalog-product-view').size() <= 0) {
 
                 if( controls.size() == selected.size()){
                     var brandName = $widget.options.jsonConfig.brandName[this.getProduct()];
@@ -1232,7 +1232,7 @@ define([
                     $widget.element.parents('.product-item-info').find('a.product-item-photo').attr('href', proUrl);
                     $widget.element.parents('.product-item-info').find('.product-image-photo').attr('src', src);
                 }
-           } 
+           //} 
 
             // Disable not available options
             controls.each(function () {
