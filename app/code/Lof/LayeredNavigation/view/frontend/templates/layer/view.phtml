@@ -1,5 +1,5 @@
 <?php if ($block->canShowBlock()): ?>
-    <div class="filter-btn-desk">Filters </div>
+    <div class="filter-btn-desk">Filters</div>
     <div class="block filter lof-layeredNavigation" id="layered-filter-block" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
         <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
         <div class="block-title filter-title" data-count="<?php /* @escapeNotVerified */ echo $filtered; ?>">
@@ -41,13 +41,14 @@
 							"accordion": {
 								"openedState": "active",
 								"collapsible": true,
-								"active": <?php echo sizeof($activeArray) ? $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($activeArray) : 'false' ?>,
-								"multipleCollapsible": true
+                                "active" : false,
+								"multipleCollapsible": false
 							},
 							"Lof_LayeredNavigation/js/layer": {}
 						}
 					}
 				</script>
+                <!-- "active": <?php //echo sizeof($activeArray) ? $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($activeArray) : 'false' ?>, -->
             <?php endif; ?>
             <div id="lof_overlay" class="lof_overlay">
                 <img src="<?php /* @escapeNotVerified */ echo $block->getViewFileUrl('images/loader-1.gif'); ?>" alt="Loading...">

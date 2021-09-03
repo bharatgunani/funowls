@@ -131,6 +131,7 @@ define([
                         $(self.options.productsListSelector).replaceWith(res.products);
                         $(self.options.productsListSelector).trigger('contentUpdated');
                     }
+                    $('.filter-btn-desk').eq(1).remove();
                     $('.lof_overlay').hide();
                 },
                 error: function () {
