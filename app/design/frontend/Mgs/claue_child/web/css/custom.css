@@ -8053,6 +8053,9 @@ button.tocart span
 .opc-wrapper .shipping-address-item button.edit-address-link
 {	min-width: inherit; position: static !important;	
 }
+.photos-wrapper .box p
+{   color: #fff; font-size: 14px;    
+}
 @media (max-width: 1199px)
 {
     #main-Accountcontent .top-links .links .link.wishlist + li{ display: none; }
@@ -8097,6 +8100,8 @@ button.tocart span
 	}
     .instagram .block-photo-slider .slides .owl-nav .owl-prev{ left: -15px; }
     .instagram .block-photo-slider .slides .owl-nav .owl-next{ right: -15px; }
+    div.box .caption{ padding: 10px !important; }
+    .photos-wrapper .box p{ font-size: 11px; }
 }
 @media (max-width: 480px)
 {
@@ -8105,4 +8110,6 @@ button.tocart span
     .instagram .block-title h2{ display: block; }
     .instagram .block-title a{ float: none; }
     .instagram .block-title a:after{ display: none; }
+    .photos-wrapper .box p{ font-size: 9px; }
+    div.photos-wrapper > div{ padding: 0px !important; }
 }
