@@ -144,9 +144,9 @@ define([
                                 }
                             });
                             if(simpleproductid){
-                                label = '<div class="frame-colour-chk"><span><b>Frame Color : </b>'+ window.framechk[simpleproductid]+'</span></div>';
+                                label = '<div class="frame-colour-chk"><span><b>Frame Color : </b>'+window.lenschk[simpleproductid] +'</span></div>';
                                 label += '<br>';
-                                label += '<div class="lens-colour-chk"><span><b>Lens Color : </b>'+ window.lenschk[simpleproductid]+'</span></div>';
+                                label += '<div class="lens-colour-chk"><span><b>Lens Color : </b>'+ window.framechk[simpleproductid] +'</span></div>';
                                 $title.html(label);
                             }else{
                                 $title.text(label);

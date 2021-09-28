@@ -2278,11 +2278,12 @@ body.cms-home .container.space-t1.divider-section{
     z-index: 1;
 }
 /*Css for Border radius of all button*/
-.homepage-banner-background-container .btn.btn-default ,.product-info-main .product-add-form .actions button.tocart,.review-form-actions button.action.submit.btn.btn-primary
+.homepage-banner-background-container .btn.btn-default ,
+.product-info-main .product-add-form .actions button.tocart,
+.review-form-actions button.action.submit.btn.btn-primary
 {
     border-radius: 0;
     padding: 0 20px;
-    padding-left: 60px;
     position: relative;
 }
 .fieldset.coupon{
@@ -4959,6 +4960,9 @@ h4{
 #layered-filter-block{
     position: relative;
     z-index: 100;
+}
+.product-info-main .box-tocart .primary.tocart
+{   padding-left: 60px !important;    
 }
 /* Mobie view start here */
 @media (max-width:992px)
