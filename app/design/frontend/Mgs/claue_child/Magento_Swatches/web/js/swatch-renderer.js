@@ -138,11 +138,28 @@ define([
                             var optionidcheck = $this.attr('option-id');
                             var attributeidcheck = $this.attr('attribute-id');
                             var simpleproductid = '';
+
                             $.each(window.products, function (key,value) {
+                                	console.log(value[attributeidcheck]);
                                 if(value[attributeidcheck] == optionidcheck){
                                     simpleproductid = key;
                                 }
                             });
+                            
+                            var getColorAttributeSelected = $('.carouselenable.swatch-attribute.color_variant').attr('option-selected');
+                            var getAttributeId = $('.carouselenable.swatch-attribute.color_variant').attr('attribute-id');
+                            var checkLensWidth = $this.parent().parent().parent().attr('attribute-code');
+
+                            if(checkLensWidth == 'lens_width'){
+                            	optionidcheck = getColorAttributeSelected;
+                            	var attributeidcheck = getColorAttributeSelected;
+                            	$.each(window.products,function(key,value){
+                            		if(value[getAttributeId] == optionidcheck){
+                            			console.log("key = "+key)
+	                                    simpleproductid = key;
+	                                }
+								});
+                            }
                             if(simpleproductid){
                                 label = '<div class="frame-colour-chk"><span><b>Frame Color : </b>'+window.lenschk[simpleproductid] +'</span></div>';
                                 label += '<br>';
