@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd"> 
+<update handle="customer_account"/>
+<head>
+	<css src="Webindiainc_Prx::css/prx.css" />
+</head>
+<body> 
+    <referenceBlock name="page.main.title"> 
+            <action method="setPageTitle"> 
+                <argument translate="true" name="title" xsi:type="string">My Prescription</argument> 
+            </action> 
+     </referenceBlock> 
+     <referenceContainer name="content"> 
+        <block class="Webindiainc\Prx\Block\SavedCustomerPrx" name="my_prescription" template="Webindiainc_Prx::saved_prescription.phtml">
+        </block> 
+    </referenceContainer> 
+</body> 
+</page>

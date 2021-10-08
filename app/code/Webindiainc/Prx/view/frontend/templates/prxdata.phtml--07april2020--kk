@@ -1,0 +1,487 @@
+<?php
+$helper = $this->helper('Webindiainc\Prx\Helper\ConfigData');
+
+$enable = $helper->getConfig('prxsection/general/enable');
+
+$rightsph = $helper->getConfig('prxsection/prx/rightsph');
+$rightcyl = $helper->getConfig('prxsection/prx/rightcyl');
+$rightaxis = $helper->getConfig('prxsection/prx/rightaxis');
+$rightadd = $helper->getConfig('prxsection/prx/rightadd');
+$leftsph = $helper->getConfig('prxsection/prx/leftsph');
+$leftcyl = $helper->getConfig('prxsection/prx/leftcyl');
+$leftaxis = $helper->getConfig('prxsection/prx/leftaxis');
+$leftadd = $helper->getConfig('prxsection/prx/leftadd');
+
+$pdcommon = $helper->getConfig('prxsection/pd/pdcommon');
+$pdright = $helper->getConfig('prxsection/pd/pdright');
+$pdleft = $helper->getConfig('prxsection/pd/pdleft');
+
+$prismprice = $helper->getConfig('prxsection/prism/prismprice');
+$prismrightvnum = $helper->getConfig('prxsection/prism/prismrightvnum');
+$prismrightvdir = $helper->getConfig('prxsection/prism/prismrightvdir');
+$prismrighthnum = $helper->getConfig('prxsection/prism/prismrighthnum');
+$prismrighthdir = $helper->getConfig('prxsection/prism/prismrighthdir');
+$prismleftvnum = $helper->getConfig('prxsection/prism/prismleftvnum');
+$prismleftvdir = $helper->getConfig('prxsection/prism/prismleftvdir');
+$prismlefthnum = $helper->getConfig('prxsection/prism/prismlefthnum');
+$prismlefthdir = $helper->getConfig('prxsection/prism/prismlefthdir');
+
+$rightsph = explode(',', $rightsph);
+$rightcyl = explode(',', $rightcyl);
+$rightaxis = explode(',', $rightaxis);
+$rightadd = explode(',', $rightadd);
+$leftsph = explode(',', $leftsph);
+$leftcyl = explode(',', $leftcyl);
+$leftaxis = explode(',', $leftaxis);
+$leftadd = explode(',', $leftadd);
+
+$pdcommon = explode(',', $pdcommon);
+$pdright = explode(',', $pdright);
+$pdleft = explode(',', $pdleft);
+
+$prismrightvnum = explode(',', $prismrightvnum);
+$prismrightvdir = explode(',', $prismrightvdir);
+$prismrighthnum = explode(',', $prismrighthnum);
+$prismrighthdir = explode(',', $prismrighthdir);
+$prismleftvnum = explode(',', $prismleftvnum);
+$prismleftvdir = explode(',', $prismleftvdir);
+$prismlefthnum = explode(',', $prismlefthnum);
+$prismlefthdir = explode(',', $prismlefthdir);
+
+$isPrxExist = false;
+$customer_id = $block->getCustomerId();
+if($customer_id) {
+	$savedPrx = $this->getSavedPrx($customer_id);
+	if(count($savedPrx) > 0) {
+		$isPrxExist = true;
+	}
+}
+?>
+
+
+
+<div id="tips-prescription-help1" class="tips-prescription" style="display: none;" >
+	<div class="tips-prescription-content">
+		<strong>SPH (Sphere)</strong>
+		<p>Spherical error, or overall power of lens is the basic part of your prescription. A (+) means you have trouble seeing near, and a (-) means you have trouble seeing things faraway.</p>
+		<strong>CYL (Cylinder) &amp; Axis</strong>
+		<p>A cylinder value indicates astigmatisms or perpetually blurry vision. Axis—measured between 1 and 180°— tell us the orientation of the astigmatism</p>
+		<strong>ADD (Addition)</strong>
+		<p>This number is sometimes written NV for near vision and is used for multifocal lenses and readers</p>
+		<div class="tips-prism-content"><strong>PRISM</strong>
+			<p>We can process prism prescriptions to correct eye orientation</p>
+			<p><strong>Vertical Prism</strong> is used to help correct vertical eye misalignments and is prescribed in opposite directions for both eyes</p>
+			<p><strong>Horizontal Prism</strong> is used to help correct lateral eye misalignments and is always prescribed in the same direction for both eyes</p>
+		</div>
+		<div class="rx-help-btn"><button data-fancybox-close="" class="btn btn-rx-help-ok js-btn-rx-help-ok">OK</button></div>
+	</div>
+</div>
+<div id="tips-prescription-help2" class="tips-prescription" style="display: none;">
+	<div class="tips-prescription-content">
+		<strong>PD (Pupillary Distance)</strong>
+		<p>It's just what sounds like—the distance in millimeters (mm) between your pupils. An average PD measurement is 63 mm, but varies by person. If it's not on the prescription, 
+			<strong class="pd-help-txt">you can measure it yourself using our <a class="pdtool-link js-pdtool-help js-prescription-help" data-popid="tips-get-pd-help" data-event-cate="PD Tool" data-event-name="PD Tool" data-event-label="Get Pd Tips">PD tool</a> for mobile.</strong>
+		</p>
+		<div class="rx-help-btn"><button data-fancybox-close="" class="btn btn-rx-help-ok js-btn-rx-help-ok">OK</button></div>
+	</div>
+</div>
+
+
+
+<div class="prx_data" id="prx_data">
+
+	<?php
+	$prx_array = array(); 
+	
+	if($customer_id && $isPrxExist) {
+		echo '<select name="old_prx" id="old_prx"><option value="">Please select Previous Rx</option>';
+		foreach($savedPrx as $key => $values) {
+			$prx_saveid = $values['prx_saveid'];
+			$prx_savename = $values['prx_savename'];
+			
+			echo "<option value=$prx_saveid>$prx_savename</option>";
+			if( isset($values['prx_savedata']) ) {
+				$itemData = json_decode($values['prx_savedata'], true);
+				if(isset($itemData['prxdata'])) {
+					$prxdata = $itemData['prxdata'];
+					$prx_array[$prx_saveid] = $prxdata;
+				}
+			}
+		}
+		echo '</select>';
+	} elseif($customer_id && !$isPrxExist) {
+		echo 'No Rx Available';
+	} else { ?>
+		<div class="login"><span class="login-link"><a><em class="loginLink">Sign in here</em></a> to use a previous prescription</span></div>
+	<?php } ?>
+	
+    <div class="add_prx_container">
+        <a class="prescription-help" data-fancybox="tips-prescription-help1" href="#tips-prescription-help1">
+        	<span class="fa fa-info"></span>
+        </a>
+        <div class="addprx_section">
+			<dl class="addprx_title">
+				<dt class="addprx_input">&nbsp;</dt>
+				<dd class="addprx_input">Sphere (SPH)</dd>
+				<dd class="addprx_input">Cylinder (CYL)</dd>
+				<dd class="addprx_input">Axis</dd>
+				<dd class="addprx_input">ADD</dd>
+			</dl>
+
+			<dl class="addprx_right">
+				<dt class="addprx_input">
+					<label>OD<span>(Right eye)</span></label>
+				</dt>
+				<dd class="addprx_input">
+					<select id="rightsph" name="prxdata[rightsph]">
+						<?php foreach($rightsph as $value) {
+							$selected = '';
+							if($value == '0.00') {
+								$selected = 'selected';
+							}
+							echo "<option value='$value' $selected>$value</option>";
+						} ?>
+					</select>
+				</dd>
+				<dd class="addprx_input">
+					<select id="rightcyl" name="prxdata[rightcyl]">
+						<?php foreach($rightcyl as $value) {
+							$selected = '';
+							if($value == '0.00') {
+								$selected = 'selected';
+							}
+							echo "<option value='$value' $selected>$value</option>";
+						} ?>
+					</select>
+				</dd>
+				<dd class="addprx_input">
+					<select id="rightaxis" name="prxdata[rightaxis]">
+						<?php foreach($rightaxis as $value) {
+							echo "<option value='$value'>$value</option>";
+						} ?>
+					</select>
+				</dd>
+				<dd class="addprx_input">
+					<select id="rightadd" name="prxdata[rightadd]">
+						<?php foreach($rightadd as $value) {
+							echo "<option value='$value'>$value</option>";
+						} ?>
+					</select>
+				</dd>
+			</dl>
+
+			<dl class="addprx_left">
+				<dt class="addprx_input">
+					<label>OS<span>(Left eye)</span></label>
+				</dt>
+				<dd class="addprx_input">
+					<select id="leftsph" name="prxdata[leftsph]">
+						<?php foreach($leftsph as $value) {
+							$selected = '';
+							if($value == '0.00') {
+								$selected = 'selected';
+							}
+							echo "<option value='$value' $selected>$value</option>";
+						} ?>
+					</select>
+				</dd>
+				<dd class="addprx_input">
+					<select id="leftcyl" name="prxdata[leftcyl]">
+						<?php foreach($leftcyl as $value) {
+							$selected = '';
+							if($value == '0.00') {
+								$selected = 'selected';
+							}
+							echo "<option value='$value' $selected>$value</option>";
+						} ?>
+					</select>
+				</dd>
+				<dd class="addprx_input">
+					<select id="leftaxis" name="prxdata[leftaxis]">
+						<?php foreach($leftaxis as $value) {
+							echo "<option value='$value'>$value</option>";
+						} ?>
+					</select>
+				</dd>
+				<dd class="addprx_input">
+					<select id="leftadd" name="prxdata[leftadd]">
+						<?php foreach($leftadd as $value) {
+							echo "<option value='$value'>$value</option>";
+						} ?>
+					</select>
+				</dd>
+			</dl>
+		</div>
+		
+		
+		<div class="addprx_section pd">
+			<a class="prescription-help" data-fancybox="#tips-prescription-help2" href="#tips-prescription-help2">
+        		<span class="fa fa-info"></span>
+        	</a>
+			<dl class="pd">
+				<dt class="addprx_input">
+					<label>PD<span>(Pupillary Distance)</span></label>
+					</dt>
+				<dd class="addprx_input">
+					<select id="pdcommon" name="prxdata[pdcommon]">
+						<?php foreach($pdcommon as $value) {
+							$selected = '';
+							if($value == '64.00') {
+								$selected = 'selected';
+							}
+							echo "<option value='$value' $selected>$value</option>";
+						} ?>
+					</select>
+				</dd>
+				<dd class="addprx_input pd_rl" style="display:none;">
+					<select id="pdright" name="prxdata[pdright]">
+						<option value=''>Right PD</option>
+						<?php foreach($pdright as $value) {
+							echo "<option value='$value'>$value</option>";
+						} ?>
+					</select>
+				</dd>
+				<dd class="addprx_input pd_rl" style="display:none;">
+					<select id="pdleft" name="prxdata[pdleft]">
+						<option value=''>Left PD</option>
+						<?php foreach($pdleft as $value) {
+							echo "<option value='$value'>$value</option>";
+						} ?>
+					</select>
+				</dd>
+				<dd class="addprx_input chk">
+					<div class="checkbox_div">
+						<div class="checkbox-ui">
+							<input type="checkbox" name="prxdata[both_pd]" id="both_pd" />
+							<label for="both_pd"></label>
+						</div>
+						<label class="for-check" for="both_pd"><span>Two PD numbers</span></label>
+					</div>
+				</dd>
+			</dl>
+		</div>
+	
+		<div class="addprx_section-main" style="display: none;">
+			<div class="addprx_price_section">
+					<dt class="addprx_price">
+						<div class="checkbox_div">
+							<div class="checkbox-ui">
+								<input type="checkbox" name="prxdata[prismprice]" id="prismprice">
+								<label for="prismprice"></label>
+							</div>
+							<input type="hidden" name="prxdata[prismpricevalue]" id="prismpricevalue" value="<?php echo $prismprice; ?>">
+							<label for="prismprice" class="for-check">
+								<span>Add Prism $<?php echo $prismprice; ?></span>
+							</label>
+						</div>
+					</dt>
+			</div>
+			<div class="addprx_section prism-section" style="display: none;">				
+				<dl class="addprx_title">
+					<dt class="addprx_input">&nbsp;</dt>
+					<dd class="addprx_input">Vertical</dd>
+					<dd class="addprx_input">Base Direction</dd>
+					<dd class="addprx_input">Horizontal</dd>
+					<dd class="addprx_input">Base Direction</dd>
+				</dl>
+
+				<dl class="addprx_right">
+					<dt class="addprx_input">
+						<label>OD<span>(Right eye)</span></label>
+					</dt>
+					<dd class="addprx_input">
+						<select id="prismrightvnum" name="prxdata[prismrightvnum]">
+							<?php foreach($prismrightvnum as $value) {
+								echo "<option value='$value'>$value</option>";
+							} ?>
+						</select>
+					</dd>
+					<dd class="addprx_input">
+						<select id="prismrightvdir" name="prxdata[prismrightvdir]">
+							<?php foreach($prismrightvdir as $value) {
+								echo "<option value='$value'>$value</option>";
+							} ?>
+						</select>
+					</dd>
+					<dd class="addprx_input">
+						<select id="prismrighthnum" name="prxdata[prismrighthnum]">
+							<?php foreach($prismrighthnum as $value) {
+								echo "<option value='$value'>$value</option>";
+							} ?>
+						</select>
+					</dd>
+					<dd class="addprx_input">
+						<select id="prismrighthdir" name="prxdata[prismrighthdir]">
+							<?php foreach($prismrighthdir as $value) {
+								echo "<option value='$value'>$value</option>";
+							} ?>
+						</select>
+					</dd>
+				</dl>
+
+				<dl class="addprx_left">
+					<dt class="addprx_input">
+						<label>OS<span>(Left eye)</span></label>
+					</dt>
+					<dd class="addprx_input">
+						<select id="prismleftvnum" name="prxdata[prismleftvnum]">
+							<?php foreach($prismleftvnum as $value) {
+								echo "<option value='$value'>$value</option>";
+							} ?>
+						</select>
+					</dd>
+					<dd class="addprx_input">
+						<select id="prismleftvdir" name="prxdata[prismleftvdir]">
+							<?php foreach($prismleftvdir as $value) {
+								echo "<option value='$value'>$value</option>";
+							} ?>
+						</select>
+					</dd>
+					<dd class="addprx_input">
+						<select id="prismlefthnum" name="prxdata[prismlefthnum]">
+							<?php foreach($prismlefthnum as $value) {
+								echo "<option value='$value'>$value</option>";
+							} ?>
+						</select>
+					</dd>
+					<dd class="addprx_input">
+						<select id="prismlefthdir" name="prxdata[prismlefthdir]">
+							<?php foreach($prismlefthdir as $value) {
+								echo "<option value='$value'>$value</option>";
+							} ?>
+						</select>
+					</dd>
+				</dl>
+			</div>
+		
+		
+			<div class="addprx_section addprx_comments">
+				<ul>
+					<li class="addprx_input comment_box">
+						<label>Comments:</label>
+					</li>
+				</ul>
+				<ul>
+					<li class="addprx_input"> <textarea name="prxdata[comment]" rows="2" cols="75"></textarea></li>
+				</ul>
+				<ul>
+					<li class="addprx_input"><input type="text" name="prxdata[save_filename]" value="My Rx" placeholder="Save this prescription as:" /></li>
+				</ul>
+			</div>
+		</div>
+		<div class="btn-show-more-rx">
+        	<span class="btn-show more-rx">Show More Options<i class="fa fa-angle-down" aria-hidden="true"></i></span>
+        	<span class="btn-show less-rx" style="display: none;">Show Fewer Options<i class="fa fa-angle-up" aria-hidden="true"></i></span>
+        </div>
+	</div>
+	<div class="prx-submit"><span id="prxdata_confirm" class="prx-confirm-btn prxdata_confirm">Confirm</span></div>
+</div>
+
+<script type="text/javascript">
+    require(['jquery'], function($) {
+		
+		var rightcylVal = $('#rightcyl').val();
+		if(rightcylVal == '0.00' || rightcylVal == '00 Plano' || rightcylVal == 'None' || rightcylVal == 'SPH' || 
+			rightcylVal == 'DS' || rightcylVal == 'Balance' || rightcylVal == 'Infinity') {
+			$("#rightaxis").attr('disabled','disabled');
+			$("#rightaxis").addClass('dropdown-disabled');
+		} else {
+			$("#rightaxis").removeAttr('disabled');
+			$("#rightaxis").removeClass('dropdown-disabled');
+		}
+		
+		var leftcylVal = $('#leftcyl').val();
+		if(leftcylVal == '0.00' || leftcylVal == '00 Plano' || leftcylVal == 'None' || leftcylVal == 'SPH' || 
+			leftcylVal == 'DS' || leftcylVal == 'Balance' || leftcylVal == 'Infinity') {
+			$("#leftaxis").attr('disabled','disabled');
+			$("#leftaxis").addClass('dropdown-disabled');
+		} else {
+			$("#leftaxis").removeAttr('disabled');
+			$("#leftaxis").removeClass('dropdown-disabled');
+		}
+			
+    	$('.btn-show.more-rx').click(function(){
+    		$('.addprx_section-main').show();
+    		$('.btn-show.less-rx').show();
+    		$(this).hide();
+    	});
+    	$('.btn-show.less-rx').click(function(){
+    		$('.addprx_section-main').hide();
+    		$('.btn-show.more-rx').show();
+    		$(this).hide();
+    	});
+    	$('#prismprice').change(function(){
+    		if(this.checked){
+    			$('.addprx_section.prism-section').show();
+    		}else{
+    			$('.addprx_section.prism-section').hide();
+    		}
+    	});
+		$('#rightcyl').change(function(){
+    		var currentVal = $(this).val();
+			if(currentVal == '0.00' || currentVal == '00 Plano' || currentVal == 'None' || currentVal == 'SPH' || 
+				currentVal == 'DS' || currentVal == 'Balance' || currentVal == 'Infinity') {
+				$("#rightaxis").attr('disabled','disabled');
+				$("#rightaxis").addClass('dropdown-disabled');
+			} else {
+				$("#rightaxis").removeAttr('disabled');
+				$("#rightaxis").removeClass('dropdown-disabled');
+			}
+    	});
+		$('#leftcyl').change(function(){
+    		var currentVal = $(this).val();
+			if(currentVal == '0.00' || currentVal == '00 Plano' || currentVal == 'None' || currentVal == 'SPH' || 
+				currentVal == 'DS' || currentVal == 'Balance' || currentVal == 'Infinity') {
+				$("#leftaxis").attr('disabled','disabled');
+				$("#leftaxis").addClass('dropdown-disabled');
+			} else {
+				$("#leftaxis").removeAttr('disabled');
+				$("#leftaxis").removeClass('dropdown-disabled');
+			}
+    	});
+		
+		$('#old_prx').change(function(){
+    		var prx_saveid = $(this).val();
+			var prxdata = <?php echo json_encode($prx_array); ?>;
+			
+			var rightsph = prxdata[prx_saveid].rightsph;
+			var rightcyl = prxdata[prx_saveid].rightcyl;
+			var rightaxis = prxdata[prx_saveid].rightaxis;
+			var rightadd = prxdata[prx_saveid].rightadd;
+			
+			var leftsph = prxdata[prx_saveid].leftsph;
+			var leftcyl = prxdata[prx_saveid].leftcyl;
+			var leftaxis = prxdata[prx_saveid].leftaxis;
+			var leftadd = prxdata[prx_saveid].leftadd;
+			
+			$("#rightsph").val(rightsph);
+			$("#rightcyl").val(rightcyl);
+			$("#rightaxis").val(rightaxis);
+			$("#rightadd").val(rightadd);
+			
+			$("#leftsph").val(leftsph);
+			$("#leftcyl").val(leftcyl);
+			$("#leftaxis").val(leftaxis);
+			$("#leftadd").val(leftadd);
+			
+			if(rightcyl == '0.00' || rightcyl == '00 Plano' || rightcyl == 'None' || rightcyl == 'SPH' || 
+				rightcyl == 'DS' || rightcyl == 'Balance' || rightcyl == 'Infinity') {
+				$("#rightaxis").attr('disabled','disabled');
+				$("#rightaxis").addClass('dropdown-disabled');
+			} else {
+				$("#rightaxis").removeAttr('disabled');
+				$("#rightaxis").removeClass('dropdown-disabled');
+			}
+			
+			if(leftcyl == '0.00' || leftcyl == '00 Plano' || leftcyl == 'None' || leftcyl == 'SPH' || 
+				leftcyl == 'DS' || leftcyl == 'Balance' || leftcyl == 'Infinity') {
+				$("#leftaxis").attr('disabled','disabled');
+				$("#leftaxis").addClass('dropdown-disabled');
+			} else {
+				$("#leftaxis").removeAttr('disabled');
+				$("#leftaxis").removeClass('dropdown-disabled');
+			}
+    	});
+		
+    });
+</script>

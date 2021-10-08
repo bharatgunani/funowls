@@ -1,0 +1,182 @@
+<?php
+$customer_id = $this->getCustomerId();
+if($customer_id) {
+$savedPrx = $this->getSavedPrx($customer_id);
+
+if(count($savedPrx) > 0) {
+	?>
+	<div class="my-prescriptions">
+    <div class="prescriptions-title">
+        <h2>Prescriptions</h2>
+    </div>
+		<?php
+	foreach($savedPrx as $key => $values) {
+		$prx_saveid = $values['prx_saveid'];
+		$prx_savename = $values['prx_savename'];
+		
+		if( isset($values['prx_savedata']) ) {
+			$itemData = json_decode($values['prx_savedata'], true);
+
+			if(isset($itemData['prxdata'])) {
+				$prxdata = $itemData['prxdata'];
+				?>
+
+		<div class="section section1">
+        <h3 class="sub-title"><?php echo __('My Prescription'); ?></h3>
+        <div class="content main">
+            <dt class="heading">
+                <?php echo __('My Rx 2'); ?>
+                <span class="fa fa-angle-down"></span>
+            </dt>
+            <dd class="content">
+                <ul class="order-data-list">
+                    <li class="data-heading">
+                        <dt></dt>
+                        <dd><?php echo __('SPH'); ?></dd>
+                        <dd><?php echo __('CYL'); ?></dd>
+                        <dd><?php echo __('Axis'); ?></dd>
+                        <dd><?php echo __('ADD'); ?></dd>
+                        <dd><?php echo __('PD'); ?></dd>
+                    </li>
+					
+                    <li class="data-details od">
+                        <dt><?php echo __('OD'); ?></dt>
+						<dd><?php if(isset($prxdata['rightsph'])) { echo $prxdata['rightsph']; } else { echo '-'; } ?></dd>
+						<dd><?php if(isset($prxdata['rightcyl'])) { echo $prxdata['rightcyl']; } else { echo '-'; } ?></dd>
+						<dd><?php if(isset($prxdata['rightaxis'])) { echo $prxdata['rightaxis']; } else { echo '-'; } ?></dd>
+                        <dd><?php if(isset($prxdata['rightadd'])) { echo $prxdata['rightadd']; } else { echo '-'; } ?></dd>
+						
+						<?php if(isset($prxdata['both_pd']) && $prxdata['both_pd'] ) {
+                        	echo '<dd class="">' . $prxdata['pdright'] . '</dd>';
+						} else {
+							echo '<dd class="last">' . $prxdata['pdcommon'] . '</dd>';
+						} ?>
+						
+                    </li>
+					
+                    <li class="data-details os">
+                        <dt><?php echo __('OS'); ?></dt>
+                        <dd><?php if(isset($prxdata['leftsph'])) { echo $prxdata['leftsph']; } else { echo '-'; } ?></dd>
+						<dd><?php if(isset($prxdata['leftcyl'])) { echo $prxdata['leftcyl']; } else { echo '-'; } ?></dd>
+						<dd><?php if(isset($prxdata['leftaxis'])) { echo $prxdata['leftaxis']; } else { echo '-'; } ?></dd>
+                        <dd><?php if(isset($prxdata['leftadd'])) { echo $prxdata['leftadd']; } else { echo '-'; } ?></dd>
+                        
+						<?php if(isset($prxdata['both_pd']) && $prxdata['both_pd'] ) {
+                        	echo '<dd class="">' . $prxdata['pdleft'] . '</dd>';
+						} else {
+							echo '<dd class="last"></dd>';
+						} ?>
+						
+                    </li>
+                </ul>
+				
+                <ul class="order-data-list">
+                    <li class="data-heading">
+                        <dt></dt>
+                        <dd><?php echo __('Vertical Prism(O)'); ?></dd>
+                        <dd><?php echo __('Base Direction'); ?></dd>
+                        <dd><?php echo __('Horizontal Prism'); ?></dd>
+                        <dd><?php echo __('Base Direction'); ?></dd>
+                    </li>
+                    <li class="data-details od">
+                        <dt><?php echo __('OD'); ?></dt>
+                        <dd><?php echo __($prxdata['prismrightvnum']); ?></dd>
+                        <dd><?php echo __($prxdata['prismrightvdir']); ?></dd>
+                        <dd><?php echo __($prxdata['prismrighthnum']); ?></dd>
+                        <dd><?php echo __($prxdata['prismrighthdir']); ?></dd>
+                        
+                    </li>
+                    <li class="data-details os">
+                        <dt><?php echo __('OS'); ?></dt>
+                        <dd><?php echo __($prxdata['prismleftvnum']); ?></dd>
+                        <dd><?php echo __($prxdata['prismleftvdir']); ?></dd>
+                        <dd><?php echo __($prxdata['prismlefthnum']); ?></dd>
+                        <dd><?php echo __($prxdata['prismlefthdir']); ?></dd>
+                    </li>
+                </ul>
+				
+				<!--<div class="check-mark">
+                    <span class="checkbox">
+                        <input type="checkbox" id="setBtn" class="input-checkbox" />
+                        <label for="setBtn" class="f-checkbox icon-checkmark"></label>
+                    </span>
+                    <label><?php //echo __('Set as default prescription'); ?></label>
+                </div>-->
+				
+                <div class="action-bar-edit">
+                    <span class="js-edit">
+						<input type="hidden" class="prx_saveid" value="<?php echo $prx_saveid; ?>" />
+                        <i class="fa fa-pencil"></i>
+                        <span class="edit"><?php echo __('Edit'); ?></span>
+                    </span>
+                    <span class="js-delete">
+						<input type="hidden" class="prx_saveid" value="<?php echo $prx_saveid; ?>" />
+                        <i class="fa fa-remove"></i>
+						<span class="middle"><?php echo __('Delete'); ?></span>
+                    </span>
+                </div>
+            </dd>
+        </div>
+    </div>
+		
+				<?php
+			}
+		}
+	}
+	?>
+		 <div class="action-bar action-bottom">
+        <button class="action login btn btn-primary" name="Add prescription">
+            <i class="fa fa-plus"></i>
+            <span>Add prescription</span>
+        </button>
+    </div>
+	</div>
+
+<?php
+}
+}
+?>
+
+
+<script type="text/javascript">
+    require(['jquery'], function($) {
+        $(document).ready(function(){
+			
+			$('body').on('click', '.js-delete', function(e) {
+				var currentSection = $(this).parents('.section');
+				
+				var isConfirm = confirm("Do you want to delete this prx value?");
+				if(isConfirm) {
+					var id = $(this).find('.prx_saveid').val();
+					var url = "<?php echo $this->getUrl(). 'prx/customerprxdata/delete'?>";
+					$.ajax({
+						url: url,
+						type: 'POST',
+						dataType: 'json',
+						data: {
+							id: id,
+						},
+						complete: function(response) {
+							 $(currentSection).remove();
+							console.log('Customer prx deleted.');
+						},
+						error: function (xhr, status, errorThrown) {
+							console.log('Error happens. Try again.');
+						}
+					});
+				}
+            });
+			
+			
+            $('body').on('click', '.my-prescriptions .content.main .heading', function(e) {
+                $('.my-prescriptions .content.main').find('.content').stop().slideUp();
+                $(this).closest('.my-prescriptions .content.main').find('.content').stop().slideToggle();
+            });
+            var selector = '.my-prescriptions .content.main .heading';
+            $(selector).on('click', function(){
+                $(selector).removeClass('active');
+                $(this).addClass('active');
+            });    
+        });
+    });
+</script>

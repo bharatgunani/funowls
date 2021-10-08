@@ -1,0 +1,287 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Checkout\Block\Cart\Item\Renderer */
+
+$_item = $block->getItem();
+$product = $_item->getProduct();
+$isVisibleProduct = $product->isVisibleInSiteVisibility();
+/** @var \Magento\Msrp\Helper\Data $helper */
+$helper = $this->helper('Magento\Msrp\Helper\Data');
+$prxhelper = $this->helper('Webindiainc\Prx\Helper\Data');
+
+$image = 'cart_page_product_thumbnail';
+$canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
+?>
+<tbody class="cart item">
+    <tr class="item-info">
+        <td data-th="<?= $block->escapeHtml(__('Item')) ?>" class="col item product-img">
+            <?php if ($block->hasProductUrl()):?>
+                <a href="<?= /* @escapeNotVerified */ $block->getProductUrl() ?>"
+                   title="<?= $block->escapeHtml($block->getProductName()) ?>"
+                   tabindex="-1"
+                   class="product-item-photo">
+            <?php else:?>
+                <span class="product-item-photo">
+            <?php endif;?>
+                <?php $_imagehelper = $this->helper('Magento\Catalog\Helper\Image'); ?>
+                        <?php $productImage = $_imagehelper->init($product, $image)->resize(300, 300)->getUrl(); ?>
+                        <img src="<?php echo $productImage ?>" alt="" />
+            <?php if ($block->hasProductUrl()):?>
+                </a>
+            <?php else: ?>
+                </span>
+            <?php endif; ?>
+        </td>
+		
+		<td data-th="<?= $block->escapeHtml(__('Prx Data')) ?>" class="col item details">
+           <div class="product-item-details">
+                <strong class="product-item-name">
+                    <a href="<?= /* @escapeNotVerified */ $block->getProductUrl() ?>"><?= $block->escapeHtml($block->getProductName()) ?></a>
+					<span class="frame-price"><?php echo $prxhelper->getFormatPrice($product->getFinalPrice()); ?></span>
+                </strong>
+               
+                <?php if ($messages = $block->getMessages()): ?>
+                    <?php foreach ($messages as $message): ?>
+                        <div class="cart item message <?= /* @escapeNotVerified */ $message['type'] ?>">
+							<div><?= $block->escapeHtml($message['text']) ?></div>
+						</div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+				
+                <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+                <?php if ($addInfoBlock): ?>
+                    <?= $addInfoBlock->setItem($_item)->toHtml() ?>
+                <?php endif;?>
+                     <?php if ($canApplyMsrp): ?>
+                    <span class="pricing msrp">
+                        <span class="msrp notice"><?= /* @escapeNotVerified */ __('See price before order confirmation.') ?></span>
+                        <?php $helpLinkId = 'cart-msrp-help-' . $_item->getId(); ?>
+                        <a href="#" class="action help map" id="<?= /* @escapeNotVerified */ ($helpLinkId) ?>" data-mage-init='{"addToCart":{"helpLinkId": "#<?= /* @escapeNotVerified */ $helpLinkId ?>","productName": "<?= /* @escapeNotVerified */ $product->getName() ?>","showAddToCart": false}}'>
+                            <span><?= /* @escapeNotVerified */ __("What's this?") ?></span>
+                        </a>
+                    </span>
+                <?php else: ?>
+                    <?// $block->getUnitPriceHtml($_item) ?>
+                <?php endif; ?>
+                    <?php 
+                    $itemData = $_item->getPrxdataAttribute();
+                    $itemData = json_decode($itemData, true);
+                    
+                    if(isset($itemData['prxdata'])) {
+						$prxdata = $itemData['prxdata'];
+						if(isset($prxdata['send_via'])) {
+                        	extract($prxdata);
+							?>
+
+                        <div class="prxdata_orderview">
+                            <h5 class="show-prescription"><?php echo __('Prescription & Lenses Details'); ?> <span class="fa fa-angle-down"></span>
+                            	<span class="lensprice">
+								<?php if ($_options = $block->getOptionList()) {
+									if(isset($_options['lensprice']['value'])) {
+										echo $prxhelper->getFormatPrice($_options['lensprice']['value']);
+									}
+								} ?>
+								</span>
+                            </h5>
+                            <!-- <h5>Prescription Send by: <?php //echo $prxdata['send_via_title']; ?><span class="fa fa-angle-down"></span></h5> -->
+							
+							<div class="table-lens">
+								<?php
+								if(isset($prxdata['send_via']) && $prxdata['send_via'] =='enter_online') {
+									/* echo '<pre>';
+									print_r($prxdata);
+									echo '</pre>'; */
+								?>
+                            	<table class="enter_online_data">
+                                    <tr>
+                                        <th>&nbsp;</th>
+                                        <th>Sphere</th>
+                                        <th>Cylinder</th>
+                                        <th>Axis</th>
+                                        <th>ADD</th>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Right Eye(OD)</b></td>
+                                        <td><?php if(isset($rightsph)) { echo $rightsph; } else { echo '-'; } ?></td>
+                                        <td><?php if(isset($rightcyl)) { echo $rightcyl; } else { echo '-'; } ?></td>
+                                        <td><?php if(isset($rightaxis)) { echo $rightaxis; } else { echo '-'; } ?></td>
+                                        <td><?php if(isset($rightadd)) { echo $rightadd; } else { echo '-'; } ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Left Eye(OS)</b></td>
+										<td><?php if(isset($leftsph)) { echo $leftsph; } else { echo '-'; } ?></td>
+                                        <td><?php if(isset($leftcyl)) { echo $leftcyl; } else { echo '-'; } ?></td>
+                                        <td><?php if(isset($leftaxis)) { echo $leftaxis; } else { echo '-'; } ?></td>
+                                        <td><?php if(isset($leftadd)) { echo $leftadd; } else { echo '-'; } ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Pupil Distance：</b></td>
+										<?php
+										if(isset($both_pd) && $both_pd) {
+											if(isset($pdleft) && $pdleft) {
+												echo "<td><b>". __('PD LEFT') ."</b></td>";
+												echo "<td>$pdleft</td>";
+											}
+											if(isset($pdright) && $pdright) {
+												echo "<td><b>". __('PD RIGHT') ."</b></td>";
+												echo "<td>$pdright</td>";
+											}
+										} else {
+											if(isset($pdcommon) && $pdcommon) {
+												echo "<td colspan='4'>$pdcommon</td>";
+											} else {
+												echo '-';
+											}
+										}
+										?>
+                                    </tr>
+                                    <tr>
+                                        <td><b><?php echo __('PRISM PRICE'); ?>：</b></td>
+										<?php
+										if(isset($prismprice) && $prismprice) {
+											if(isset($prismpricevalue) && $prismpricevalue) {
+												//$currencySymbol = $prxhelper->getCurrencySymbol();
+												echo "<td colspan='4'>" . $prxhelper->getFormatPrice($prismpricevalue) ."</td>";
+											} else {
+												echo "<td colspan='4'><b>". __('Prism not added') ."</b></td>";
+											}
+										} else {
+											echo "<td colspan='4'><b>". __('Prism not added') ."</b></td>";
+										}
+										?>
+                                    </tr>
+
+									<?php
+									if(isset($prismprice) && $prismprice) {
+										if(isset($prismpricevalue) && $prismpricevalue) {
+											?>
+											<tr>
+												<th><?php echo __('PRISM DATA'); ?>:</th>
+												<th>Vertical Prism</th>
+												<th>Base</th>
+												<th>Horizontal Prism</th>
+												<th>Base</th>
+											</tr>
+											<tr>
+												<td><b>Right Eye(OD)</b></td>
+												<td><?php if(isset($prismrightvnum)) { echo $prismrightvnum; } else { echo '-'; } ?></td>
+												<td><?php if(isset($prismrightvdir)) { echo $prismrightvdir; } else { echo '-'; } ?></td>
+												<td><?php if(isset($prismrighthnum)) { echo $prismrighthnum; } else { echo '-'; } ?></td>
+												<td><?php if(isset($prismrighthdir)) { echo $prismrighthdir; } else { echo '-'; } ?></td>
+											</tr>
+											<tr>
+												<td><b>Left Eye(OS)</b></td>
+												<td><?php if(isset($prismleftvnum)) { echo $prismleftvnum; } else { echo '-'; } ?></td>
+												<td><?php if(isset($prismleftvdir)) { echo $prismleftvdir; } else { echo '-'; } ?></td>
+												<td><?php if(isset($prismlefthnum)) { echo $prismlefthnum; } else { echo '-'; } ?></td>
+												<td><?php if(isset($prismlefthdir)) { echo $prismlefthdir; } else { echo '-'; } ?></td>
+											</tr>
+											<?php
+										}
+									}
+									?>
+									
+                                </table>
+                        	<?php } ?>
+						
+							<?php if ($_options = $block->getOptionList()):?>
+								<table class="item-options">
+									<?php
+									$allowedOptions = array('lensusage', 'lenstype', 'lensthickness', 'lenstintcolor', 'lenstintstrength');
+									$allowedPriceOptions = array('lensusage', 'lenstype', 'lensthickness');
+
+									foreach ($_options as $key => $_option) :
+										if( in_array($key, $allowedOptions) ) {
+											$label = $_option['label'];
+											$value = $_option['value'];
+											if(in_array($key, $allowedPriceOptions)) {
+												$value = $prxhelper->getFormatPrice($value);
+											}
+										?>
+										<tr>
+											<td class="label"><?= $block->escapeHtml($label) ?></td>
+											<td><?= $block->escapeHtml($value) ?></td>
+										</tr>
+									<?php 
+									}										
+									endforeach;
+								?>
+								</table>    
+							<?php endif;?>
+						</div>
+						<?php } ?>
+						</div>
+					<?php }
+				?>
+
+               
+
+                 <div class="field qty">
+                    <div class="control qty">
+                    <label for="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty">
+                        <span class="label"><?= /* @escapeNotVerified */ __('Qty') ?></span>
+                        <input id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
+                               name="cart[<?= /* @escapeNotVerified */ $_item->getId() ?>][qty]"
+                               data-cart-item-id="<?= $block->escapeHtml($_item->getSku()) ?>"
+                               value="<?= /* @escapeNotVerified */ $block->getQty() ?>"
+                               type="number"
+                               size="4"
+                               title="<?= $block->escapeHtml(__('Qty')) ?>"
+                               class="input-text qty"
+                               data-validate="{required:true,'validate-greater-than-zero':true}"
+                               data-role="cart-item-qty"/>
+                    </label>
+                    </div>
+                </div>
+				
+                <div class="subtotal">
+                    <?php if ($canApplyMsrp): ?>
+                    <span class="cart msrp subtotal">--</span>
+                    <?php else: ?>
+                        <table class="item">
+                            <tr>
+                                <td>Subtotal</td>
+                                <td>
+								<?php
+								$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+								$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
+								$price = $_item->getRowTotal();
+								//echo $formattedPrice = $priceHelper->currency($price, true, false);
+								//echo $prxhelper->getFormatPrice($price);
+								
+								$storeManager = $objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+								$currencyCode = $storeManager->getStore()->getCurrentCurrencyCode(); 
+								$currency = $objectManager->create('Magento\Directory\Model\CurrencyFactory')->create()->load($currencyCode); 
+								echo $currencySymbol = $currency->getCurrencySymbol();
+								echo $priceFormatted = number_format($price, 2);
+								?>
+								</td>
+                            </tr>    
+                        </table>
+                        
+                    <?php endif; ?>
+                </div>
+				
+                <?php if(isset($itemData['prxdata'])) { ?>
+                    <a href="/prx/?id=<?php echo $product->getId(); ?>"  class="action action-edit" id="edit_lens"> Edit Lens </a>
+                <?php } ?>
+                				
+				<a href="#"
+           title="<?= $block->escapeHtml(__('Remove item')) ?>"
+           class="action action-delete"
+           data-post='<?= /* @escapeNotVerified */ $this->helper('Magento\Checkout\Helper\Cart')->getDeletePostJson($_item) ?>'>
+            <span class="fa fa-trash"></span>
+        </a>
+
+                <?php $block->getActions($_item); ?>
+            </div>     
+        </td>
+    </tr>
+</tbody>
+

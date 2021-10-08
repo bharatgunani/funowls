@@ -1,0 +1,98 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var \Magento\Sales\Block\Adminhtml\Order\View\Items\Renderer\DefaultRenderer $block */ ?>
+<?php $_item = $block->getItem() ?>
+<?php $block->setPriceDataObject($_item) ?>
+<tr>
+    <?php $i = 0;
+    $columns = $block->getColumns();
+    $lastItemNumber = count($columns) ?>
+    <?php foreach ($columns as $columnName => $columnClass):?>
+        <?php $i++; ?>
+	
+	
+	<td class="<?= /* @noEscape */ $columnClass ?><?= /* @noEscape */ ($i === $lastItemNumber ? ' last' : '') ?>">
+	<?php
+	
+	if($columnName == 'prxdata') {
+		$itemData = $_item->getData();
+		if(isset($itemData['product_options']['info_buyRequest']['prxdata'])) {
+			$prxdata = $itemData['product_options']['info_buyRequest']['prxdata'];
+			//echo '<pre>'; print_r($prxdata);exit();
+			extract($prxdata);
+			if( isset($prxdata['send_via']) ) { ?>
+				<style>#prxdata_orderview td {border:1px solid;text-align: center;}</style>
+				<table class="table-lens" id="prxdata_orderview" style="width:100%;">
+					<caption>Prescription Details</caption>
+					<?php
+					if( isset($prxdata['send_via_title']) && $prxdata['send_via_title'] != '' ) {
+						$send_by = $prxdata['send_via_title'];
+					} else {
+						$send_by = $prxdata['send_via'];
+					}
+					?>
+					<thead><tr><td colspan="5"><?php echo __('Prescription Send by: ') . $send_by; ?></td></tr></thead>
+					<?php if( $prxdata['send_via'] == 'enter_online' ) { ?>
+					<tbody>
+						<tr><td>&nbsp;</td><td>Sphere</td><td>Cylinder</td><td>Axis</td><td>ADD</td></tr>
+						<tr><td>Right Eye(OD)</td><td><?php echo $rightsph; ?></td><td><?php echo $rightcyl; ?></td><td><?php if(isset($prxdata['rightaxis'])){echo $rightaxis;} ?></td><td><?php echo $rightadd; ?></td></tr>
+						<tr><td>Left Eye(OS)</td><td><?php echo $leftsph; ?></td><td><?php echo $leftcyl; ?></td><td><?php if(isset($prxdata['leftaxis'])){echo $leftaxis;} ?></td><td><?php echo $leftadd; ?></td></tr>
+						<tr><td>Pupil Distance：</td><td colspan="4"><?php echo $pdcommon; ?></td></tr>
+						<tr><td>Near PD：</td><td colspan="4"></td></tr>
+						
+						<?php
+						if(isset($prismprice) && $prismprice) {
+							if(isset($prismpricevalue) && $prismpricevalue) {
+								?>
+								<tr>
+									<td colspan="5"><?php echo __('Prism Data'); ?></td>
+								</tr>
+								<tr>
+									<td><?php echo __('PRISM DATA'); ?>:</td>
+									<td>Vertical Prism</td>
+									<td>Base</td>
+									<td>Horizontal Prism</td>
+									<td>Base</td>
+								</tr>
+								<tr>
+									<td><b>Right Eye(OD)</b></td>
+									<td><?php if(isset($prismrightvnum)) { echo $prismrightvnum; } else { echo '-'; } ?></td>
+									<td><?php if(isset($prismrightvdir)) { echo $prismrightvdir; } else { echo '-'; } ?></td>
+									<td><?php if(isset($prismrighthnum)) { echo $prismrighthnum; } else { echo '-'; } ?></td>
+									<td><?php if(isset($prismrighthdir)) { echo $prismrighthdir; } else { echo '-'; } ?></td>
+								</tr>
+								<tr>
+									<td><b>Left Eye(OS)</b></td>
+									<td><?php if(isset($prismleftvnum)) { echo $prismleftvnum; } else { echo '-'; } ?></td>
+									<td><?php if(isset($prismleftvdir)) { echo $prismleftvdir; } else { echo '-'; } ?></td>
+									<td><?php if(isset($prismlefthnum)) { echo $prismlefthnum; } else { echo '-'; } ?></td>
+									<td><?php if(isset($prismlefthdir)) { echo $prismlefthdir; } else { echo '-'; } ?></td>
+								</tr>
+								<?php
+							}
+						}
+						?>
+									
+					</tbody>
+					<?php } ?>
+				</table>
+			<?php
+			}
+		}
+	} else if($columnName == 'price-original') {
+		continue;
+	} else {
+		echo $block->getColumnHtml($_item, $columnName);
+	} ?>
+	</td>
+
+
+    <?php endforeach; ?>
+</tr>

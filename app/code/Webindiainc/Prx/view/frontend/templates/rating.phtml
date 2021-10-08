@@ -1,0 +1,39 @@
+<?php
+$reviewCollection = $this->getReviewCollection();
+/* echo '<pre>';
+print_r($reviewCollection->getData());
+echo '</pre>'; */
+?>
+
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+foreach($reviewCollection->getData() as $key => $value) {
+	$productId = $value['entity_pk_value'];
+	
+	$reviewFactory = $objectManager->create('Magento\Review\Model\Review');
+	$product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
+	$storeManager  = $objectManager->create('\Magento\Store\Model\StoreManagerInterface');
+	$storeId = $storeManager->getStore()->getStoreId();
+	$reviewFactory->getEntitySummary($product, $storeId);
+
+	$ratingSummary = $product->getRatingSummary()->getRatingSummary();
+	$reviewCount = $product->getRatingSummary()->getReviewsCount();
+	?>
+	
+		<div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="inner rating-summary">
+				<h3><?php echo $value['title']; ?></h3>
+				<div class="rating-summary">
+					<div title="<?php echo (int)$ratingSummary; ?>%" class="rating-result">
+						<span style="width:<?php echo (int)$ratingSummary; ?>%"><span><?php echo (int)$ratingSummary; ?>%</span></span>
+					</div>
+				</div>
+				<p><?php echo $value['detail']; ?></p>
+				<p class="author">Review by <strong><?php echo $value['nickname']; ?></strong></p>
+			</div>
+		</div>
+	
+	<?php
+}
+?>
+

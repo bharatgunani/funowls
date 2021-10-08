@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_cart_product_add_after">
+        <observer name="customprice" instance="Webindiainc\Prx\Observer\Lensprice" />
+    </event>
+	<event name="controller_action_postdispatch">
+        <observer name="frontend_currency_change" instance="Webindiainc\Prx\Observer\UpdateOptionPrice" />
+    </event>
+</config>

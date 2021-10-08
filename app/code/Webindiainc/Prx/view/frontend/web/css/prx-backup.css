@@ -1,0 +1,891 @@
+#prx .prx-main 
+{	float: left;
+    width: 70%;
+    padding-right: 40px;
+    font-family: 'Roboto',serif;
+}
+#prx .prx-sidebar 
+{	float: left;
+    width: 30%;
+    border: 1px solid #e5e5e5;
+    padding: 25px 27px;
+    margin-top: 20px;
+    position: relative;
+    font-family: 'Roboto',serif;
+}
+.prx-product { position:relative;margin:0;}
+.product-head h1 span
+{   vertical-align: middle; text-align: left; display: block; font-size: 18px; padding-right: 50px; 
+}
+.product-head > span
+{   color: #000; font-size: 18px; position: absolute; right: 0px; top: 0px; padding-right: 0px;
+}
+.prx-preview-content
+{	margin:20px 0px 0 0; position: relative; 
+}
+.prx-preview-content .prx-frame-preview
+{	margin: 0 auto; position: relative;text-align: center;
+}
+.prx-back-detail
+{	display: block; font-size: 14px; font-weight: normal;	 text-align: center; padding: 20px 0px; border-bottom: 1px solid #e1e1e1;
+}
+.prx-back-detail a
+{	color: #578ed7;	
+	display: inline-block;  
+	vertical-align: middle;
+}
+.prx-back-detail i
+{   display: inline-block; vertical-align: middle; font-size: 20px; color: #578ed7;	font-weight: 900;
+}
+#prx .prx-sidebar .prx-total 
+{
+	color: #000;
+}
+.prx-total .separately-price
+{	margin: 12px 0px;  line-height: 28px; font-size: 13px; font-weight: 300;
+}
+.prx-total .separately-price .price{ color: #000; font-weight: normal; }
+.prx-total .final-price
+{	margin: 10px auto 8px; font-size: 14px; font-weight: 400;
+}
+.prx-total .final-price .price
+{	font-size: 14px; font-weight: 500; color: #000;
+}
+.prx-total .separately-price .toggle-details{ margin-left: 5px; font-size: 13px; text-transform: capitalize; text-decoration: underline; }
+.prx-total .separately-price .toggle-details:after{  content: "\f0d7"; font-family: 'FontAwesome'; font-size: 12px; color: #000; display: inline-block; vertical-align: middle; margin-left: 10px; }
+.prx-show-selected
+{   font-size: 13px; 
+}
+.prx-show-selected ul
+{   list-style-type: none; padding-left: 0px;
+}
+.prx-show-selected .prx_types{ font-style: italic; color: #787878; }
+.prx-show-selected .prx_types a 
+{   margin-left: 10px; visibility: hidden; color: #0a9fd9; text-decoration: underline;
+}
+.prx-show-selected li:hover a
+{   visibility: visible;
+} 
+
+#prx .prx-sidebar .prx-total .event-cart-prx.disabled {
+    background: #f2f2f2; color: #cacaca; border-radius: 6px; font-weight: normal; border: 1px solid #f2f2f2;
+}
+#prx .prx-sidebar .prx-total .event-cart-prx {
+	background: #da2c2a; color: #fff; border-radius: 6px; font-weight: normal; border: 1px solid #da2c2a;
+}
+/*#prx .prx-sidebar .prx-total .event-cart-prx:hover{background: #fff; color: #000;}*/
+.prx-total .add-cart{	padding: 8px 40px; font-size: 16px; text-transform: uppercase; }
+.prx-sidebar .prx-total .add-cart.disabled
+{	border-radius: 0px;	color: #cacaca; border-color: #f2f2f2; background-color: #f2f2f2;
+	height: auto; line-height: normal; font-weight: normal;
+}
+.prx-total p.frame, .prx-total p.lens
+{	margin: 0 auto;
+    line-height: 23px;	
+}
+#prx .prx-step-status li
+{	width: 30%;	float: left; text-align: center;		
+}
+#prx .prx-step-status li.prx-title-usage
+{	width: 20%; text-align: left;	
+}
+#prx .prx-step-status li.prx-title-prescription
+{	width: 20%; text-align: right;	
+}
+.prx-title
+{	position: relative; margin: 30px 0 20px 0; padding: 3px 0; overflow: hidden;	
+}
+#prx #prx-steps
+{  position: relative; overflow: hidden;  
+}
+#prx #prx-steps ul
+{	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex; 		
+	flex-wrap: wrap;
+	justify-content: space-between;
+    top: 0;
+    left: 0;
+    float: left;
+    position: relative;
+    padding: 0px;
+    /* max-height: 480px; */
+}
+#prx #prx-steps li 
+{	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	width: 48.5%;
+	margin-bottom: 20px;
+	font-size: 16px;
+	letter-spacing: normal;
+	word-spacing: normal;
+}
+#prx #prx-steps .option-title{
+	min-height: 35px;
+}
+#prx #prx-steps .desc
+{   right: 20px; top: 14px; position: absolute;    
+}
+#prx #prx-steps .desc a span
+{   height: 15px; width: 15px; border: 1px solid #787878; display: inline-block; text-align: center; color: #787878; border-radius: 100%; font-size: 9px; 
+    line-height: 14px;
+     -webkit-transition: opacity 0.5s ease-in;
+    -moz-transition: opacity 0.5s ease-in;
+    -o-transition: opacity 0.5s ease-in;
+    -ms-transition: opacity 0.5s ease-in;
+    transition: opacity 0.5s ease-in;   
+}
+#prx #prx-steps .desc a:hover span,
+#prx #prx-steps .lens_selected .desc a span
+{   background: #fff;     
+}
+#prx #prx-steps .event_prx_main:hover .desc a span  
+{   visibility: visible; opacity: 1; 
+}
+#prx #prx-steps .desc .tooltip
+{   min-width: 300px; border: 0;
+}
+#prx #prx-steps .desc .tooltip .tooltip-arrow
+{   border-right-color: #ccc; border-width: 8px 8px 8px 0; margin-top: -8px; margin-left: -8px;
+}
+#prx #prx-steps .desc .tooltip .tooltip-inner
+{   background: #fff; color: #000; border: 1px solid #ccc; width: 100%; max-width: inherit; padding: 15px; font-size: 13px; text-align: left;
+    opacity: 1;box-shadow: 0px 0px 6px 0px #ababab;
+}
+#prx #prx-steps .option-description
+{   min-height: 90px;
+}
+#prx #prx-steps .option-price
+{   min-height: 35px;
+}
+.prx-sidebar img
+{	max-width: 100%;	
+}
+#prx #prx-steps .option-description .option-intro span.color-red
+{   color: #f00;       
+}
+.prx-sidebar .product-head{ position: relative; }
+.prx-sidebar .product-head h1
+{    font-size: 18px; 
+}
+.step-status-line
+{	margin-left: 20px; margin-right: 50px; height: 2px; font-size: 0; line-height: 0; overflow: hidden; background-color: #e4e4e4;	
+}
+.prx-step-status .step-status-detail 
+{	display: inline-block;
+    vertical-align: top;
+    zoom: 1;
+    text-align: center;
+    min-width: 40px;
+    white-space: nowrap;
+    overflow: visible;
+}
+.prx-step-status .step-completed, .prx-step-status .step-current
+{	cursor: pointer;	
+}
+.prx-step-status .icon-wrapper
+{	width: 40px; background-color: #fff; overflow: hidden; display: block; vertical-align: top; margin: 0 auto;
+}
+.prx-step-status .icon 
+{	width: 21px; height: 21px; border-radius: 100%; text-align: center; color: #fff; line-height: 21px; font-size: 10px; text-align: center;background: #000;
+    font-style: normal; display: inline-block; text-indent: -1px;
+}
+.prx-step-status .current .icon
+{	background:#0a9fd9;
+}	
+.prx-step-status .step-current .icon
+{	background-position: -100px 0;	
+}
+.prx-step-status .step-completed:hover .icon, .prx-step-status .step-current:hover .icon
+{	background-position: -100px 0;
+}
+.prx-step-status .step-name
+{	font-size: 10px; color: #000; font-weight: 500;	
+}
+.prx-title .prx-step-status
+{	padding-top: 12px; overflow: hidden;	
+}
+.prx-step-status ul
+{	margin-top: -12px; width: 100%; padding: 0px; list-style-type: none;	
+}
+.event-prx
+{	  position: relative; padding: 5px; margin-bottom: 15px; border: 1px solid #cccccc; min-height: 170px; 
+      -ms-box-sizing: border-box; box-sizing: border-box; font-size: 14px; line-height: 1.4; cursor: pointer;	
+}
+.event-prx:hover{ background: #f2f2f2; }
+.lens_selected
+{	color: #fff; background-color: #404040;	
+}
+.option-title
+{	margin: 0 15px; padding: 10px 3px; font-weight: 700; text-align: center; border-bottom: 1px solid #cccccc;
+}
+.event-prx .option-name
+{	font-size: 14px; font-weight: 700; letter-spacing: .2pt; text-transform: uppercase;	color: #000;
+}
+.event-prx .option-description
+{	position: relative; display: table; width: 100%; height: 110px; line-height: 1.4; padding:20px; 
+}
+.event-prx .option-description img
+{   
+}
+.event-prx .option-content
+{	width: 100%; position: relative; display: table-cell; vertical-align: middle; text-align: left; padding-left: 20px; 
+}
+.event-prx .option-content.aligncenter
+{   text-align: center; padding-right: 20px;    
+}
+.option-description p.option-intro
+{	width: 100%; max-width: 280px; letter-spacing: .3pt; margin: 0 auto; color: #000; font-size: 14px; font-weight: 300;
+}
+.option-description p.option-intro a
+{   color: #578ed7;
+}
+.event-prx .option-price
+{	margin: 0 15px; padding: 10px 3px; font-weight: 700; text-align: center; border-top: 1px solid #cccccc;
+}
+.event-prx .option-price span
+{	font-weight: normal; color: #000;	
+}
+.lens_selected .option-title
+{	border-bottom-color:#fff;
+}
+.lens_selected .option-price span, 
+.lens_selected .option-description p.option-intro,
+.lens_selected .option-name
+{	color: #fff;	
+}
+#prx-steps .lens_selected
+{   color: #fff;background-color: #404040;
+}
+.opacityhide{opacity:0;}
+
+.prx-tint-option .tint_confirm
+{   border: 1px solid #0a9fd9;
+    background-color: #0a9fd9;
+    padding: 8px 40px;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.050em;
+    -webkit-transition: all .25s ease-out;
+    transition: all .25s ease-out;    
+}
+.prx-tint-option .tint_confirm:hover
+{   background: #fff; color: #000;    
+}
+.prx-tint-option
+{
+    padding: 10px;
+    color: #000;
+}
+.prx-tint-option .prx-strength
+{   margin-bottom: 20px;
+}
+.prx-tint-option center
+{
+    margin-top: 15px;
+    text-align: left !important;
+}
+.prx-tint-option .prx-color{ margin-bottom: 15px; }
+.prx-tint-option .prx-color span.tint-color
+{   font-size: 0;
+    width: 26px;
+    height: 26px;
+    display: inline-block;
+    border-radius: 100%;
+    padding: 0px;
+    position: relative;
+    cursor: pointer;
+}
+.prx-tint-option .prx-color .prx-color-title{ display: inline-block; margin-right: 10px; vertical-align: middle; text-transform: uppercase; }
+.prx-tint-option .prx-color span.tint-color:after 
+{   content: ""; display: block; width: 32px; height: 32px; border-radius: 100%; border: 1px solid transparent; top: -3px; position: absolute;
+    left: -3px;
+}
+.prx-tint-option .prx-color span.tint-color.checked:after
+{   border-color: #000;    
+} 
+.prx-tint-option .prx-color .prx-select-content2{ vertical-align: middle; display: inline-block; }
+.prx-tint-option .prx-color .prx-select-content2 label{ display: inline-block; margin-bottom: 0px; margin-right: 10px; }
+.prx-color{ margin-top: 10px; }
+.prx-strength .prx-strength-title{ display: inline-block; margin-right: 10px; text-transform: uppercase; vertical-align: middle; }
+.prx-strength .prx-select-content1{ display: inline-block; }
+.prx-strength .prx-select-content1 label{ display: inline-block; margin-bottom: 0px; }
+.prx-strength .prx-select-content1 .tint-strength
+{   text-align: left; display: inline-block; position: relative; margin-right: 10px; font-weight: 500; color: #000; font-size: 14px; text-transform: capitalize;    
+}
+.prx-strength .prx-select-content1 .tint-strength input[type=radio]
+{   position: absolute; left: 0px;    
+}
+.prx-strength .prx-select-content1 .tint-strength::before
+{   position: relative; top: 2px; display: inline-block; content: ""; width: 14px; height: 14px; border-radius: 50%; margin-right: 3px; border: 1px solid #848484;
+}
+.prx-strength .prx-select-content1 .tint-strength.checked::before
+{   border:5px solid #4b89f5;
+}
+.prx-strength .prx-select-content1 .tint-strength input[type=radio]
+{    position: absolute; left: 0px;      
+}
+.lensoption-sub-content .checked{ border: 2px solid #000 !important; }
+.bottom-step-action{ width: 100%; }
+.bottom-step-action span{ color: #000;  }
+.bottom-step-action .action-next
+{   float: right;    
+}
+.customer_chat
+{   position: absolute; text-align: center; font-size: 14px; color: #878787; text-transform: capitalize; bottom: -40px; display: block; width: 85%;    
+}
+.customer_chat a{ color: #29bdd3; }
+.chat-icon
+{   display: inline-block; background: url(../images/chat.png) no-repeat center center; width: 20px; height: 20px; background-size: 20px auto; margin-right: 15px;
+    vertical-align: middle;    
+}
+#prx
+{
+    margin-bottom: 50px;
+}
+.prx_data .login
+{   display: block; padding: 10px 0px;
+}
+.prx_data .login .login-link
+{   color: #878787; font-size: 14px;    
+}
+.prx_data .login .login-link em
+{   font-style: normal;    
+}
+.prx_data .login .login-link a
+{   color:#47bccd; text-transform: uppercase;     
+}
+#prx #prx-steps li .lenstype-sub-content
+{   width: 100% !important;
+}
+#prx #prx-steps #step-status-4 .option-content p.option-recommend
+{   text-transform: uppercase; color: #0a9fd9;
+}
+#step-status-4 .event-prx .option-content
+{   padding-left: 0px; text-align: center;
+}
+#step-status-4 .option-description
+{   height: 153px;    
+}
+@media only screen and (max-width: 767px) 
+{
+  #prx .prx-sidebar 
+  { width: 100%;
+  }
+  #prx .prx-main
+  {
+    width: 100%;
+    padding-right: 0px;
+  }
+}
+@media only screen and (max-width: 480px) 
+{
+    #prx #prx-steps li
+    {
+        width: 100%;
+         margin-bottom: 5px;
+    }
+}
+/* PRXDATA CSS */
+.add_prx_container .prescription-help
+{   right: 20px; position: absolute; width: 22px; height: 22px; border-radius:100%; text-align: center; color: #fff; line-height: 22px; font-size: 14px;
+    background: #56cfe1; display: inline-block;     
+}
+.prx_data .add_prx_container
+{   padding: 2% 2% 2% 3%; border-bottom: 1px solid #d3d3d3; position: relative; 
+}
+.prx_data .add_prx_container .add_prx_container
+{   position: absolute; right: 0; top: 0; padding: 9px; cursor: pointer; display: inline-block; border-width: 1px; border-color: #ebebeb #ebebeb #d8d8d8; box-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+.prx_data .add_prx_container .addprx_section::after
+{   clear: both; display: block; content: ""; width: 100%; line-height: 1px;
+}
+.prx_data .add_prx_container .addprx_section .addprx_title,
+.prx_data .add_prx_container .addprx_section .addprx_right,
+.prx_data .add_prx_container .addprx_section .addprx_left
+{   float: left; width: 100%; margin-bottom: 0px;
+}
+.prx_data .add_prx_container .addprx_section .addprx_title dt    
+{   width: 17%; float: left; border-right: 1px solid #f1f1f1; padding:5px 20px;
+}
+.prx_data .add_prx_container .addprx_section .addprx_title dd
+{   width: 20%; float: left; padding:5px 20px; font-size: 1.2rem; color: #000; font-weight: lighter; text-align: center;
+}
+.prx_data .add_prx_container .addprx_section .addprx_title dd:nth-of-type(4)
+{   width: 22%; padding-left: calc(5% - 1px); border-left: 1px solid #f1f1f1;
+}
+.prx_data .add_prx_container .addprx_section .addprx_right dt,
+.prx_data .add_prx_container .addprx_section .addprx_left dt
+{   width: 17%; float: left; border-right: 1px solid #f1f1f1; padding:20px 10px; text-align: center; color: #000; font-size: 1.2rem;      
+}
+.prx_data .add_prx_container .addprx_section .addprx_right dt label,
+.prx_data .add_prx_container .addprx_section .addprx_left dt label
+{   text-align: center; color: #000; font-size: 1.2rem; margin: 0px;
+}
+.prx_data .add_prx_container .addprx_section .addprx_right dt label span,
+.prx_data .add_prx_container .addprx_section .addprx_left dt label span
+{   display: block;
+}
+.prx_data .add_prx_container .addprx_section .addprx_right dd,
+.prx_data .add_prx_container .addprx_section .addprx_left dd
+{   width: 20%; float: left; padding: 20px;  
+}
+.prx_data .add_prx_container .addprx_section .addprx_right dd:nth-of-type(4),
+.prx_data .add_prx_container .addprx_section .addprx_left dd:nth-of-type(4)
+{   width: 22%; padding-left: calc(5% - 1px); border-left: 1px solid #f1f1f1;
+}
+.prx_data .add_prx_container .addprx_section .pd
+{   padding: 20px 0px; border-top: 1px solid #ccc; margin-top: 20px; margin-bottom: 0px; 
+}
+.prx_data .add_prx_container .addprx_section .pd::after
+{   clear: both; display: block; content: ""; width: 100%; line-height: 1px;  
+}
+.prx_data .add_prx_container .addprx_section .pd dt
+{   width:17%; float: left; text-align: center; padding: 5px; color: #000; padding: 10px 0px;
+}
+.prx_data .add_prx_container .addprx_section .pd dt label
+{   color: #000; font-size: 1.2rem; margin-bottom: 0px;       
+}
+.prx_data .add_prx_container .addprx_section .pd dt label span
+{   display: block;    
+}
+.prx_data .add_prx_container .addprx_section .pd dd
+{   width: 20%; float: left; color: #000; font-size: 1.2rem; padding: 0px 20px;
+}
+.prx_data .add_prx_container .addprx_section.pd .addprx_input label
+{   text-align: center; 
+}
+.prx_data .add_prx_container .addprx_section.pd .addprx_input.chk
+{   width: auto; padding-left: 20px;
+}
+.checkbox_div
+{   padding: 10px;    
+}
+.checkbox_div .checkbox-ui{ position: relative; display: inline-block; vertical-align: middle; }
+.checkbox_div .checkbox-ui label
+{   width: 19px; height: 19px; display: inline-block; border:1px solid #262626; 
+}
+.checkbox_div input[type="checkbox"]
+{   vertical-align: middle;  display: inline-block; margin: 0px; font-size: 13px; color: #000; padding-left: 15px; position: absolute; opacity: 0; 
+}
+.checkbox_div .checkbox-ui input:checked + label
+{   background: #4ca3bf; border-color: #4ca3bf;    
+}
+.checkbox_div .checkbox-ui input:checked + label::before
+{    content: "\f00c"; font-family: 'FontAwesome'; color: #fff; font-size: 12px; width: 16px; display: inline-block; text-align: center; 
+}
+.checkbox_div > label
+{   vertical-align: top; display: inline-block; font-weight: lighter; font-size: 14px; color: #000; margin: 0px 0px 0px 20px;
+}
+.prx_data .add_prx_container .addprx_section .addprx_price_section
+{  padding: 2.9% 3%; border-top: 1px solid #d3d3d3; border-bottom:1px solid #d3d3d3;     
+}
+.prx_data .add_prx_container .addprx_section .addprx_price_section #prismprice  
+{   display: inline-block; vertical-align: middle; 
+}
+.prx_data .add_prx_container .addprx_section .addprx_price_section label
+{   vertical-align: middle; margin: 0px 10px 0px 0px; color: #000; font-size: 12px;
+}
+.prx_data .add_prx_container .addprx_section.addprx_comments
+{   padding: 2% 6% 3.5%; position: relative; border-top: 1px solid #d3d3d3;
+}
+.prx_data .add_prx_container .addprx_section.addprx_comments .addprx_input.comment_box
+{   margin: 5px auto;
+}
+.prx_data .add_prx_container .addprx_section.addprx_comments .addprx_input.comment_box label
+{   color: #000; font-size: 1.2rem; margin: 0px;    
+}
+.prx_data .add_prx_container .addprx_section.addprx_comments textarea
+{       margin: 5px auto 20px; border:1px solid #ccc;  width: 100%; max-width: 315px; height: 75px; border-radius: 0; 
+        min-height: 85px;   
+}
+.prx_data .add_prx_container .addprx_section.addprx_comments ul:nth-of-type(3)
+{   font-size: 14px;
+    width: 100%;
+    max-width: 315px;
+}
+.prx_data .add_prx_container .addprx_section.addprx_comments ul:nth-of-type(3) input
+{   width: 100%; padding: 6px 5px; border: none; border-bottom: 1px solid #cdcdcd; color: #000;
+}
+.prx_data select
+{   border: none;
+    border-bottom: 1px solid #cdcdcd;
+    padding: .5rem 2rem .5rem 1rem;
+    color: #000;
+    font-size: 13px;       
+}
+.prx-submit
+{   text-align: center; margin-top: 20px;margin-bottom: 20px;
+}
+.prx-submit .prx-confirm-btn
+{   background: #da2c2a; border-radius: 24px; color: #fff; font-size: 14px; text-transform: uppercase; font-weight: 600; padding: 7px 30px; display: inline-block;
+    position: relative; z-index: 1; cursor: pointer;     
+}
+.prx-submit .prx-confirm-btn:hover
+{   background: #333;
+
+}
+.prx-submit::after
+{   content: ""; display: block; height: 1px; background: #c2c2c2; width: 100%; position: relative; top: -19px;     
+}
+#tips-prescription-help,
+#tips-pd-help
+{   overflow: visible; max-width: 600px; max-height: 80vh; width: 100%; box-sizing: border-box; box-shadow: none; padding: 50px; overflow-y: auto; 
+}
+.tips-prescription-content
+{   padding: 40px; max-width: 600px;    
+}
+.tips-prescription-content iframe{ width: 100%; }
+.tips-prescription-content strong
+{   color: #000;
+}
+.tips-prescription-content p
+{   color: #000;
+}
+.rx-video-content-container{ position: relative; }
+.tips-prescription-content .video-text-content
+{   position: absolute; width: 99.5%; background: rgba(0,0,0,0.9); color: #fff; font-size: 16px; text-align: center; padding: 10px; bottom: 6px; font-weight: 600;
+}
+.tips-prescription-content .rx-help-btn
+{   margin-top: 20px; text-align: center;
+}
+.tips-prescription-content .btn-rx-help-ok
+{   padding: 8px 50px; font-size: 14px; text-transform: uppercase; border: 1px solid #404040; background: #404040; display: inline-block; text-align: center; 
+    height: auto; line-height: normal; color: #fff; border-radius: 0px;
+}
+.tips-prescription-content .btn-rx-help-ok:hover
+{   background: #fff; color: #404040;    
+}
+.prx_data .add_prx_container .addprx_section.pd .prescription-help{ margin-top: 15px; }
+.prescription-popup.video
+{   padding: 0px !important;    
+}
+.fancybox-content .fancybox-close-small
+{   right: -30px; top: -30px; width: 60px; height: 60px; position: absolute; box-shadow: 0 2px 2px rgba(0,0,0,0.2); 
+    border-radius: 100%; z-index: 99; background: #fff;
+}
+.fancybox-content .fancybox-close-small svg
+{   stroke-width:1; opacity: 1;
+}
+.fancybox-content
+{   padding: 0px !important; overflow: unset !important;
+}
+@media (max-width: 767px) 
+{
+    .prx_data .add_prx_container .addprx_section
+    {   display: table; width: 100%;        
+    }
+    .prx_data .add_prx_container .addprx_section .addprx_title
+    {   width: 33%; display: table-cell; vertical-align: top;
+    }
+    .prx_data .add_prx_container .addprx_section .addprx_right,
+    .prx_data .add_prx_container .addprx_section .addprx_left
+    {   display: table-cell; width: 33%;
+    }
+    .prx_data .add_prx_container .addprx_section .addprx_title dt,
+    .prx_data .add_prx_container .addprx_section .addprx_title dd,
+    .prx_data .add_prx_container .addprx_section .addprx_right dt,
+    .prx_data .add_prx_container .addprx_section .addprx_left dt
+    {   background: #f3f3f3; color: #000; width: 100%; float: none;
+    }
+    .prx_data .add_prx_container .addprx_section .addprx_title dd{ text-align: left; padding: 20px 10px !important; width: 100% !important; }
+    .prx_data .add_prx_container .addprx_section .addprx_right dt,
+    .prx_data .add_prx_container .addprx_section .addprx_left dt{ text-align: center; }
+    .prx_data .add_prx_container .addprx_section .addprx_right dd,
+    .prx_data .add_prx_container .addprx_section .addprx_left dd
+    {   width: 100%; float: none;            
+    }
+    .prx_data .add_prx_container .addprx_section .addprx_title dt 
+    {
+        min-height: 70px;
+    }
+    .prx_data .add_prx_container .addprx_section .addprx_right dd:nth-of-type(4), .prx_data .add_prx_container .addprx_section .addprx_left dd:nth-of-type(4)
+    {
+        width: 100%;
+        padding-left: 20px;
+        border-left: 0;
+    }
+    .add_prx_container .prescription-help
+    {
+        display: none;
+    }
+    .prx_data .add_prx_container .addprx_section .pd dt
+    {
+        width: 30%;
+    }
+    .prx_data .add_prx_container .addprx_section .pd dd
+    {
+        width: 33%;
+    }
+    .prx_data .add_prx_container .addprx_section.pd .addprx_input.chk 
+    {   width: 100%;
+    }
+    .customer_chat
+    {
+        position: static;
+        margin-top: 20px;
+        text-align: left;
+    }
+    .prx-strength .prx-select-content1 .tint-strength
+    {
+        padding: 5px 15px 5px 5px;
+        display: block;
+        line-height: normal;  
+        margin-top: 10px;
+    }
+    .event-prx .option-content
+    {
+        padding-left: 0;
+    }
+
+}
+@media (max-width: 480px)
+{
+    .prx_data .add_prx_container .addprx_section .addprx_right dd, .prx_data .add_prx_container .addprx_section .addprx_left dd
+    {
+        padding: 10px;
+    }
+}
+/* end PRXDATA CSS */
+
+/*  prx_customer CSS */
+.account .page-wrapper{ background: #efefef; }
+.account .sidebar
+{   padding: 20px 30px; background: #fff;    
+}
+.my-prescriptions
+{    
+}
+.prx-customer-index .column.main
+{   padding: 0 3%;
+}
+.my-prescriptions .prescriptions-title
+{   background: #fff; padding:20px 15px; text-align: center; margin-bottom: 15px; 
+}
+.my-prescriptions .prescriptions-title h2
+{   font-size: 20px; text-align: center; color: #000;    
+}
+.my-prescriptions .section
+{   margin-bottom: 15px;    
+}
+.my-prescriptions .section .content
+{   background: #fff; padding: 20px 30px;
+}
+.my-prescriptions .section .sub-title
+{   font-size: 13px; color: #606060; margin-bottom: 0px; font-family: "Poppins", arial, tahoma; margin-bottom: 5px; font-weight: 500;
+}
+.my-prescriptions .section .content .heading
+{   border-bottom: 1px solid #ccc; position: relative;  font-size: 18px; color: #000; font-weight: lighter; padding-bottom: 5px; margin-bottom: 20px;
+}
+.my-prescriptions .section .content .heading span
+{   position: absolute; right: 0px; font-size: 20px; color: #000; top: 3px; cursor: pointer;
+}
+.my-prescriptions .order-data-list
+{   margin-bottom: 20px;    
+}
+.my-prescriptions .order-data-list .data-heading 
+{   display: flex; justify-content: space-between;
+}
+.my-prescriptions .order-data-list .data-heading dt{ background: #fff; border-right: 1px solid #e1e1e1; min-width: 50px;  }
+.my-prescriptions .order-data-list .data-heading dd
+{   background: #f5f5f5; border:1px solid #e1e1e1; border-bottom: none; padding: 10px 37px; font-size: 13px; white-space: normal; width: 100%; border-left: 0px; color: #000; text-align: center;    
+}
+.my-prescriptions .order-data-list .data-details
+{   display: flex; justify-content: space-between;       
+}  
+.my-prescriptions .order-data-list .data-details dt{ background: #f5f5f5; border-right: 1px solid #e1e1e1; min-width: 50px; font-size: 13px; padding: 10px;  color: #000; text-align: center; font-weight: normal;  }
+.my-prescriptions .order-data-list .data-details dd
+{   background: #fff; border:1px solid #e1e1e1; padding: 10px; font-size: 13px; white-space: normal; width: 100%; border-left: 0px; color: #000; text-align: center;    
+}  
+.my-prescriptions .order-data-list .data-details.od dd.last
+{   border-bottom: none; 
+}
+.my-prescriptions .order-data-list .data-details.os dd{   border-top: none;          }
+.my-prescriptions .action-bar-edit
+{   padding: 10px; border-top: 1px solid #ccc; text-align: center;    
+}
+.my-prescriptions .action-bar-edit > span
+{   width: 48%; text-align: center; color: #000; font-size: 14px; font-weight: normal; padding: 5px 0px; display: inline-block; cursor: pointer;
+}
+.my-prescriptions .action-bar-edit > span + span{ border-left: 1px solid #ccc;  }
+.my-prescriptions .action-bar-edit span span{ vertical-align: middle; }
+.my-prescriptions .action-bar-edit span i
+{   font-size: 15px; vertical-align: middle;     
+}
+.my-prescriptions .check-mark
+{   padding: 10px 30px;    
+}
+.my-prescriptions .check-mark .checkbox
+{   display: inline-block; position: relative;
+}
+.my-prescriptions .check-mark .checkbox .input-checkbox{ position: absolute; margin: 0px; left: 3px; top: 5px; opacity: 0;  }
+.my-prescriptions .check-mark .checkbox label
+{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 700;
+    border: 1px solid #262626;
+    vertical-align: middle;
+}
+.my-prescriptions .check-mark .checkbox .input-checkbox:checked + label{ background: #ccc; }
+.my-prescriptions .check-mark > label
+{   font-weight: lighter; color: #000; font-size: 15px; vertical-align: middle; margin: 0px; margin-left: 20px;    
+}
+.my-prescriptions .action-bar
+{   padding: 20px; text-align: center;     
+}
+.my-prescriptions .action-bar .btn
+{   display: inline-block; padding: 4px 20px; background: #333; color: #fff; font-size: 15px; font-weight: normal; border-radius: 0px; box-shadow: none; border: none; height: auto;
+    letter-spacing: 0.050em; cursor: pointer;
+}
+.my-prescriptions .action-bar .btn:hover
+{   background: #000;     
+}
+.my-prescriptions .action-bar .btn i
+{   display: inline-block; vertical-align: middle; font-size: 13px; width: 20px; height: 20px; line-height: 20px; text-align: center; border-radius: 100%; border:1px solid #fff;
+    margin-right: 10px;
+}
+.my-prescriptions .action-bar .btn span
+{   vertical-align: middle; 
+}
+.tool-a:hover + .tooltip
+{
+    opacity: 1;
+}
+.tool-a + .tooltip > .tooltip-inner
+{    
+    background: #fff !important;
+    font-size: 16px;
+    color: #000;
+}
+.tool-a + .tooltip > .tooltip-arrow 
+{    
+    border-left: 8px solid #ffffff0d !important;
+    border-right: 8px solid #ffffff08 !important;
+    border-top: 8px solid #bbbbbb !important;
+    border-bottom: 8px solid #ffffff0d !important;
+    bottom: -10px;
+}
+.btn-show-more-rx
+{
+    text-align: center;
+}
+.btn-show-more-rx .btn-show
+{
+    color: #000;
+}
+.btn-show-more-rx .btn-show .fa
+{
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 16px;
+}
+.btn-show-more-rx .less-rx
+{
+}
+.btn-show-more-rx.show-more .more-rx
+{ 
+}
+.btn-show-more-rx.show-more .less-rx
+{
+    display: inline-block;
+}
+.addprx_section.prism-section
+{
+    border-top: 1px solid #dcdcdc;
+    padding-top: 25px;
+}
+.addprx_section-main .addprx_price_section
+{
+    border-top: 1px solid #dcdcdc;
+    padding-top: 16px;
+    margin-bottom: 5px;
+}
+.vid-ico {
+	background: url(../images/video-ico.png) no-repeat center center;
+	width: 24px;
+    height: 24px;
+    display: block;
+}
+
+
+
+
+
+
+@media (max-width:991px)
+{
+  #prx .prx-main{ width: 100%; padding-right: 0px; }
+  #prx .prx-sidebar{ width: 100%;  }  
+  .prx-show-selected .prx_types a{ visibility: visible; }
+}
+#launcher
+{   z-index: 99 !important;
+}
+@media (max-width:767px)
+{
+    /* #prx #prx-steps ul{ max-height: 976px; } */
+    .product-detail-infomation{ margin-top: 0px; }
+    #prx #prx-steps li{ width: 100%; }
+    #prx .prx-sidebar .prx-total 
+    {
+        color: #000;
+        position: fixed;
+        bottom: 0;
+        background: #fff;
+        z-index: 9999;
+        width: 100%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+    #prx .prx-sidebar .prx-total .event-cart-prx
+    {
+        float: right;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+    .prx-total .separately-price
+    {   padding: 5px 10px; margin: 0px;
+    }
+    .prx-show-selected
+    {   padding: 0px 10px;
+    }
+    .prx-total .final-price
+    {
+        margin: 18px 10px 10px;
+        float: left;
+    }
+    .scroll-to-top
+    {
+        display: none;  
+    }
+    .prx-index-index #launcher.zEWidget-launcher
+    {
+        bottom: 77px !important;
+    }
+}
+@media (max-width:480px)
+{
+    #prx .prx-step-status li.prx-title-usage{ width: 17%; }
+    .customer_chat{ width: auto; }
+    .event-prx .option-description img{ display: none; }
+    .fancybox-slide--video .fancybox-content .fancybox-close-small
+    {       width: 30px; height: 30px; top: -10px; right: -10px; 
+    }
+    .tips-prescription-content
+    {   max-width: 380px;        
+    }
+}
+
+.dropdown-disabled{opacity:0.5;}

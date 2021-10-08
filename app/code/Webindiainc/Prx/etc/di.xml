@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    
+	<virtualType name="Webindiainc\Prx\Model\ResourceModel\Lensusage\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">prx_lensusage</argument>
+            <argument name="resourceModel" xsi:type="string">Webindiainc\Prx\Model\ResourceModel\Lensusage</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="prx_lensusage_list_data_source" xsi:type="string">Webindiainc\Prx\Model\ResourceModel\Lensusage\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+	
+	<virtualType name="Webindiainc\Prx\Model\ResourceModel\Lenstype\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">prx_lenstype</argument>
+            <argument name="resourceModel" xsi:type="string">Webindiainc\Prx\Model\ResourceModel\Lenstype</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="prx_lenstype_list_data_source" xsi:type="string">Webindiainc\Prx\Model\ResourceModel\Lenstype\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+	
+	<virtualType name="Webindiainc\Prx\Model\ResourceModel\Lensthickness\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">prx_lensthickness</argument>
+            <argument name="resourceModel" xsi:type="string">Webindiainc\Prx\Model\ResourceModel\Lensthickness</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="prx_lensthickness_list_data_source" xsi:type="string">Webindiainc\Prx\Model\ResourceModel\Lensthickness\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+	
+	<virtualType name="Webindiainc\Prx\Model\ResourceModel\Lenstintcolor\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">prx_lenstintcolor</argument>
+            <argument name="resourceModel" xsi:type="string">Webindiainc\Prx\Model\ResourceModel\Lenstintcolor</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="prx_lenstintcolor_list_data_source" xsi:type="string">Webindiainc\Prx\Model\ResourceModel\Lenstintcolor\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+	
+	<virtualType name="Webindiainc\Prx\Model\ResourceModel\Lenstintstrength\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">prx_lenstintstrength</argument>
+            <argument name="resourceModel" xsi:type="string">Webindiainc\Prx\Model\ResourceModel\Lenstintstrength</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="prx_lenstintstrength_list_data_source" xsi:type="string">Webindiainc\Prx\Model\ResourceModel\Lenstintstrength\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+	
+	<virtualType name="Webindiainc\Prx\Model\ResourceModel\Lensprescription\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">prx_lensprescription</argument>
+            <argument name="resourceModel" xsi:type="string">Webindiainc\Prx\Model\ResourceModel\Lensprescription</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="prx_lensprescription_list_data_source" xsi:type="string">Webindiainc\Prx\Model\ResourceModel\Lensprescription\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+	
+	
+    <type name='Magento\Quote\Model\Quote\Item'>
+        <plugin name='beforeDispatch' type='Webindiainc\Prx\Plugin\Quote\Splitcart' sortOrder='99'/>
+    </type>    
+	<type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+        <plugin name="unique_name" type="Webindiainc\Prx\Plugin\Quote\ToOrderItem" sortOrder="1" />
+    </type>
+	
+	<preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="Webindiainc\Prx\Model\Rewrite\Order\Pdf\Invoice" />
+	<preference for="Magento\Sales\Model\Order\Pdf\Items\Invoice\DefaultInvoice" type="Webindiainc\Prx\Model\Rewrite\Order\Pdf\Items\Invoice\DefaultInvoice" />
+	
+</config>

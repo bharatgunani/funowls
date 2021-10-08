@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<css src="Webindiainc_Prx::css/prx.css" />
+		<css src="Webindiainc_Prx::css/jquery.fancybox.css" />
+		<css src="Webindiainc_Prx::css/prxpopup.css" />
+		<meta name="robots" content="NOINDEX,NOFOLLOW"/>
+		<!-- <script src="Webindiainc_Prx::js/test.js"></script> -->
+	</head>
+
+	<body>
+		<referenceBlock name="page.main.title" remove="true" />
+		<referenceContainer name="content">
+			<!--<block class="Webindiainc\Prx\Block\Prx" name="prescription.help.info" template="Webindiainc_Prx::prescription-help.phtml" before="customer-login-popup" />-->
+			<block class="Webindiainc\Prx\Block\Popup" name="customer-login-popup" template="form/popup.phtml" after="-" />
+			<block class="Webindiainc\Prx\Block\Prx" name="prx_index_index" template="Webindiainc_Prx::prx.phtml" />
+			<!--<block class="Webindiainc\Prx\Block\Prxdata" name="prxdata_index_index" template="Webindiainc_Prx::prxdata.phtml" />-->
+		</referenceContainer>
+	</body>
+</page>

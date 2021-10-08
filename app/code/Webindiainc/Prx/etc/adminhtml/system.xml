@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="prxtab" translate="label" sortOrder="10">
+            <label>PRX</label>
+        </tab>
+        <section id="prxsection" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>PRX</label>
+            <tab>prxtab</tab>
+            <resource>Webindiainc_Prx::config</resource>
+            
+			<group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+			
+			<group id="prx" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>PRX Configuration</label>
+                <field id="rightsph" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Right Sphere (SPH)</label>
+                    <comment>Put comma separated value, do not use space</comment>
+                </field>
+				<field id="rightcyl" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Right Cylinder (CYL)</label>
+                </field>
+				<field id="rightaxis" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Right Axis</label>
+                </field>
+				<field id="rightadd" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Right ADD</label>
+                </field>
+				
+				<field id="leftsph" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Left Sphere (SPH)</label>
+                </field>
+				<field id="leftcyl" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Left Cylinder (CYL)</label>
+                </field>
+				<field id="leftaxis" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Left Axis</label>
+                </field>
+				<field id="leftadd" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Left ADD</label>
+                </field>
+            </group>
+			
+			<group id="pd" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Pupillary Distance (PD) Configuration</label>
+                <field id="pdcommon" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Common PD</label>
+                </field>
+				<field id="pdright" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Right PD</label>
+                </field>
+				<field id="pdleft" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Left PD</label>
+                </field>
+            </group>
+			
+			<group id="prism" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Prism Configuration</label>
+                <field id="prismprice" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Prism Price</label>
+                </field>
+				
+				<field id="prismrightvnum" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Right Vertical Nummber</label>
+                </field>
+				<field id="prismrightvdir" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Right Vertical Direction</label>
+                </field>
+				<field id="prismrighthnum" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Right Horizontal Nummber</label>
+                </field>
+				<field id="prismrighthdir" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Right Horizontal Direction</label>
+                </field>
+				
+				<field id="prismleftvnum" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Left Vertical Nummber</label>
+                </field>
+				<field id="prismleftvdir" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Left Vertical Direction</label>
+                </field>
+				<field id="prismlefthnum" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Left Horizontal Nummber</label>
+                </field>
+				<field id="prismlefthdir" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Left Horizontal Direction</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

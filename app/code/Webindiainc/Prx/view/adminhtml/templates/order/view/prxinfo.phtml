@@ -1,0 +1,28 @@
+<?php
+$order = $this->getOrderData();
+
+foreach ($order->getAllItems() as $item) {
+	$itemData = $item->getData();
+	if(isset($itemData['product_options']['info_buyRequest']['prxdata'])) {
+		$prxdata = $itemData['product_options']['info_buyRequest']['prxdata'];
+		extract($prxdata);
+		?>
+		<style>
+			#prxdata_orderview td {border:1px solid;}
+		</style>
+		<table class="table-lens" id="prxdata_orderview" style="width:100%;">
+			<caption>Prescription Details</caption>
+			<thead><tr><td colspan="5">Prescription Send by:Enter online</td></tr></thead>
+			<tbody>
+				<tr><td>&nbsp;</td><td>Sphere</td><td>Cylinder</td><td>Axis</td><td>ADD</td></tr>
+				<tr><td>Right Eye(OD)</td><td><?php echo $rightsph; ?></td><td><?php echo $rightcyl; ?></td><td><?php echo $rightaxis; ?></td><td><?php echo $rightadd; ?></td></tr>
+				<tr><td>Left Eye(OS)</td><td><?php echo $leftsph; ?></td><td><?php echo $leftcyl; ?></td><td><?php echo $leftaxis; ?></td><td><?php echo $leftadd; ?></td></tr>
+				<tr><td>Pupil Distance：</td><td colspan="4"><?php echo $pdcommon; ?></td></tr>
+				<tr><td>Near PD：</td><td colspan="4"></td></tr>
+			</tbody>
+		</table>
+		<?php
+	}
+}
+
+?>

@@ -1,0 +1,60 @@
+<?php /** @var $block \Magento\Sales\Block\Adminhtml\Items\Renderer\DefaultRenderer */ ?>
+<?php $_item = $block->getItem() ?>
+<?php $_item->setStoreId($_item->getInvoice()->getStoreId()) ?>
+<?php $block->setPriceDataObject($_item) ?>
+<tr>
+    <td class="col-product"><?= $block->getColumnHtml($_item, 'name') ?></td>
+	
+	
+	<td class="col-prxdata">
+		<?php
+		$order_item_id = $_item->getOrderItemId();
+		$helper = $this->helper('Webindiainc\Prx\Helper\Data');
+		$itemData = $helper->getOrderItem($order_item_id);
+
+		if(isset($itemData['product_options']['info_buyRequest']['prxdata'])) {
+			$prxdata = $itemData['product_options']['info_buyRequest']['prxdata'];
+			extract($prxdata);
+			if( isset($prxdata['send_via']) ) { ?>
+			<style>#prxdata_orderview td {border:1px solid;text-align: center;}</style>
+			<table class="table-lens" id="prxdata_orderview" style="width:100%;">
+				<caption>Prescription Details</caption>
+				<?php
+				if( isset($prxdata['send_via_title']) && $prxdata['send_via_title'] != '' ) {
+					$send_by = $prxdata['send_via_title'];
+				} else {
+					$send_by = $prxdata['send_via'];
+				}
+				?>
+				<thead><tr><td colspan="5"><?php echo __('Prescription Send by: ') . $send_by; ?></td></tr></thead>
+				<?php if( $prxdata['send_via'] == 'enter_online' ) { ?>
+				<tbody>
+					<tr><td>&nbsp;</td><td>Sphere</td><td>Cylinder</td><td>Axis</td><td>ADD</td></tr>
+					<tr><td>Right Eye(OD)</td><td><?php echo $rightsph; ?></td><td><?php echo $rightcyl; ?></td><td><?php if(isset($prxdata['rightaxis'])){echo $rightaxis;} ?></td><td><?php echo $rightadd; ?></td></tr>
+					<tr><td>Left Eye(OS)</td><td><?php echo $leftsph; ?></td><td><?php echo $leftcyl; ?></td><td><?php if(isset($prxdata['leftaxis'])){echo $leftaxis;} ?></td><td><?php echo $leftadd; ?></td></tr>
+					<tr><td>Pupil Distance：</td><td colspan="4"><?php echo $pdcommon; ?></td></tr>
+					<tr><td>Near PD：</td><td colspan="4"></td></tr>
+				</tbody>
+				<?php } ?>
+			</table>
+			<?php
+			}
+		}
+       ?>
+    </td>
+	
+	
+    <td class="col-price">
+        <?= $block->getColumnHtml($_item, 'price') ?>
+    </td>
+    <td class="col-qty"><?= /* @escapeNotVerified */ $_item->getQty()*1 ?></td>
+    <td class="col-subtotal">
+        <?= $block->getColumnHtml($_item, 'subtotal') ?>
+    </td>
+    <td class="col-tax"><?= /* @escapeNotVerified */ $block->displayPriceAttribute('tax_amount') ?></td>
+    <td class="col-discount"><?= /* @escapeNotVerified */ $block->displayPriceAttribute('discount_amount') ?></td>
+    <td class="col-total last">
+        <?= $block->getColumnHtml($_item, 'total') ?>
+    </td>
+</tr>
+

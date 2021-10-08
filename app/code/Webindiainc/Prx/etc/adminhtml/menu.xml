@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Webindiainc_Prx::manager" title="Prx Manager" module="Webindiainc_Prx" sortOrder="10" resource="Webindiainc_Prx::manager" />
+        <add id="Webindiainc_Prx::lensusage" title="Lensusage Manager" module="Webindiainc_Prx" sortOrder="20" parent="Webindiainc_Prx::manager" action="prx/lensusage/index" resource="Webindiainc_Prx::lensusage"/>
+		<add id="Webindiainc_Prx::lenstype" title="Lenstype Manager" module="Webindiainc_Prx" sortOrder="20" parent="Webindiainc_Prx::manager" action="prx/lenstype/index" resource="Webindiainc_Prx::lenstype"/>
+		<add id="Webindiainc_Prx::lensthickness" title="Lensthickness Manager" module="Webindiainc_Prx" sortOrder="20" parent="Webindiainc_Prx::manager" action="prx/lensthickness/index" resource="Webindiainc_Prx::lensthickness"/>
+		<add id="Webindiainc_Prx::lenstintcolor" title="Lenstintcolor Manager" module="Webindiainc_Prx" sortOrder="20" parent="Webindiainc_Prx::manager" action="prx/lenstintcolor/index" resource="Webindiainc_Prx::lenstintcolor"/>
+		<add id="Webindiainc_Prx::lenstintstrength" title="Lenstintstrength Manager" module="Webindiainc_Prx" sortOrder="20" parent="Webindiainc_Prx::manager" action="prx/lenstintstrength/index" resource="Webindiainc_Prx::lenstintstrength"/>
+		<add id="Webindiainc_Prx::lensprescription" title="Lensprescription Manager" module="Webindiainc_Prx" sortOrder="20" parent="Webindiainc_Prx::manager" action="prx/lensprescription/index" resource="Webindiainc_Prx::lensprescription"/>
+    </menu>
+</config>

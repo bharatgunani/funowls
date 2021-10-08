@@ -1,0 +1,54 @@
+<div id="tips-prescription-video" style="display: none;">
+<div id="tips-prescription-help" class="prescription-popup" >
+<div class="tips-prescription-content">
+    <div class="rx-video-content-container js-rx-video-help" data-videourl="https://www.youtube.com/embed/34kh8IFpt0Q?rel=0&amp;border=0&amp;autoplay=true">
+	    <div class="video-container">
+			<iframe width="481" height="270" src="https://www.youtube.com/embed/34kh8IFpt0Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        
+	    </div>
+	    <div class="video-text-content">
+	        <span class="video-desc">How to Read an Eyeglass Prescription</span>
+	    </div>
+	</div>
+	<strong>SPH (Sphere)</strong>
+    <p>Spherical error, or overall power of lens is the basic part of your prescription. A (+) means you have trouble seeing near, and a (-) means you have trouble seeing things faraway.</p>
+
+    <strong>CYL (Cylinder) &amp; Axis</strong>
+    <p>A cylinder value indicates astigmatisms or perpetually blurry vision. Axis—measured between 1 and 180°— tell us the orientation of the astigmatism</p>
+
+    <strong>ADD (Addition)</strong>
+    <p>This number is sometimes written NV for near vision and is used for multifocal lenses and readers</p>
+	<div class="tips-prism-content">
+            <strong>PRISM</strong>
+            <p>We can process prism prescriptions to correct eye orientation</p>
+            <p><b>Vertical Prism</b> is used to help correct vertical eye misalignments and is prescribed in opposite directions for both eyes</p>
+            <p><b>Horizontal Prism</b> is used to help correct lateral eye misalignments and is always prescribed in the same direction for both eyes</p>
+        </div>
+    	<div class="rx-help-btn"><button class="btn btn-rx-help-ok js-btn-rx-help-ok">OK</button></div>
+    </div>
+</div>
+<div id="tips-pd-help" class="prescription-popup" style="display: none;">
+<div class="tips-prescription-content">
+	<div class="rx-video-content-container">
+	    <div class="video-container">
+	    	<iframe width="481" height="270" src="https://www.youtube.com/embed/b5dOglpKq4I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
+	    </div>
+	    <div data-event-cate="Video" data-event-name="Rx Video" data-event-label="Prescription" class="video-text-content">
+	        <span class="video-desc">Pupillary Distance</span>
+	    </div>
+	</div>
+	<strong>PD (Pupillary Distance)</strong>
+    <p>It's just what sounds like—the distance in millimeters (mm) between your pupils. An average PD measurement is 63 mm, but varies by person. If it's not on the prescription, you can measure it yourself by:
+	<br>
+    <ul>
+    	<li>• printing the <a class="u primary" data-event-label="PD Ruler RX" target="_blank" href="/downloads/measure-your-pd-with-ruler.pdf">downloadable PD ruler</a>.</li>
+		<li>• watching our <a class="u primary" target="_blank" href="/guides/how-to-measure-your-pd">tutorial video</a>.</li>
+	</ul>
+	<div class="rx-help-btn"><button class="btn btn-rx-help-ok js-btn-rx-help-ok">OK</button></div>
+</div>
+</div>
+
+<script type="text/javascript">
+	require(['jquery','customjs'], function ($){		
+	});
+</script>
+</div>

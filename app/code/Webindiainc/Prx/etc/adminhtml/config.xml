@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <prxsection>
+            
+			<general>
+                <enable>1</enable>
+            </general>
+			
+			<prx>
+                <rightsph>-16.00,-15.75,-15.50</rightsph>
+                <rightcyl>-6.00,-5.75</rightcyl>
+                <rightaxis>1,2,3</rightaxis>
+                <rightadd>n/a,+1.00,+1.25</rightadd>
+                <leftsph>-16.00,-15.75,-15.50</leftsph>
+                <leftcyl>-6.00,-5.75</leftcyl>
+                <leftaxis>1,2,3</leftaxis>
+                <leftadd>n/a,+1.00,+1.25</leftadd>
+            </prx>
+			
+			<pd>
+				<pdcommon>41,42,43</pdcommon>
+                <pdright>23.0,23.50</pdright>
+                <pdleft>25.0,25.50</pdleft>
+			</pd>
+			
+			<prism>
+				<prismprice>25</prismprice>
+                <prismrightvnum>1</prismrightvnum>
+                <prismrightvdir>n/a,Up,Down</prismrightvdir>
+                <prismrighthnum>1</prismrighthnum>
+                <prismrighthdir>1</prismrighthdir>
+                <prismleftvnum>1</prismleftvnum>
+                <prismleftvdir>1</prismleftvdir>
+                <prismlefthnum>1</prismlefthnum>
+                <prismlefthdir>1</prismlefthdir>
+			</prism>
+			
+        </prxsection>
+    </default>
+</config>
