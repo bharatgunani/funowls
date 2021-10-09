@@ -6542,9 +6542,6 @@ img.polrized_image {
     color: #ffa500 !important;
 
 }
-.sidebar.sidebar-additional {
-    display: none;
-}
 .row.dis-row {
     display: flex;
     flex-wrap: wrap;
@@ -8056,6 +8053,35 @@ button.tocart span
 .photos-wrapper .box p
 {   color: #fff; font-size: 14px;    
 }
+.blog-post-list .sidebar.sidebar-additional,
+.blog-post-view .sidebar.sidebar-additional
+{   display: block; 
+}
+.blog-post-list .breadcrumbs,
+.blog-post-view .breadcrumbs
+{   background: #F0F0F0; padding: 15px 0px;    
+}
+.block.block-blog-posts .item .short-detail .date
+{   display: none;
+}
+.blog-post.post-item-info .post-info .post-title
+{   font-size: 22px; margin-bottom: 20px;    
+}
+.post-short-description h2
+{   font-size: 18px; font-weight: 600; text-transform: capitalize; margin-bottom: 15px;       
+}
+.post-short-description p
+{   font-size: 14px;    
+}
+.tag-cloud a:hover
+{   border-color: #039ae3; background: #fff; color: #039ae3 !important; text-decoration: none;       
+}
+.blog-list .post-item-info .post-info span{ color: #fff; }
+.blog-list .post-item-info .post-info .post-tags
+{   margin: 0px 20px;
+}
+.blog-post.post-item-info .post-info .post-title a:hover{ color: #039ae3 !important; text-decoration: none; }
+.blog-post.post-item-info .post-info .create-post-time{ color: #fff; }
 @media (max-width: 1199px)
 {
     #main-Accountcontent .top-links .links .link.wishlist + li{ display: none; }
@@ -8065,6 +8091,7 @@ button.tocart span
 {
     .instagram .block-title h2{ font-size: 20px; line-height: normal; }
     .instagram .block-title a{ margin-top: 15px; }
+    .blog-list .post-item-info{ margin-bottom: 20px; }
 }
 @media (max-width: 767px)
 {
