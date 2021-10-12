@@ -173,15 +173,15 @@
                         		</div> 
                         		<!-- <div class="proName"></div> -->
 								<?php $availableColor = $blockObj->countAvailableCount($_product->getId()); ?>
-								<?php if($availableColor): ?>
+								<?php /* if($availableColor): ?>
 									<div class="available-color"><?= $availableColor; ?> Colors</div>
 								<?php else: ?>
 									<div class="available-color"> 1 Colors</div>
-								<?php endif ?>
+								<?php endif */ ?>
 								
 								<div class="product details product-item-details">
 								
-								<?php echo $this->getLayout()->createBlock('Magento\Swatches\Block\Product\Renderer\Listing\Configurable')->setProduct($_product)->setTemplate('Magento_Swatches::product/listing/renderer.phtml')->toHtml() ?>
+								<?php // echo $this->getLayout()->createBlock('Magento\Swatches\Block\Product\Renderer\Listing\Configurable')->setProduct($_product)->setTemplate('Magento_Swatches::product/listing/renderer.phtml')->toHtml() ?>
 							</div>
 						</div>
 					</div>
