@@ -517,10 +517,13 @@ class Configurable
                 $proFinalPrice = number_format((float)$proPrice/4, 2, '.', '');
                 $sezzleEmi = '<span class="sezzle-payment-amount sezzle-button-text">CAD $'.$proFinalPrice.'&nbsp;</span>';
             }
-
-
             $sezzleEmisArr[$simpleProduct->getId()] = $sezzleEmi;
-
+            $couponDiscount = '';
+            if($simpleProductInfo->getProdCouponCode())
+            {
+                $couponDiscount = "<span class='prod-coupon-code'>". __('Discount applied on COUPON CODE : <b>'). $simpleProductInfo->getProdCouponCode(). __('('). $simpleProductInfo->getProdDeal().")</b></span>";
+            }
+            $couponDiscountArr[$simpleProduct->getId()] = $couponDiscount;
             
         }
 
@@ -551,6 +554,7 @@ class Configurable
         $config['checkInStock'] = $checkInStockArr;
         $config['lens'] = $attributesLens;           
         $config['frames'] = $attributesFrame; 
+        $config['couponDiscount'] = $couponDiscountArr; 
         return $this->jsonEncoder->encode($config);
     }
 }
