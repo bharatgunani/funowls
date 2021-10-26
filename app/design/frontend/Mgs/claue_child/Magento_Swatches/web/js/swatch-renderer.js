@@ -1053,6 +1053,7 @@ define([
                 var bridgeSizeDim = this.options.jsonConfig.bridgeSizeDim[this.getProduct()];
                 var lensSizeDim = this.options.jsonConfig.lensSizeDim[this.getProduct()];
                 var stockStatusclass = this.options.jsonConfig.stockStatusclass[this.getProduct()];
+                var couponDiscount = this.options.jsonConfig.couponDiscount[this.getProduct()];
             //    console.log(stockStatus,'stockStatus');
           
 
@@ -1083,6 +1084,7 @@ define([
                 $('.temple_length_img').text(templeLenDim);
                 $('.bridge_size_img').text(bridgeSizeDim);
                 $('.lens_size_val_img').text(lensSizeDim);
+                $('.prod-coupon-code').replaceWith(couponDiscount);
                 //change image code end
 
                 var stockClass = this.options.jsonConfig.checkInStock[this.getProduct()];

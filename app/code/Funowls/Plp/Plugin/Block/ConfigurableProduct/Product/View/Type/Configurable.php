@@ -521,7 +521,7 @@ class Configurable
             $couponDiscount = '';
             if($simpleProductInfo->getProdCouponCode())
             {
-                $couponDiscount = "<span class='prod-coupon-code'>". __('Discount applied on COUPON CODE : <b>'). $simpleProductInfo->getProdCouponCode(). __('('). $simpleProductInfo->getProdDeal().")</b></span>";
+                $couponDiscount = "<span class='prod-coupon-code'><span class='prod-coupon-applied'>".__('Coupon applied')."</span><span class='prod-deal'>".$simpleProductInfo->getProdDeal().'</span><span class="prod-deal-code">'. $simpleProductInfo->getProdCouponCode()."</span></span>";
             }
             $couponDiscountArr[$simpleProduct->getId()] = $couponDiscount;
             
