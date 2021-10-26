@@ -74,6 +74,7 @@
                 </block>    
 				<container name="product.info.price" label="Product info auxiliary container" htmlTag="div" htmlClass="product-info-price">
 					<block class="Magento\Catalog\Block\Product\View" name="product.info.sezzleEmi" template="product/view/sezzleEmi.phtml" />
+					<block class="Magento\Catalog\Block\Product\View" name="product.info.couponDiscount" template="product/view/couponDiscount.phtml" after="product.info.sezzleEmi"/>
 					<block class="Magento\Catalog\Pricing\Render" name="product.price.final">
 						<arguments>
 							<argument name="price_render" xsi:type="string">product.price.render.default</argument>
