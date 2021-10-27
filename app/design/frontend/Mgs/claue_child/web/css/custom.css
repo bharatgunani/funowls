@@ -3266,8 +3266,7 @@ span.temple-width {
     box-shadow: none;
 }
 .catalog-product-view .product-detail-infomation-content .product-info-price
-{
-    width: 35%;
+{	width: 40%;
     border: solid #e2e2e2;
     border-width: 0 1px;
     padding: 15px 10px;
