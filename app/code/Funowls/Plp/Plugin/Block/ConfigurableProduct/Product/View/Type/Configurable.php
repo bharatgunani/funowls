@@ -309,7 +309,7 @@ class Configurable
                 }else{
           //      $stockStatus = '<div class="stock unavailable pro_status here12"><span class="glyphicon glyphicon-ok"></span><span>Ships within 3-10 Days <div class="tooltip-custom end">ⓘ<span class="tooltiptext">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span></div></span></div>';
                 $checkInStock = '';
-                $stockStatus = '<span class="glyphicon glyphicon-ok"></span><span>Ships within 3-10 Days <div class="tooltip-custom end">ⓘ<span class="tooltiptext">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span></div></span>';
+                $stockStatus = '<span class="glyphicon glyphicon-ok"></span><span>Ships within 3-7 Days <div class="tooltip-custom end">ⓘ<span class="tooltiptext">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span></div></span>';
               }
             }
             
