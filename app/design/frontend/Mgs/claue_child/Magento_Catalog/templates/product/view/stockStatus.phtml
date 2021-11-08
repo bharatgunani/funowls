@@ -16,7 +16,7 @@
         </span>
         </div>
     <?php else: ?>
-        <?php if($backorder===0){?>
+        <?php if(empty($_product->isAvailable()) || $backorder===0){?>
         <div class="stock unavailable pro_status">
             <span class="glyphicon glyphicon-remove"></span><span><?php /* @escapeNotVerified */ echo __('Out of Stock') ?><div class="tooltip-custom">ⓘ
   <span class="tooltiptext">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
