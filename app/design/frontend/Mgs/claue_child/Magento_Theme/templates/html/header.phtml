@@ -67,7 +67,8 @@
 <?php endif ?>
 
 <?php // Top Link ?>
-<?php $htmlTopLink = '<div class="dropdown dropdown-toplinks"><button class="dropdown-toggle" type="button" data-toggle="dropdown"><i class="pe-7s-user"></i> <span class="label">Account</span></button><div class="dropdown-menu">'. $block->getChildHtml('top.links') .'</div></div>'; ?>
+<?php $htmlTopLink = '<div class="dropdown dropdown-toplinks"><button class="dropdown-toggle" type="button" data-toggle="dropdown"><i class="pe-7s-user"></i> <span class="label">Account</span></button><div class="dropdown-menu">'. $this->getLayout()->createBlock("Magedelight\SocialLogin\Block\Account\AuthorizationLink")->setTemplate("Magedelight_SocialLogin::account/authorization.phtml")->toHtml() .'</div></div>'; ?>
+
 
 <?php // HEADER CONTENT ?>
 <?php if($header == "" || $header == 'header_1' || $header == 'header_2' || $header == 'header_3' || $header == 'header'): ?>
@@ -753,3 +754,8 @@
 <?php if(!($header == 'header_5')){echo $subCategories;}?>
 
 <button class="action close-nav-button"><span class="pe-7s-close" aria-hidden="true"></span></button>
+<script type="text/javascript">
+    require(['jquery','snapchatjs'], function($)
+    {
+    });
+</script>
